@@ -1,0 +1,2917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill AI Path - Master AI & Data with Real Business Problems | Get Job Ready</title>
+    <meta name="description" content="Learn AI & Data skills by solving actual business problems. No theory-only courses. Get hands-on experience with real case studies from day 1.">
+    
+    <!-- Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #16a085 0%, #27ae60 100%);
+            --accent-gradient: linear-gradient(45deg, #FFD700, #FFA500, #FF8C00);
+            --elite-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            --success-gradient: linear-gradient(135deg, #00C851, #007E33);
+            --premium-gold: #FFD700;
+            --deep-blue: #004E89;
+            --vibrant-orange: #FF6B35;
+            --glassmorphism: rgba(255, 255, 255, 0.1);
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --elite-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+            --premium-shadow: 0 35px 100px rgba(22, 160, 133, 0.3);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background: #ffffff;
+        }
+
+        /* Background Effects */
+        .background-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.3;
+        }
+        
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: orbFloat 12s ease-in-out infinite;
+        }
+        
+        .orb-1 { 
+            width: 150px; height: 150px; top: 10%; left: 5%; 
+            background: var(--primary-gradient);
+            animation-delay: 0s; 
+        }
+        .orb-2 { 
+            width: 120px; height: 120px; top: 20%; right: 10%; 
+            background: var(--accent-gradient);
+            animation-delay: 4s; 
+        }
+        .orb-3 { 
+            width: 140px; height: 140px; bottom: 20%; left: 15%; 
+            background: var(--success-gradient);
+            animation-delay: 8s; 
+        }
+        
+        @keyframes orbFloat {
+            0%, 100% { transform: translateY(0px) scale(1); opacity: 0.3; }
+            50% { transform: translateY(-30px) scale(1.1); opacity: 0.6; }
+        }
+
+        /* Navigation */
+        .elite-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            transform: translateY(-100%);
+        }
+        
+        .elite-nav.visible {
+            transform: translateY(0);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .elite-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        
+        .elite-logo:hover {
+            transform: scale(1.02);
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 1.2em;
+            letter-spacing: -1px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .logo-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5em;
+            font-weight: 600;
+            color: var(--deep-blue);
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 0;
+            letter-spacing: 0.3px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--deep-blue);
+        }
+        
+        .nav-cta {
+            background: var(--accent-gradient);
+            color: var(--text-primary);
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+            font-size: 1em;
+            letter-spacing: 0.3px;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+            animation: patternMove 25s linear infinite;
+        }
+        
+        @keyframes patternMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content {
+            color: white;
+        }
+        
+        .elite-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-size: 1em;
+            margin-bottom: 35px;
+            border: 2px solid var(--premium-gold);
+            font-weight: 600;
+            animation: elitePulse 3s infinite;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+            letter-spacing: 0.3px;
+        }
+
+        @keyframes elitePulse {
+            0%, 100% { box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5); }
+        }
+        
+        .hero-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 4em;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.025em;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            font-weight: 400;
+            line-height: 1.5;
+            max-width: 95%;
+            letter-spacing: 0.2px;
+        }
+
+        .unique-value-section {
+            background: rgba(255, 215, 0, 0.15);
+            border: 2px solid var(--premium-gold);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.2);
+        }
+
+        .value-header {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--premium-gold);
+            text-align: center;
+        }
+
+        .value-points {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        .value-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            font-size: 1.1em;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+        }
+
+        .value-icon {
+            background: var(--premium-gold);
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1em;
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .hero-cta-container {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .primary-cta {
+            background: var(--accent-gradient);
+            color: var(--text-primary);
+            padding: 20px 40px;
+            border-radius: 45px;
+            font-size: 1.25em;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.4s ease;
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
+            border: 2px solid transparent;
+            letter-spacing: 0.3px;
+        }
+        
+        .primary-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 45px rgba(255, 215, 0, 0.6);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .secondary-cta {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1em;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            padding: 12px 20px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            letter-spacing: 0.2px;
+        }
+        
+        .secondary-cta:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Real Business Problems Section */
+        .business-problems-section {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e6f0ff 100%);
+            position: relative;
+        }
+
+        .problems-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 3.2em;
+            color: var(--deep-blue);
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        .section-subtitle {
+            font-size: 1.4em;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+            letter-spacing: 0.2px;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+            margin-bottom: 60px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: var(--elite-shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3B82F6, #10B981);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .problem-card:nth-child(1)::before { background: linear-gradient(90deg, #3B82F6, #1E40AF); }
+        .problem-card:nth-child(2)::before { background: linear-gradient(90deg, #10B981, #047857); }
+        .problem-card:nth-child(3)::before { background: linear-gradient(90deg, #8B5CF6, #5B21B6); }
+
+        .problem-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .problem-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .problem-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .problem-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .problem-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .problem-example {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #3B82F6;
+            margin-top: 15px;
+        }
+
+        .problem-example-title {
+            font-weight: 600;
+            color: var(--deep-blue);
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .problem-example-text {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Instructor Section - Enhanced */
+        .instructor-showcase {
+            position: relative;
+            perspective: 1000px;
+        }
+        
+        .instructor-card {
+            background: var(--glassmorphism);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--elite-shadow);
+            animation: cardFloat 6s ease-in-out infinite;
+            text-align: center;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .instructor-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAMAAzAMBIgACEQEDEQH/xAAbAAACAwEBAQAAAAAAAAAAAAACAwEEBQAGB//EAD0QAAEEAQMBBQYDBgUFAQAAAAEAAhEDBBIhMUEFE1FhcQYiI4GRoRQy8DVCUmKxwdEHJDPh8ReCorLiF//EABkBAAMBAQEAAAAAAAAAAAAAAAABAgMEBf/EACYRAAICAgICAgIDAQAAAAAAAAABAhEDEiExQVEiYRNxFIGh8MH/2gAMAwEAAhEDEQH/APFMaNbSSPi5hAgTpA6+hW9X7Lw2tbZGxLXNxwT7reaPkdgsl9nLiw6a8pIOJhNAJ4Lo6LdFrbHlG0q6WbrsZ3CJdhjELLI57nOc0F0jSSO3kt3D7LdQyWNxYbdNnFILEJhG1T/0jT/mPKfRvgGNIaSIsHKGjfYk/YKjn5uRQvaLFZ9Z5AOlw1AfL+q30uKOOmJm9B9Ss9rXFnI7yNGqpJOTCUGQ9xLi40SdyfkmWKd2sOs0rQT9J8Y6KJhDvkfIIBBODm6D7y8iJFNM/NZeOBjWWN7S7vHVFLBmN4FkkwCJIkqt7rQ0aJMa3E8lKAcJIL6PcGzTPUbHHpuVzCZAgfwu1b8kpO0K6HhO5TKAu0oa3UuNXgRgQOELuiINdojCXN7uNlrmxpW6aGmIBYXalVFGVJdGNEYgK2PqR8JU2NCdT6DyNpGJICJNssBmPogJVKOjRFzKNO9y0E6nOyWMJLhAFHUVOXkWcnKZkd2Pb3YZH5QjJQ8Sj2FRGLbdZoMLzdlvYnLAJ8e8bG3HvFEzJNa8Cr26Y1zS8OaQ4SCOm6uDCrZNfvXsDS0Ag9Qtu9E9L9qXYQ/wMyQ5tOmQQfULnuyWZ7GiGZBOoHy2R9t9pYud2TTYQ7FDnAtAEktPELA7B9sL1J+NWyvePbkQ4SAJ6EL2Y8kZRSTR85np5ceRtyb+y+7Bd7wPVp/MLGx8TGfZdWpspsKzQZxzjlm72j+pKXbzMiyxmPjtkN95x0gBdOK72hF8kvJr4fcQeywQNgbJWrdhYrO6aA95Huk1NdCYO4n0M1aYWgN2FgRJB8VSqOymv1l40gkgHi/yj7LWUlFLZOzgxQyZZZJycePhXFNcWuc5oJJcHHaJ2nkKx5TQdOQe9nYhNHBNp8/DnU13fP25cNyBvHJP0UaI7MqcIx6LUa4W8s9jBqB/4Kpn5uZnYrK+XYdY6aMaSKOy6eMM5Z7b3h7Xy4e3A2Z/GkWZaE6hGGhTJ6L/hzT8Qp8bkqJFIDzO3zUNdxMGSBKQOaLgYpTEpQRp6QBxNLdI7hT8m/QDt3hKSIRZGdnZGNVytKtbOta2yP8AyB1Y7wbUfhMIDHO1XJLp3k7j6BoWMbHjZHTrXtL2xjY1PoXWvs2YFiGzFEE7LHyO2e1cvvK3bOY6y3Z7C2ACDuCDAg8KGp0wJ93Nys9y8IZGtqgUaKFLsqCQTRrSiSyBZc0Hp0K04N1DKjSJv0FHcvNjCmDhwJtKJNCSIJSl9hSZOLXs3K7KyJ0WXEOO9AfVb9Psu7nY7cpj62PbLW6JsYI3MeKPBWB2LZfUyy7jdNlZr8QJUvJtVKK6OfE7VNbM7LdNNlYGGbXbVwqYGFRx2ObPd1/MXb6nz0Xt8x1y42wKFjc7D9O/lPyX5qfz8Wts8tzzfvhGO0KL++yGu1QTz4I5zWr0P5A9qG3R//Z');
+            background-size: cover;
+            background-position: center;
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .instructor-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7em;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: white;
+            letter-spacing: 0.2px;
+        }
+
+        .instructor-title {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1em;
+            font-weight: 400;
+            margin-bottom: 25px;
+            letter-spacing: 0.3px;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .expertise-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .expertise-item:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .expertise-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .expertise-name {
+            font-size: 0.95em;
+            font-weight: 500;
+            line-height: 1.3;
+            letter-spacing: 0.2px;
+        }
+
+        /* Learning Approach Section */
+        .learning-approach {
+            padding: 100px 40px;
+            background: white;
+        }
+
+        .approach-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .approach-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .step-card {
+            background: #f8fafc;
+            padding: 35px 25px;
+            border-radius: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+
+        .step-card:nth-child(1) { border-top-color: #3B82F6; }
+        .step-card:nth-child(2) { border-top-color: #10B981; }
+        .step-card:nth-child(3) { border-top-color: #8B5CF6; }
+        .step-card:nth-child(4) { border-top-color: #F59E0B; }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            background: var(--primary-gradient);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+
+        .step-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            font-size: 0.95em;
+        }
+
+        /* Complete AI Stack Section - Enhanced */
+        .complete-stack-section {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e6f0ff 100%);
+            position: relative;
+        }
+
+        .stack-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tracks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+            margin-top: 60px;
+        }
+
+        .track-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: var(--elite-shadow);
+            transition: all 0.4s ease;
+            border-top: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            min-height: 450px;
+        }
+
+        .track-card.locked {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            border-top-color: #94a3b8;
+            position: relative;
+        }
+
+        .track-card.locked::after {
+            content: '🔒';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5em;
+            color: #64748b;
+        }
+
+        .track-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3B82F6, #10B981);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .track-card:nth-child(1)::before { background: linear-gradient(90deg, #3B82F6, #1E40AF); }
+        .track-card:nth-child(2)::before { background: linear-gradient(90deg, #10B981, #047857); }
+        .track-card:nth-child(3)::before { background: linear-gradient(90deg, #8B5CF6, #5B21B6); }
+        .track-card:nth-child(4)::before { background: linear-gradient(90deg, #F59E0B, #D97706); }
+        .track-card:nth-child(5)::before { background: linear-gradient(90deg, #EF4444, #DC2626); }
+        .track-card:nth-child(6)::before { background: linear-gradient(90deg, #06B6D4, #0891B2); }
+
+        .track-card:not(.locked):hover::before {
+            transform: scaleX(1);
+        }
+
+        .track-card:not(.locked):hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .track-card.locked:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .track-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .track-card.locked .track-icon {
+            opacity: 0.5;
+        }
+
+        .track-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .track-card.locked .track-title {
+            color: #64748b;
+        }
+
+        .track-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 0.95em;
+        }
+
+        .track-card.locked .track-description {
+            color: #94a3b8;
+        }
+
+        .track-skills {
+            list-style: none;
+            text-align: left;
+            flex: 1;
+        }
+
+        .track-skills li {
+            padding: 6px 0;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .track-card.locked .track-skills li {
+            color: #94a3b8;
+        }
+
+        .track-skills li:last-child {
+            border-bottom: none;
+        }
+
+        .track-skills li::before {
+            content: '⚡';
+            color: var(--vibrant-orange);
+            font-weight: 700;
+            font-size: 1em;
+        }
+
+        .track-card.locked .track-skills li::before {
+            content: '🔒';
+            color: #94a3b8;
+        }
+
+        .track-details-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 18px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 0.9em;
+        }
+
+        .track-details-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(102, 126, 234, 0.3);
+        }
+
+        .track-details-link.locked {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .track-details-link.locked:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .unlock-all-cta {
+            margin-top: 50px;
+            padding: 20px 40px;
+            background: var(--accent-gradient);
+            color: var(--text-primary);
+            border: none;
+            border-radius: 40px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .unlock-all-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Track Modal - Enhanced */
+        .track-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .track-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 1000px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+            color: #64748b;
+            z-index: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .modal-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .modal-title {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .modal-subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .modal-body {
+            padding: 40px;
+        }
+
+        .modal-section {
+            margin-bottom: 40px;
+        }
+
+        .modal-section h3 {
+            font-size: 1.5em;
+            color: var(--deep-blue);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-section {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .price-tag {
+            font-size: 3em;
+            font-weight: 800;
+            color: var(--deep-blue);
+            margin-bottom: 10px;
+        }
+
+        .price-description {
+            color: var(--text-secondary);
+            font-size: 1.1em;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .project-item {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-gradient);
+        }
+
+        .project-title {
+            font-weight: 600;
+            color: var(--deep-blue);
+            margin-bottom: 8px;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .project-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        .learning-roadmap {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .roadmap-visual {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .roadmap-visual::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3B82F6, #10B981);
+            z-index: 1;
+        }
+
+        .roadmap-step {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 120px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .roadmap-step-number {
+            background: var(--primary-gradient);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: 700;
+        }
+
+        .roadmap-step-title {
+            font-weight: 600;
+            color: var(--deep-blue);
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .roadmap-step-desc {
+            font-size: 0.8em;
+            color: var(--text-secondary);
+        }
+
+        .architecture-diagram {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .diagram-visual {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .arch-component {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .arch-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: var(--deep-blue);
+        }
+
+        .arch-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9em;
+        }
+
+        .learning-weeks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .week-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .week-number {
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 5px;
+        }
+
+        .week-topic {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        .modal-cta {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .modal-cta-button {
+            background: var(--accent-gradient);
+            color: var(--text-primary);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .modal-cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Testimonials Section - Updated from Skill AI Landing */
+        .testimonials-section {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonials-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            margin-bottom: 60px;
+            font-weight: 700;
+        }
+
+        .testimonials-carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .testimonials-track {
+            display: flex;
+            animation: scroll 20s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .testimonial-card {
+            flex: 0 0 400px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0 20px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonial-content {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            opacity: 0.95;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e6f0ff 100%);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-list {
+            margin-top: 50px;
+        }
+
+        .faq-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 25px;
+            background: #f8fafc;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #e2e8f0;
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 25px;
+            max-height: 200px;
+        }
+
+        .faq-toggle {
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* Contact Section - FIXED FORM */
+        .contact-section {
+            padding: 100px 40px;
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .contact-benefits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .benefit-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .benefit-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .benefit-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .benefit-text {
+            font-size: 0.95em;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        /* Fixed Form Styles */
+        .contact-form {
+            background: var(--glassmorphism);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            margin-top: 50px;
+            box-shadow: var(--elite-shadow);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: white;
+            font-size: 1em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--premium-gold);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-group select option {
+            background: var(--text-primary);
+            color: white;
+        }
+
+        .contact-submit {
+            background: var(--accent-gradient);
+            color: var(--text-primary);
+            padding: 18px 45px;
+            border: none;
+            border-radius: 45px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            width: 100%;
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.3);
+            margin-top: 10px;
+        }
+
+        .contact-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 45px rgba(255, 215, 0, 0.5);
+        }
+
+        .contact-submit.loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: var(--success-gradient);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        .success-message h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        /* Footer - Enhanced */
+        .elite-footer {
+            background: #000000;
+            color: white;
+            padding: 50px 40px 25px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 35px;
+            margin-bottom: 35px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 18px;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--premium-gold);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--premium-gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 25px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .tracks-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .problems-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .approach-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .learning-weeks {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .diagram-visual {
+                justify-content: center;
+            }
+
+            .roadmap-visual {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .roadmap-visual::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.8em;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2em;
+            }
+
+            .section-title {
+                font-size: 2.5em;
+            }
+            
+            .tracks-grid,
+            .problems-grid,
+            .approach-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+                margin: 30px 10px;
+            }
+
+            .contact-benefits {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .primary-cta {
+                font-size: 1.1em;
+                padding: 16px 32px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .value-points {
+                gap: 15px;
+            }
+
+            .value-point {
+                font-size: 1em;
+            }
+
+            .learning-weeks {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 10px;
+                max-height: 95vh;
+            }
+
+            .modal-header {
+                padding: 30px 20px;
+            }
+
+            .modal-body {
+                padding: 30px 20px;
+            }
+
+            .testimonial-card {
+                padding: 30px 20px;
+                margin: 0 10px;
+            }
+
+            .diagram-visual {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .roadmap-visual {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .roadmap-visual::before {
+                display: none;
+            }
+
+            .arch-component {
+                min-width: 80px;
+            }
+
+            .contact-container {
+                padding: 0 20px;
+            }
+        }
+
+        /* Animation Classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading states */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="elite-nav" id="eliteNav">
+        <div class="nav-container">
+            <a href="#" class="elite-logo">
+                <div class="logo-icon">SA</div>
+                <div class="logo-text">Skill AI Path</div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#approach">Our Method</a></li>
+                <li><a href="#tracks">All Tracks</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Apply</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">Book Free Call</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="elite-badge">
+                    🏆 India's Only Complete AI & Data Stack with Real Business Problem Mastery
+                </div>
+                
+                <h1 class="hero-title">Master Complete AI & Data Stack. Unlock Premium Opportunities.</h1>
+                
+                <p class="hero-subtitle">
+                    Stop wasting time on theory-heavy courses. Master the complete professional stack by solving actual business challenges from day 1. Build skills that companies desperately need.
+                </p>
+                
+                <div class="unique-value-section">
+                    <div class="value-header">Why Top Professionals Choose Our Complete Stack Mastery:</div>
+                    <div class="value-points">
+                        <div class="value-point">
+                            <div class="value-icon">🏢</div>
+                            <span><strong>Real Company Projects:</strong> Work on actual business challenges that companies pay big money to solve</span>
+                        </div>
+                        <div class="value-point">
+                            <div class="value-icon">💡</div>
+                            <span><strong>Complete Professional Stack:</strong> Master all 6 essential tracks that make you indispensable</span>
+                        </div>
+                        <div class="value-point">
+                            <div class="value-icon">📈</div>
+                            <span><strong>Premium Portfolio:</strong> Build solutions that position you for high-value opportunities</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-cta-container">
+                    <a href="#contact" class="primary-cta">
+                        🚀 Unlock Premium Opportunities
+                    </a>
+                    <a href="#approach" class="secondary-cta">
+                        🔍 See Our Method
+                    </a>
+                </div>
+            </div>
+            
+            <div class="instructor-showcase" id="mentor">
+                <div class="instructor-card">
+                    <div class="instructor-photo"></div>
+                    <div class="instructor-name">Viresh Gendle</div>
+                    <div class="instructor-title">Real Business Problem Mentor<br>Founder, Skill AI Path</div>
+                    <div class="expertise-grid">
+                        <div class="expertise-item">
+                            <div class="expertise-icon">📊</div>
+                            <div class="expertise-name">Business Analytics</div>
+                        </div>
+                        <div class="expertise-item">
+                            <div class="expertise-icon">🏗️</div>
+                            <div class="expertise-name">Data Engineering</div>
+                        </div>
+                        <div class="expertise-item">
+                            <div class="expertise-icon">🤖</div>
+                            <div class="expertise-name">MLOps & AI</div>
+                        </div>
+                        <div class="expertise-item">
+                            <div class="expertise-icon">🧠</div>
+                            <div class="expertise-name">Gen AI Solutions</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real Business Problems Section -->
+    <section class="business-problems-section" id="problems">
+        <div class="problems-container">
+            <div class="section-header">
+                <h2 class="section-title animate-on-scroll">Real Business Problems You'll Solve</h2>
+                <p class="section-subtitle animate-on-scroll">
+                    No more "analyze this sample dataset." Work on actual challenges that companies pay to solve.
+                </p>
+            </div>
+
+            <div class="problems-grid">
+                <div class="problem-card animate-on-scroll">
+                    <div class="problem-icon">📊</div>
+                    <h3 class="problem-title">Sales Performance Crisis</h3>
+                    <p class="problem-description">
+                        A real e-commerce company's sales dropped 30% in Q3. Their data is messy, scattered across 5 systems.
+                    </p>
+                    <div class="problem-example">
+                        <div class="problem-example-title">What You'll Do:</div>
+                        <div class="problem-example-text">
+                            Clean messy data, build automated dashboards, identify the real cause, and present actionable insights to save the business.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem-card animate-on-scroll">
+                    <div class="problem-icon">🏗️</div>
+                    <h3 class="problem-title">Data Pipeline Breakdown</h3>
+                    <p class="problem-description">
+                        A growing startup's data pipeline fails daily. Reports are 2 days late, executives are frustrated.
+                    </p>
+                    <div class="problem-example">
+                        <div class="problem-example-title">What You'll Do:</div>
+                        <div class="problem-example-text">
+                            Rebuild their entire data architecture on Azure, implement monitoring, and ensure 99.9% uptime.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem-card animate-on-scroll">
+                    <div class="problem-icon">🤖</div>
+                    <h3 class="problem-title">Customer Support Overload</h3>
+                    <p class="problem-description">
+                        A service company gets 500+ support tickets daily. 80% are repetitive questions costing them lakhs.
+                    </p>
+                    <div class="problem-example">
+                        <div class="problem-example-title">What You'll Do:</div>
+                        <div class="problem-example-text">
+                            Build an AI agent that handles 70% of tickets automatically, reducing costs and improving customer satisfaction.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Approach Section -->
+    <section class="learning-approach" id="approach">
+        <div class="approach-container">
+            <div class="section-header">
+                <h2 class="section-title animate-on-scroll">Our Problem-First Learning Method</h2>
+                <p class="section-subtitle animate-on-scroll">
+                    Unlike traditional courses, we start with real business pain points, then teach you the skills to solve them.
+                </p>
+            </div>
+
+            <div class="approach-steps">
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Real Problem</h3>
+                    <p class="step-description">
+                        Start with an actual business challenge a company is facing right now. No made-up scenarios.
+                    </p>
+                </div>
+
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Learn Skills</h3>
+                    <p class="step-description">
+                        Learn only the skills needed to solve this specific problem. No unnecessary theory or fluff.
+                    </p>
+                </div>
+
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Build Solution</h3>
+                    <p class="step-description">
+                        Create a working solution using real data, real tools, and real constraints that businesses face.
+                    </p>
+                </div>
+
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Present Impact</h3>
+                    <p class="step-description">
+                        Learn to communicate your solution's business impact, just like you would to a real client or boss.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Complete AI Stack Section -->
+    <section class="complete-stack-section" id="tracks">
+        <div class="stack-container">
+            <h2 class="section-title animate-on-scroll">Complete AI & Data Professional Stack</h2>
+            <p class="section-subtitle animate-on-scroll">
+                Master all 6 tracks through real business problem-solving. Each track uses actual company challenges as learning material.
+            </p>
+            
+            <div class="tracks-grid">
+                <!-- Track 1: Data Analytics (Unlocked) -->
+                <div class="track-card animate-on-scroll" data-track="data-analytics">
+                    <div class="track-icon">📊</div>
+                    <h3 class="track-title">Data Analytics</h3>
+                    <p class="track-description">
+                        Solve real revenue drops, sales analysis, and performance monitoring using actual business data.
+                    </p>
+                    <ul class="track-skills">
+                        <li>Advanced SQL for business intelligence</li>
+                        <li>Excel automation & executive dashboards</li>
+                        <li>Power BI for real-time insights</li>
+                        <li>Python for statistical analysis</li>
+                    </ul>
+                    <button class="track-details-link" onclick="openTrackModal('data-analytics')">View Real Projects</button>
+                </div>
+                
+                <!-- Track 2: Data Engineering (Unlocked) -->
+                <div class="track-card animate-on-scroll" data-track="data-engineering">
+                    <div class="track-icon">🏗️</div>
+                    <h3 class="track-title">Data Engineering</h3>
+                    <p class="track-description">
+                        Fix broken data pipelines and build scalable systems that companies actually need.
+                    </p>
+                    <ul class="track-skills">
+                        <li>Azure Data Factory pipelines</li>
+                        <li>Lakehouse architecture design</li>
+                        <li>Data warehouse implementation</li>
+                        <li>ETL/ELT process optimization</li>
+                    </ul>
+                    <button class="track-details-link" onclick="openTrackModal('data-engineering')">View Real Projects</button>
+                </div>
+                
+                <!-- Track 3: MLOps (Unlocked) -->
+                <div class="track-card animate-on-scroll" data-track="mlops">
+                    <div class="track-icon">🤖</div>
+                    <h3 class="track-title">MLOps</h3>
+                    <p class="track-description">
+                        Deploy machine learning models that solve real business problems in production environments.
+                    </p>
+                    <ul class="track-skills">
+                        <li>Statistics & business data analysis</li>
+                        <li>Machine learning for real problems</li>
+                        <li>Computer vision applications</li>
+                        <li>ML model deployment & monitoring</li>
+                    </ul>
+                    <button class="track-details-link" onclick="openTrackModal('mlops')">View Real Projects</button>
+                </div>
+                
+                <!-- Track 4: DevOps (Locked) -->
+                <div class="track-card animate-on-scroll locked">
+                    <div class="track-icon">⚙️</div>
+                    <h3 class="track-title">DevOps</h3>
+                    <p class="track-description">
+                        Automate real company workflows and solve infrastructure challenges...
+                    </p>
+                    <ul class="track-skills">
+                        <li>Advanced automation techniques</li>
+                        <li>Enterprise-grade solutions</li>
+                        <li>Production deployment strategies</li>
+                        <li>And much more...</li>
+                    </ul>
+                    <button class="track-details-link locked">🔒 Unlock All Tracks</button>
+                </div>
+                
+                <!-- Track 5: Gen AI Agents (Locked) -->
+                <div class="track-card animate-on-scroll locked">
+                    <div class="track-icon">🧠</div>
+                    <h3 class="track-title">Gen AI Agents</h3>
+                    <p class="track-description">
+                        Build AI agents that solve actual business problems like customer support...
+                    </p>
+                    <ul class="track-skills">
+                        <li>Enterprise AI implementations</li>
+                        <li>Advanced agent architectures</li>
+                        <li>Business automation solutions</li>
+                        <li>And much more...</li>
+                    </ul>
+                    <button class="track-details-link locked">🔒 Unlock All Tracks</button>
+                </div>
+                
+                <!-- Track 6: AI Tools Mastery (Locked) -->
+                <div class="track-card animate-on-scroll locked">
+                    <div class="track-icon">🛠️</div>
+                    <h3 class="track-title">AI Tools Mastery</h3>
+                    <p class="track-description">
+                        Master cutting-edge AI tools to solve real productivity challenges...
+                    </p>
+                    <ul class="track-skills">
+                        <li>Professional AI workflows</li>
+                        <li>Advanced productivity techniques</li>
+                        <li>Business optimization strategies</li>
+                        <li>And much more...</li>
+                    </ul>
+                    <button class="track-details-link locked">🔒 Unlock All Tracks</button>
+                </div>
+            </div>
+            
+            <button class="unlock-all-cta animate-on-scroll" onclick="scrollToContact()">
+                🔓 Master Complete Stack - Unlock Premium Opportunities
+            </button>
+        </div>
+    </section>
+
+    <!-- Track Modal -->
+    <div class="track-modal" id="trackModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeTrackModal()">&times;</button>
+            <div class="modal-header">
+                <div class="modal-icon" id="modalIcon">📊</div>
+                <h2 class="modal-title" id="modalTitle">Data Analytics</h2>
+                <p class="modal-subtitle" id="modalSubtitle">Real Business Problem-Solving Track</p>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section - Updated from Skill AI Landing -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="testimonials-container">
+            <h2 class="testimonials-title animate-on-scroll">What Our Learners Say</h2>
+            
+            <div class="testimonials-carousel">
+                <div class="testimonials-track">
+                    <div class="testimonial-card">
+                        <p class="testimonial-content">
+                            "From zero to hero in data analytics! The RetailCorp case study approach made complex SQL concepts crystal clear. I can now build dashboards that actually solve business problems."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SK</div>
+                            <div class="author-info">
+                                <h4>Sneha Khandelwal</h4>
+                                <p>Data Analytics Student, Pune</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-content">
+                            "The way Viresh sir explains Azure Data Engineering through real business scenarios - it finally clicked! I built my first complete data pipeline and feel confident in my skills."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">RK</div>
+                            <div class="author-info">
+                                <h4>Ravi Kumar</h4>
+                                <p>Engineering Student, Delhi</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-content">
+                            "I was completely new to data analytics. The step-by-step approach and daily doubt clearing sessions made everything so clear. Best learning experience with practical projects!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">PM</div>
+                            <div class="author-info">
+                                <h4>Priya Mehta</h4>
+                                <p>Working Professional, Mumbai</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-content">
+                            "The Gen AI Agents track opened up a completely new world for me. I built my first LangChain application and can now create AI solutions for real business problems."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">AS</div>
+                            <div class="author-info">
+                                <h4>Ankit Sharma</h4>
+                                <p>IT Professional, Bangalore</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Duplicate for seamless loop -->
+                    <div class="testimonial-card">
+                        <p class="testimonial-content">
+                            "From zero to hero in data analytics! The RetailCorp case study approach made complex SQL concepts crystal clear. I can now build dashboards that actually solve business problems."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SK</div>
+                            <div class="author-info">
+                                <h4>Sneha Khandelwal</h4>
+                                <p>Data Analytics Student, Pune</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="faq-container">
+            <div class="section-header">
+                <h2 class="section-title animate-on-scroll">Frequently Asked Questions</h2>
+                <p class="section-subtitle animate-on-scroll">
+                    Get answers to the most common questions about our real business problem-based learning approach.
+                </p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How is this different from other AI/Data courses?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most courses teach theory with toy datasets. We start with real business problems from actual companies. You learn by solving problems that companies actually pay to solve, not made-up examples. This gives you immediate practical experience and a portfolio that showcases real-world skills.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do I need prior programming experience?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No programming experience needed! We teach you everything from scratch, but in the context of solving real problems. You'll learn faster because you'll understand why you're learning each concept and how it applies to real business challenges.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What kind of support do I get during learning?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Daily live doubt resolution sessions (7-8 PM), WhatsApp community access, personal mentor guidance, and technical setup assistance. Since we work on real problems, you'll get stuck sometimes - that's normal and we're here to help you through it.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do you ensure job readiness?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>By solving real business problems, you build a portfolio that directly showcases skills employers need. Our students have examples of actual problems they've solved, not just certificates. Plus, you learn to communicate business impact - a crucial skill most courses skip.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What if I can't keep up with the pace?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Real problems don't have fixed timelines, and neither do we. We provide lifetime access to materials and ongoing support. If you need more time on a particular problem, that's perfectly fine. The goal is mastery, not speed.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I really get clients or jobs after this?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our approach gives you real project experience that employers and clients value. You'll have concrete examples of business problems you've solved, which is what matters in interviews and client meetings. While we can't guarantee specific outcomes, our method gives you the strongest possible foundation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section - FIXED FORM -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <h2 class="section-title animate-on-scroll" style="color: white;">Ready to Unlock Premium AI & Data Opportunities?</h2>
+            <p class="animate-on-scroll" style="font-size: 1.2em; margin-bottom: 0; opacity: 0.95;">
+                Book a free strategy call to discuss your goals and see if our complete stack mastery approach is right for you.
+            </p>
+
+            <div class="contact-benefits">
+                <div class="benefit-item animate-on-scroll">
+                    <div class="benefit-icon">🎯</div>
+                    <div class="benefit-title">Personalized Learning Path</div>
+                    <div class="benefit-text">Get a custom roadmap based on your goals and current skill level</div>
+                </div>
+                <div class="benefit-item animate-on-scroll">
+                    <div class="benefit-icon">💼</div>
+                    <div class="benefit-title">Real Project Portfolio</div>
+                    <div class="benefit-text">Build solutions to actual business problems, not toy examples</div>
+                </div>
+                <div class="benefit-item animate-on-scroll">
+                    <div class="benefit-icon">🚀</div>
+                    <div class="benefit-title">Career Guidance</div>
+                    <div class="benefit-text">Learn how to position yourself for high-value AI & Data roles</div>
+                </div>
+            </div>
+            
+            <!-- FIXED Contact Form -->
+            <form class="contact-form animate-on-scroll" id="contactForm" name="skillaipath-contact" method="POST" data-netlify="true">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">WhatsApp Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="interest">Most Interested In *</label>
+                        <select id="interest" name="interest" required>
+                            <option value="">Select your primary interest</option>
+                            <option value="data-analytics">Data Analytics Track</option>
+                            <option value="data-engineering">Data Engineering Track</option>
+                            <option value="mlops">MLOps Track</option>
+                            <option value="complete-stack">Complete Stack (All 6 Tracks)</option>
+                            <option value="freelancing">Freelancing Program</option>
+                            <option value="career-change">Career Transformation</option>
+                            <option value="not-sure">Not Sure / Need Guidance</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Current Status *</label>
+                        <select id="experience" name="experience" required>
+                            <option value="">Select your current status</option>
+                            <option value="student">College Student</option>
+                            <option value="fresher">Recent Graduate (0-2 years)</option>
+                            <option value="working">Working Professional (2-5 years)</option>
+                            <option value="senior">Senior Professional (5+ years)</option>
+                            <option value="career-change">Looking for Career Change</option>
+                            <option value="freelancer">Current Freelancer</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="heardAbout">How did you hear about us?</label>
+                        <select id="heardAbout" name="heardAbout">
+                            <option value="">Select source</option>
+                            <option value="google">Google Search</option>
+                            <option value="youtube">YouTube</option>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="friend-referral">Friend/Colleague Referral</option>
+                            <option value="online-ad">Online Advertisement</option>
+                            <option value="blog-article">Blog/Article</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="previousCourses">Tried Other Courses?</label>
+                        <select id="previousCourses" name="previousCourses">
+                            <option value="">Previous learning attempts</option>
+                            <option value="none">No, this is my first</option>
+                            <option value="free-only">Only free courses</option>
+                            <option value="paid-courses">Paid courses (didn't complete)</option>
+                            <option value="completed-courses">Completed other courses</option>
+                            <option value="bootcamp">Attended bootcamp/program</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="goals">What's your biggest career challenge right now? *</label>
+                    <textarea id="goals" name="goals" rows="3" required placeholder="Tell us about your current challenges and what you want to achieve..."></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="additionalInfo">Anything else you'd like us to know?</label>
+                    <textarea id="additionalInfo" name="additionalInfo" rows="2" placeholder="Any specific questions, concerns, or additional context..."></textarea>
+                </div>
+
+                <!-- Hidden Netlify field -->
+                <input type="hidden" name="form-name" value="skillaipath-contact">
+                
+                <button type="submit" class="contact-submit">
+                    🚀 Book My Free Strategy Call
+                </button>
+            </form>
+
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <h3>🎉 Thank You! Your Strategy Call is Being Scheduled</h3>
+                <p>We'll contact you within 24 hours to schedule your personalized consultation. Check your email and WhatsApp for confirmation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="elite-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Real Business Learning</h4>
+                <ul>
+                    <li><a href="#mentor">Meet Viresh Gendle</a></li>
+                    <li><a href="#approach">Our Problem-First Method</a></li>
+                    <li><a href="#problems">Real Business Challenges</a></li>
+                    <li><a href="#contact">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Learning Programs</h4>
+                <ul>
+                    <li><a href="#contact">Free Strategy Call</a></li>
+                    <li><a href="#tracks">Compare All Tracks</a></li>
+                    <li><a href="#faq">Frequently Asked Questions</a></li>
+                    <li><a href="#contact">Corporate Training</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Technology Stack</h4>
+                <ul>
+                    <li>SQL & Power BI Analytics</li>
+                    <li>Azure Data Engineering</li>
+                    <li>MLOps & Computer Vision</li>
+                    <li>Gen AI & LangChain Development</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <ul>
+                    <li><a href="mailto:skillaipath@krishnavtech.in">skillaipath@krishnavtech.in</a></li>
+                    <li><a href="https://linkedin.com/in/viresh-gendle-53baa69b" target="_blank">LinkedIn</a></li>
+                    <li><a href="#contact">WhatsApp Community</a></li>
+                    <li><a href="#contact">Get Updates</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>© 2024 Krishnav Tech Pvt. Ltd. | Skill AI Path - Real Business Problem-Based Learning</div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced Track Data with More Extensive Content
+        const trackData = {
+            'data-analytics': {
+                icon: '📊',
+                title: 'Data Analytics',
+                subtitle: 'Transform Raw Data into Business Intelligence',
+                price: '₹15,000',
+                duration: '4 Weeks Intensive',
+                level: 'Beginner to Advanced',
+                description: 'Master data analytics by solving actual business challenges like revenue analysis, sales performance monitoring, and customer behavior insights. Work on real company datasets and build production-ready dashboards that businesses actually use.',
+                keyOutcomes: [
+                    'Build executive-level dashboards used by real companies',
+                    'Master advanced SQL for complex business queries',
+                    'Create automated reporting systems that save hours',
+                    'Present data insights that drive business decisions'
+                ],
+                industryApplications: [
+                    { industry: 'E-commerce', use: 'Sales performance analysis, customer segmentation, inventory optimization' },
+                    { industry: 'Finance', use: 'Risk analysis, fraud detection, investment performance tracking' },
+                    { industry: 'Healthcare', use: 'Patient outcome analysis, operational efficiency, cost optimization' },
+                    { industry: 'Manufacturing', use: 'Quality control, supply chain optimization, predictive maintenance' }
+                ],
+                careerPaths: [
+                    { role: 'Data Analyst', salary: '₹4-8 LPA', description: 'Analyze business data to provide insights' },
+                    { role: 'Business Intelligence Developer', salary: '₹6-12 LPA', description: 'Build BI solutions and dashboards' },
+                    { role: 'Data Consultant', salary: '₹8-15 LPA', description: 'Freelance analytics expert for multiple clients' },
+                    { role: 'Analytics Manager', salary: '₹12-25 LPA', description: 'Lead analytics teams and strategy' }
+                ],
+                tools: [
+                    { name: 'SQL', level: 'Advanced', description: 'Complex queries, stored procedures, optimization' },
+                    { name: 'Excel', level: 'Expert', description: 'Power Query, Power Pivot, VBA automation' },
+                    { name: 'Power BI', level: 'Professional', description: 'Custom visualizations, DAX, deployment' },
+                    { name: 'Python', level: 'Intermediate', description: 'Pandas, NumPy, statistical analysis' }
+                ],
+                architecture: {
+                    title: 'Data Analytics Architecture',
+                    components: [
+                        { icon: '🗃️', label: 'Raw Data Sources' },
+                        { icon: '🔄', label: 'ETL Process' },
+                        { icon: '📊', label: 'Analytics Engine' },
+                        { icon: '📈', label: 'Dashboards' },
+                        { icon: '💼', label: 'Business Insights' }
+                    ]
+                },
+                roadmap: [
+                    { step: 1, title: 'Data Foundation', desc: 'SQL & Excel Mastery' },
+                    { step: 2, title: 'Visualization', desc: 'Power BI Development' },
+                    { step: 3, title: 'Analytics', desc: 'Statistical Analysis' },
+                    { step: 4, title: 'Automation', desc: 'Dashboard Automation' }
+                ],
+                projects: [
+                    {
+                        title: 'E-commerce Sales Recovery Analysis',
+                        description: 'A real online retailer saw 30% sales drop. Analyze 6 months of messy data across multiple systems to identify root causes and recommend solutions. Build automated monitoring dashboard.',
+                        skills: ['Advanced SQL', 'Excel Automation', 'Power BI Dashboards', 'Statistical Analysis'],
+                        impact: 'Identified key issues leading to 25% revenue recovery'
+                    },
+                    {
+                        title: 'Customer Behavior Analytics Dashboard',
+                        description: 'Build predictive analytics for a subscription business to identify at-risk customers 2 months before they cancel. Create executive-level reporting system.',
+                        skills: ['Python Analytics', 'Predictive Modeling', 'Interactive Dashboards', 'Business Reporting'],
+                        impact: 'Reduced churn by 35% through early intervention'
+                    },
+                    {
+                        title: 'Marketing ROI Optimization System',
+                        description: 'Analyze multi-channel marketing data to optimize budget allocation and improve campaign performance by 40%. Build real-time tracking system.',
+                        skills: ['Campaign Analysis', 'ROI Modeling', 'Channel Attribution', 'Executive Reporting'],
+                        impact: 'Improved marketing ROI by 40% through data-driven decisions'
+                    }
+                ],
+                learningPath: [
+                    { week: 'Week 1', topic: 'Business Problem Analysis & SQL Fundamentals', details: 'Learn to identify business problems, write complex SQL queries, join multiple tables' },
+                    { week: 'Week 2', topic: 'Advanced SQL & Data Modeling', details: 'Window functions, CTEs, stored procedures, data warehouse concepts' },
+                    { week: 'Week 3', topic: 'Excel Power Features & Automation', details: 'Power Query, Power Pivot, VBA scripting, automated reporting' },
+                    { week: 'Week 4', topic: 'Power BI Mastery & Dashboard Creation', details: 'DAX functions, custom visuals, deployment, mobile optimization' }
+                ],
+                certification: {
+                    title: 'Data Analytics Professional Certificate',
+                    credential: 'Skill AI Path Certified Data Analyst',
+                    badge: 'Digital badge for LinkedIn profile',
+                    portfolio: '3 real business case studies with solutions'
+                }
+            },
+            'data-engineering': {
+                icon: '🏗️',
+                title: 'Data Engineering',
+                subtitle: 'Build Production-Grade Data Infrastructure',
+                price: '₹15,000',
+                duration: '4 Weeks Intensive',
+                level: 'Intermediate to Advanced',
+                description: 'Learn data engineering by fixing real broken pipelines and building scalable data infrastructure that companies depend on. Master Azure cloud architecture and modern data stack through hands-on problem solving.',
+                keyOutcomes: [
+                    'Build scalable data pipelines handling millions of records',
+                    'Design fault-tolerant data architectures',
+                    'Implement real-time data processing systems',
+                    'Master cloud-native data engineering on Azure'
+                ],
+                industryApplications: [
+                    { industry: 'Fintech', use: 'Real-time transaction processing, fraud detection pipelines, regulatory reporting' },
+                    { industry: 'E-commerce', use: 'Product recommendation engines, inventory management, customer analytics' },
+                    { industry: 'IoT', use: 'Sensor data ingestion, real-time monitoring, predictive maintenance' },
+                    { industry: 'Media', use: 'Content delivery optimization, user behavior tracking, recommendation systems' }
+                ],
+                careerPaths: [
+                    { role: 'Data Engineer', salary: '₹6-12 LPA', description: 'Build and maintain data pipelines' },
+                    { role: 'Cloud Data Architect', salary: '₹10-18 LPA', description: 'Design enterprise data solutions' },
+                    { role: 'Platform Engineer', salary: '₹8-16 LPA', description: 'Build data platforms and infrastructure' },
+                    { role: 'Senior Data Engineer', salary: '₹15-30 LPA', description: 'Lead complex data engineering projects' }
+                ],
+                tools: [
+                    { name: 'Azure Data Factory', level: 'Expert', description: 'Pipeline orchestration, data movement, transformation' },
+                    { name: 'Azure Synapse', level: 'Advanced', description: 'Data warehousing, big data analytics, integration' },
+                    { name: 'Python/PySpark', level: 'Professional', description: 'Data processing, automation, distributed computing' },
+                    { name: 'SQL/T-SQL', level: 'Expert', description: 'Complex queries, stored procedures, performance tuning' }
+                ],
+                architecture: {
+                    title: 'Modern Data Engineering Stack',
+                    components: [
+                        { icon: '☁️', label: 'Cloud Sources' },
+                        { icon: '🔄', label: 'Data Factory' },
+                        { icon: '🏠', label: 'Data Lakehouse' },
+                        { icon: '📊', label: 'Data Warehouse' },
+                        { icon: '🚀', label: 'Analytics Layer' }
+                    ]
+                },
+                roadmap: [
+                    { step: 1, title: 'Architecture', desc: 'Data Architecture Design' },
+                    { step: 2, title: 'Pipelines', desc: 'Azure Data Factory' },
+                    { step: 3, title: 'Storage', desc: 'Lakehouse Implementation' },
+                    { step: 4, title: 'Optimization', desc: 'Performance Tuning' }
+                ],
+                projects: [
+                    {
+                        title: 'Startup Data Pipeline Rescue',
+                        description: 'A growing startup\'s data pipeline fails daily, causing 2-day report delays. Rebuild their entire Azure-based data architecture with monitoring and alerting.',
+                        skills: ['Azure Data Factory', 'Pipeline Monitoring', 'Error Handling', 'Data Quality'],
+                        impact: 'Achieved 99.9% uptime and reduced processing time by 80%'
+                    },
+                    {
+                        title: 'Real-time Analytics Platform',
+                        description: 'Build a real-time data processing system for an IoT company tracking 10,000+ devices generating data every second. Implement stream processing and alerts.',
+                        skills: ['Stream Processing', 'Azure Event Hubs', 'Real-time Dashboards', 'Scalable Architecture'],
+                        impact: 'Processed 1M+ events per second with sub-second latency'
+                    },
+                    {
+                        title: 'Legacy Data Warehouse Migration',
+                        description: 'Migrate a legacy data warehouse to modern lakehouse architecture while maintaining business continuity. Zero downtime migration strategy.',
+                        skills: ['Lakehouse Design', 'Data Migration', 'ETL Optimization', 'Performance Tuning'],
+                        impact: 'Reduced infrastructure costs by 60% while improving performance'
+                    }
+                ],
+                learningPath: [
+                    { week: 'Week 1', topic: 'Data Architecture & Cloud Fundamentals', details: 'Azure basics, data architecture patterns, storage solutions' },
+                    { week: 'Week 2', topic: 'Azure Data Factory & Pipeline Development', details: 'Pipeline creation, scheduling, monitoring, error handling' },
+                    { week: 'Week 3', topic: 'Lakehouse Implementation & Data Modeling', details: 'Delta Lake, data modeling, schema design, partitioning' },
+                    { week: 'Week 4', topic: 'Performance Optimization & Monitoring', details: 'Query optimization, cost management, monitoring solutions' }
+                ],
+                certification: {
+                    title: 'Data Engineering Professional Certificate',
+                    credential: 'Skill AI Path Certified Data Engineer',
+                    badge: 'Azure-aligned certification with industry recognition',
+                    portfolio: 'Production-ready data infrastructure projects'
+                }
+            },
+            'mlops': {
+                icon: '🤖',
+                title: 'MLOps',
+                subtitle: 'Deploy AI Solutions in Production',
+                price: '₹21,000',
+                duration: '5 Weeks Intensive',
+                level: 'Intermediate to Expert',
+                description: 'Master MLOps by building and deploying machine learning models that solve real business problems in production environments. Learn the complete ML lifecycle from development to monitoring through hands-on projects.',
+                keyOutcomes: [
+                    'Deploy ML models that handle millions of predictions',
+                    'Build automated ML pipelines with CI/CD',
+                    'Implement model monitoring and retraining systems',
+                    'Create production-grade computer vision applications'
+                ],
+                industryApplications: [
+                    { industry: 'Fintech', use: 'Fraud detection, credit scoring, algorithmic trading, risk assessment' },
+                    { industry: 'Healthcare', use: 'Medical image analysis, drug discovery, patient outcome prediction' },
+                    { industry: 'Manufacturing', use: 'Quality control, predictive maintenance, supply chain optimization' },
+                    { industry: 'Retail', use: 'Demand forecasting, recommendation systems, dynamic pricing' }
+                ],
+                careerPaths: [
+                    { role: 'ML Engineer', salary: '₹8-15 LPA', description: 'Deploy and maintain ML models in production' },
+                    { role: 'MLOps Engineer', salary: '₹10-18 LPA', description: 'Build ML infrastructure and automation' },
+                    { role: 'Computer Vision Engineer', salary: '₹12-22 LPA', description: 'Develop vision-based AI solutions' },
+                    { role: 'AI Architect', salary: '₹18-35 LPA', description: 'Design enterprise AI solutions and strategy' }
+                ],
+                tools: [
+                    { name: 'Python/PyTorch', level: 'Expert', description: 'Model development, deep learning, computer vision' },
+                    { name: 'Docker/Kubernetes', level: 'Advanced', description: 'Containerization, orchestration, scaling' },
+                    { name: 'MLflow/Azure ML', level: 'Professional', description: 'Model tracking, deployment, monitoring' },
+                    { name: 'OpenCV/TensorFlow', level: 'Advanced', description: 'Computer vision, image processing, neural networks' }
+                ],
+                architecture: {
+                    title: 'MLOps Production Architecture',
+                    components: [
+                        { icon: '🔬', label: 'Model Development' },
+                        { icon: '🏗️', label: 'Training Pipeline' },
+                        { icon: '📦', label: 'Model Registry' },
+                        { icon: '🚀', label: 'Deployment' },
+                        { icon: '📊', label: 'Monitoring' }
+                    ]
+                },
+                roadmap: [
+                    { step: 1, title: 'ML Basics', desc: 'Statistics & Algorithms' },
+                    { step: 2, title: 'Development', desc: 'Model Building' },
+                    { step: 3, title: 'Computer Vision', desc: 'Image Processing' },
+                    { step: 4, title: 'Deployment', desc: 'Production Systems' },
+                    { step: 5, title: 'Monitoring', desc: 'Model Performance' }
+                ],
+                projects: [
+                    {
+                        title: 'Real-time Fraud Detection System',
+                        description: 'Build and deploy a real-time fraud detection model for a fintech company processing 100,000+ transactions daily. Implement A/B testing and monitoring.',
+                        skills: ['ML Model Development', 'Real-time Scoring', 'Model Monitoring', 'A/B Testing'],
+                        impact: 'Reduced fraud losses by 70% while maintaining 99.9% uptime'
+                    },
+                    {
+                        title: 'Computer Vision Quality Control',
+                        description: 'Develop an automated quality control system using computer vision for a manufacturing company to reduce defects by 60%. Deploy on edge devices.',
+                        skills: ['Computer Vision', 'Model Training', 'Edge Deployment', 'Performance Optimization'],
+                        impact: 'Achieved 95% accuracy and reduced manual inspection by 80%'
+                    },
+                    {
+                        title: 'Intelligent Demand Forecasting',
+                        description: 'Create an end-to-end ML pipeline for inventory forecasting that automatically retrains and deploys updated models. Handle seasonality and external factors.',
+                        skills: ['Time Series Analysis', 'Automated Retraining', 'Model Versioning', 'Production Monitoring'],
+                        impact: 'Improved forecast accuracy by 45% and reduced inventory costs'
+                    }
+                ],
+                learningPath: [
+                    { week: 'Week 1', topic: 'ML Fundamentals & Business Applications', details: 'Statistics, probability, ML algorithms, business problem mapping' },
+                    { week: 'Week 2', topic: 'Model Development & Training', details: 'Feature engineering, model selection, hyperparameter tuning' },
+                    { week: 'Week 3', topic: 'Computer Vision & Deep Learning', details: 'CNNs, image processing, object detection, model architectures' },
+                    { week: 'Week 4', topic: 'Model Deployment & Containerization', details: 'Docker, REST APIs, cloud deployment, scaling strategies' },
+                    { week: 'Week 5', topic: 'MLOps & Production Monitoring', details: 'CI/CD for ML, model monitoring, drift detection, retraining' }
+                ],
+                certification: {
+                    title: 'MLOps Professional Certificate',
+                    credential: 'Skill AI Path Certified MLOps Engineer',
+                    badge: 'Industry-recognized ML engineering certification',
+                    portfolio: 'Production ML systems with real business impact'
+                }
+            }
+        };
+
+        // Enhanced Modal Functions with Architecture and Learning Journey
+        function openTrackModal(trackId) {
+            const modal = document.getElementById('trackModal');
+            const data = trackData[trackId];
+            
+            // Update modal content
+            document.getElementById('modalIcon').textContent = data.icon;
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalSubtitle').textContent = data.subtitle;
+            
+            // Build comprehensive modal body content
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <div class="pricing-section">
+                    <div class="price-tag">${data.price}</div>
+                    <div class="price-description">${data.duration} • ${data.level} • Lifetime Access & Support</div>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>🎯 What You'll Master</h3>
+                    <p>${data.description}</p>
+                    <div style="margin-top: 20px;">
+                        <h4 style="color: var(--deep-blue); margin-bottom: 15px;">Key Outcomes:</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            ${data.keyOutcomes.map(outcome => `
+                                <li style="padding: 8px 0; display: flex; align-items: flex-start; gap: 10px;">
+                                    <span style="color: var(--vibrant-orange); font-weight: bold;">✓</span>
+                                    <span>${outcome}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>🏗️ ${data.architecture.title}</h3>
+                    <div class="architecture-diagram">
+                        <div class="diagram-visual">
+                            ${data.architecture.components.map(comp => `
+                                <div class="arch-component">
+                                    <div class="arch-icon">${comp.icon}</div>
+                                    <div class="arch-label">${comp.label}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>📅 Weekly Learning Journey</h3>
+                    <div class="learning-roadmap">
+                        <p>Week-by-week skill development through real problem-solving:</p>
+                        <div style="margin: 30px 0; position: relative;">
+                            <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; background: linear-gradient(to bottom, #3B82F6, #10B981, #8B5CF6, #F59E0B); transform: translateX(-50%); border-radius: 2px;"></div>
+                            ${data.learningPath.map((week, index) => `
+                                <div style="display: flex; align-items: center; margin-bottom: 40px; ${index % 2 === 0 ? '' : 'flex-direction: row-reverse;'}">
+                                    <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); width: 45%; ${index % 2 === 0 ? 'margin-left: 55%;' : 'margin-right: 55%;'} position: relative;">
+                                        <div style="font-size: 1.2em; font-weight: 600; color: var(--deep-blue); margin-bottom: 10px;">${week.week}: ${week.topic}</div>
+                                        <div style="color: var(--text-secondary); line-height: 1.5; margin-bottom: 15px;">${week.details}</div>
+                                    </div>
+                                    <div style="position: absolute; left: 50%; transform: translateX(-50%); background: white; border: 4px solid ${index === 0 ? '#3B82F6' : index === 1 ? '#10B981' : index === 2 ? '#8B5CF6' : '#F59E0B'}; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: ${index === 0 ? '#3B82F6' : index === 1 ? '#10B981' : index === 2 ? '#8B5CF6' : '#F59E0B'}; font-size: 1.1em; z-index: 3;">${index + 1}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>🛠️ Tools & Technologies You'll Master</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                        ${data.tools.map(tool => `
+                            <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border-left: 4px solid var(--primary-gradient);">
+                                <div style="font-weight: 600; color: var(--deep-blue); margin-bottom: 5px;">${tool.name}</div>
+                                <div style="font-size: 0.9em; color: var(--vibrant-orange); margin-bottom: 8px;">${tool.level}</div>
+                                <div style="font-size: 0.85em; color: var(--text-secondary);">${tool.description}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>🏭 Industry Applications</h3>
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 20px;">
+                        ${data.industryApplications.map(app => `
+                            <div style="background: #f0f9ff; padding: 20px; border-radius: 12px; border-left: 4px solid #3B82F6;">
+                                <div style="font-weight: 600; color: var(--deep-blue); margin-bottom: 8px;">${app.industry}</div>
+                                <div style="color: var(--text-secondary); font-size: 0.9em;">${app.use}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>💰 Career Opportunities</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 20px;">
+                        ${data.careerPaths.map(career => `
+                            <div style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe); padding: 20px; border-radius: 12px;">
+                                <div style="font-weight: 600; color: var(--deep-blue); margin-bottom: 5px;">${career.role}</div>
+                                <div style="font-size: 1.1em; color: var(--vibrant-orange); font-weight: 600; margin-bottom: 8px;">${career.salary}</div>
+                                <div style="font-size: 0.9em; color: var(--text-secondary);">${career.description}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>💼 Real Business Projects</h3>
+                    <div class="projects-grid">
+                        ${data.projects.map(project => `
+                            <div class="project-item">
+                                <div class="project-title">${project.title}</div>
+                                <div class="project-description">${project.description}</div>
+                                ${project.impact ? `<div style="background: #f0f9ff; padding: 12px; border-radius: 8px; margin: 10px 0; border-left: 3px solid #3B82F6;">
+                                    <strong style="color: var(--deep-blue);">Business Impact:</strong> ${project.impact}
+                                </div>` : ''}
+                                <div class="project-skills">
+                                    ${project.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>🎓 Certification & Portfolio</h3>
+                    <div style="background: linear-gradient(135deg, #f8f9ff, #f0f9ff); padding: 25px; border-radius: 15px; margin-top: 20px;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--deep-blue); margin-bottom: 8px;">🏆 ${data.certification.title}</div>
+                                <div style="font-size: 0.9em; color: var(--text-secondary);">${data.certification.credential}</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600; color: var(--deep-blue); margin-bottom: 8px;">🎖️ Digital Badge</div>
+                                <div style="font-size: 0.9em; color: var(--text-secondary);">${data.certification.badge}</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600; color: var(--deep-blue); margin-bottom: 8px;">💼 Portfolio</div>
+                                <div style="font-size: 0.9em; color: var(--text-secondary);">${data.certification.portfolio}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-cta">
+                    <button class="modal-cta-button" onclick="scrollToContact(); closeTrackModal();">
+                        Master This Track - Book Strategy Call
+                    </button>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTrackModal() {
+            const modal = document.getElementById('trackModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Close modal on outside click
+        document.getElementById('trackModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeTrackModal();
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('eliteNav');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('visible');
+            } else {
+                navbar.classList.remove('visible');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced track card interactions
+        document.querySelectorAll('.track-card:not(.locked), .problem-card, .step-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('locked')) {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // FAQ toggle functionality
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // FIXED Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            // Validation for required fields
+            const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'interest', 'experience', 'goals'];
+            
+            for (let field of requiredFields) {
+                const value = formData.get(field);
+                if (!value || value.trim() === '') {
+                    const fieldLabel = document.querySelector(`label[for="${field}"]`).textContent.replace(' *', '');
+                    alert(`Please fill in the "${fieldLabel}" field.`);
+                    return;
+                }
+            }
+
+            const email = formData.get('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            const phone = formData.get('phone');
+            const phoneRegex = /^[\+]?[1-9][\d]{9,14}$/;
+            if (!phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''))) {
+                alert('Please enter a valid phone number.');
+                return;
+            }
+            
+            const submitBtn = this.querySelector('.contact-submit');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
+
+            // Submit to Netlify
+            fetch('/', {
+                method: 'POST',
+                body: formData
+            }).then(() => {
+                // Hide form and show success message
+                document.querySelector('.contact-form').style.display = 'none';
+                document.querySelector('.success-message').classList.add('active');
+                
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+            }).catch((error) => {
+                alert('Error submitting form. Please try again or contact us directly.');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+            });
+        });
+
+        // Handle locked track clicks
+        document.querySelectorAll('.track-card.locked').forEach(card => {
+            card.addEventListener('click', function() {
+                scrollToContact();
+            });
+        });
+
+        // Enhanced loading states and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add entrance animations
+            setTimeout(() => {
+                document.querySelectorAll('.animate-on-scroll').forEach((el, index) => {
+                    setTimeout(() => {
+                        if (el.getBoundingClientRect().top < window.innerHeight) {
+                            el.classList.add('animated');
+                        }
+                    }, index * 100);
+                });
+            }, 300);
+        });
+
+        // Keyboard navigation for modals
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeTrackModal();
+            }
+        });
+
+        // Testimonials carousel pause on hover
+        const track = document.querySelector('.testimonials-track');
+        if (track) {
+            track.addEventListener('mouseenter', () => {
+                track.style.animationPlayState = 'paused';
+            });
+            track.addEventListener('mouseleave', () => {
+                track.style.animationPlayState = 'running';
+            });
+        }
+    </script>
+</body>
+</html>
