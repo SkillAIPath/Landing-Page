@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Skill AI Path</title>
+    <meta name="description" content="Privacy policy for Skill AI Path - how we collect, use, and protect your personal information.">
+    
+    <!-- Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;909&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;909&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --deep-blue: #1a365d;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --success-green: #10b981;
+            --glassmorphism: rgba(255, 255, 255, 0.1);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: #ffffff;
+        }
+
+        /* Header */
+        .privacy-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .header-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .privacy-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .privacy-subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .last-updated {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            margin-top: 25px;
+            display: inline-block;
+        }
+
+        /* Main Content */
+        .privacy-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Navigation */
+        .privacy-nav {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--success-green);
+        }
+
+        .nav-title {
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 8px;
+        }
+
+        .nav-list li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95em;
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .nav-list li a:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Sections */
+        .privacy-section {
+            margin-bottom: 50px;
+            scroll-margin-top: 100px;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--success-green);
+        }
+
+        .section-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .section-content h3 {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 25px 0 15px 0;
+        }
+
+        .section-content h4 {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 20px 0 10px 0;
+        }
+
+        .section-content ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .section-content li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .section-content p {
+            margin-bottom: 15px;
+        }
+
+        .section-content strong {
+            color: var(--text-primary);
+        }
+
+        /* Important boxes */
+        .important-box {
+            background: linear-gradient(135deg, #fef3c7, #fef9e6);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .important-box h4 {
+            color: var(--deep-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Contact section */
+        .contact-section {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .contact-email {
+            color: #ffd89b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-email:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .privacy-footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #f8fafc;
+            margin-top: 60px;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.9em;
+        }
+
+        .back-home {
+            display: inline-block;
+            background: var(--success-green);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-home:hover {
+            background: var(--deep-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .privacy-title {
+                font-size: 2.5em;
+            }
+
+            .privacy-content {
+                padding: 40px 15px;
+            }
+
+            .nav-list {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.5em;
+            }
+
+            .contact-section {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .privacy-title {
+                font-size: 2.2em;
+            }
+
+            .section-title {
+                font-size: 1.3em;
+            }
+
+            .privacy-nav {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="privacy-header">
+        <div class="header-container">
+            <h1 class="privacy-title">Privacy Policy</h1>
+            <p class="privacy-subtitle">
+                We value your privacy and are committed to protecting your personal information. This policy explains how we collect, use, and safeguard your data.
+            </p>
+            <div class="last-updated">Last Updated: January 2024</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="privacy-content">
+        <!-- Quick Navigation -->
+        <div class="privacy-nav">
+            <div class="nav-title">Quick Navigation</div>
+            <ul class="nav-list">
+                <li><a href="#information-collection">Information We Collect</a></li>
+                <li><a href="#information-use">How We Use Information</a></li>
+                <li><a href="#information-sharing">Information Sharing</a></li>
+                <li><a href="#data-security">Data Security</a></li>
+                <li><a href="#your-rights">Your Rights</a></li>
+                <li><a href="#cookies">Cookies & Tracking</a></li>
+                <li><a href="#contact-info">Contact Information</a></li>
+            </ul>
+        </div>
+
+        <!-- Information Collection -->
+        <section class="privacy-section" id="information-collection">
+            <h2 class="section-title">1. Information We Collect</h2>
+            <div class="section-content">
+                <p>We collect information that you provide directly to us and information that is automatically collected when you use our services.</p>
+
+                <h3>Information You Provide to Us:</h3>
+                <ul>
+                    <li><strong>Contact Information:</strong> Name, email address, phone number, WhatsApp number</li>
+                    <li><strong>Professional Information:</strong> Current job status, educational background, career goals</li>
+                    <li><strong>Application Data:</strong> Responses to qualification questions, career challenges, learning preferences</li>
+                    <li><strong>Communication Data:</strong> Messages, questions, and feedback you send to us</li>
+                    <li><strong>Payment Information:</strong> Billing details when you enroll in paid programs (processed securely through third-party payment processors)</li>
+                </ul>
+
+                <h3>Information Automatically Collected:</h3>
+                <ul>
+                    <li><strong>Usage Data:</strong> Pages visited, time spent on site, interactions with content</li>
+                    <li><strong>Device Information:</strong> Browser type, operating system, IP address, device identifiers</li>
+                    <li><strong>Analytics Data:</strong> Website performance metrics, user behavior patterns</li>
+                </ul>
+
+                <div class="important-box">
+                    <h4>🔒 Data Minimization</h4>
+                    <p>We only collect information that is necessary for providing our educational services and improving your learning experience. We never collect sensitive personal data unless specifically required.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Information Use -->
+        <section class="privacy-section" id="information-use">
+            <h2 class="section-title">2. How We Use Your Information</h2>
+            <div class="section-content">
+                <p>We use the information we collect for the following purposes:</p>
+
+                <h3>Educational Services:</h3>
+                <ul>
+                    <li>Providing access to our AI & Data learning programs</li>
+                    <li>Personalizing your learning experience and curriculum</li>
+                    <li>Tracking your progress and providing feedback</li>
+                    <li>Facilitating communication with instructors and mentors</li>
+                    <li>Organizing live sessions, workshops, and group activities</li>
+                </ul>
+
+                <h3>Communication:</h3>
+                <ul>
+                    <li>Sending course updates, schedules, and important announcements</li>
+                    <li>Providing customer support and answering your questions</li>
+                    <li>Sending marketing communications (with your consent)</li>
+                    <li>WhatsApp notifications for class reminders and updates</li>
+                </ul>
+
+                <h3>Business Operations:</h3>
+                <ul>
+                    <li>Processing payments and managing subscriptions</li>
+                    <li>Analyzing website usage to improve our services</li>
+                    <li>Preventing fraud and ensuring platform security</li>
+                    <li>Compliance with legal obligations</li>
+                </ul>
+
+                <h3>Career Support:</h3>
+                <ul>
+                    <li>Matching you with relevant job opportunities</li>
+                    <li>Connecting you with potential clients for freelance work</li>
+                    <li>Providing career guidance and placement assistance</li>
+                    <li>Building your professional portfolio and profile</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Information Sharing -->
+        <section class="privacy-section" id="information-sharing">
+            <h2 class="section-title">3. Information Sharing and Disclosure</h2>
+            <div class="section-content">
+                <p>We respect your privacy and do not sell your personal information to third parties. We may share your information in the following limited circumstances:</p>
+
+                <h3>Service Providers:</h3>
+                <ul>
+                    <li><strong>Payment Processors:</strong> Secure payment handling (Razorpay, Stripe)</li>
+                    <li><strong>Communication Tools:</strong> Email service providers, WhatsApp Business API</li>
+                    <li><strong>Analytics Services:</strong> Google Analytics, Facebook Pixel (anonymized data)</li>
+                    <li><strong>Learning Platforms:</strong> Course delivery and progress tracking systems</li>
+                </ul>
+
+                <h3>Business Partners:</h3>
+                <ul>
+                    <li><strong>Hiring Partners:</strong> With your explicit consent, we may share your profile with potential employers</li>
+                    <li><strong>Industry Mentors:</strong> Connecting you with industry professionals for guidance</li>
+                    <li><strong>Collaboration Partners:</strong> Other educational institutions for joint programs</li>
+                </ul>
+
+                <h3>Legal Requirements:</h3>
+                <ul>
+                    <li>Compliance with applicable laws and regulations</li>
+                    <li>Response to legal processes, court orders, or government requests</li>
+                    <li>Protection of our rights, privacy, safety, or property</li>
+                    <li>Investigation of fraud or security issues</li>
+                </ul>
+
+                <div class="important-box">
+                    <h4>⚠️ Your Control</h4>
+                    <p>You have complete control over career-related sharing. We will never share your information with potential employers or clients without your explicit, informed consent.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Security -->
+        <section class="privacy-section" id="data-security">
+            <h2 class="section-title">4. Data Security</h2>
+            <div class="section-content">
+                <p>We implement appropriate technical and organizational measures to protect your personal information:</p>
+
+                <h3>Technical Safeguards:</h3>
+                <ul>
+                    <li><strong>Encryption:</strong> All data transmission is encrypted using SSL/TLS</li>
+                    <li><strong>Secure Storage:</strong> Data stored on secure, access-controlled servers</li>
+                    <li><strong>Access Controls:</strong> Limited access to personal data on a need-to-know basis</li>
+                    <li><strong>Regular Monitoring:</strong> Continuous monitoring for security threats and vulnerabilities</li>
+                </ul>
+
+                <h3>Organizational Measures:</h3>
+                <ul>
+                    <li>Staff training on privacy and security practices</li>
+                    <li>Regular security audits and assessments</li>
+                    <li>Incident response procedures for data breaches</li>
+                    <li>Data retention policies to minimize data storage</li>
+                </ul>
+
+                <h3>Data Retention:</h3>
+                <ul>
+                    <li><strong>Active Students:</strong> Data retained for the duration of your enrollment plus 2 years</li>
+                    <li><strong>Completed Programs:</strong> Progress data retained for 5 years for certification purposes</li>
+                    <li><strong>Marketing Data:</strong> Retained until you opt-out or request deletion</li>
+                    <li><strong>Financial Records:</strong> Retained as required by applicable tax and accounting laws</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Your Rights -->
+        <section class="privacy-section" id="your-rights">
+            <h2 class="section-title">5. Your Privacy Rights</h2>
+            <div class="section-content">
+                <p>You have several rights regarding your personal information:</p>
+
+                <h3>Access and Portability:</h3>
+                <ul>
+                    <li><strong>Access:</strong> Request a copy of the personal information we hold about you</li>
+                    <li><strong>Portability:</strong> Receive your data in a structured, machine-readable format</li>
+                    <li><strong>Explanation:</strong> Understand how we use your information and who we share it with</li>
+                </ul>
+
+                <h3>Correction and Updates:</h3>
+                <ul>
+                    <li><strong>Correction:</strong> Update or correct inaccurate personal information</li>
+                    <li><strong>Completion:</strong> Add missing information to your profile</li>
+                    <li><strong>Profile Management:</strong> Update your preferences and settings at any time</li>
+                </ul>
+
+                <h3>Deletion and Restriction:</h3>
+                <ul>
+                    <li><strong>Deletion:</strong> Request deletion of your personal information (subject to legal requirements)</li>
+                    <li><strong>Restriction:</strong> Limit how we process your information</li>
+                    <li><strong>Objection:</strong> Object to certain types of processing (e.g., marketing)</li>
+                </ul>
+
+                <h3>Communication Preferences:</h3>
+                <ul>
+                    <li><strong>Opt-out:</strong> Unsubscribe from marketing communications at any time</li>
+                    <li><strong>Preference Center:</strong> Manage your communication preferences</li>
+                    <li><strong>Essential Communications:</strong> Some service-related communications cannot be opted out</li>
+                </ul>
+
+                <div class="important-box">
+                    <h4>📧 Exercising Your Rights</h4>
+                    <p>To exercise any of these rights, please contact us at <strong>privacy@skillaipath.com</strong>. We will respond to your request within 30 days.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cookies -->
+        <section class="privacy-section" id="cookies">
+            <h2 class="section-title">6. Cookies and Tracking Technologies</h2>
+            <div class="section-content">
+                <p>We use cookies and similar technologies to enhance your experience on our website:</p>
+
+                <h3>Types of Cookies We Use:</h3>
+                <ul>
+                    <li><strong>Essential Cookies:</strong> Necessary for website functionality and security</li>
+                    <li><strong>Performance Cookies:</strong> Help us understand how visitors interact with our website</li>
+                    <li><strong>Functional Cookies:</strong> Remember your preferences and personalize your experience</li>
+                    <li><strong>Marketing Cookies:</strong> Show you relevant advertisements and track campaign effectiveness</li>
+                </ul>
+
+                <h3>Third-Party Services:</h3>
+                <ul>
+                    <li><strong>Google Analytics:</strong> Website traffic and user behavior analysis</li>
+                    <li><strong>Facebook Pixel:</strong> Advertising effectiveness and custom audience creation</li>
+                    <li><strong>Calendly:</strong> Appointment scheduling and booking management</li>
+                    <li><strong>WhatsApp Business:</strong> Communication and customer support</li>
+                </ul>
+
+                <h3>Managing Cookies:</h3>
+                <p>You can control cookies through your browser settings. However, disabling certain cookies may affect the functionality of our website and your user experience.</p>
+            </div>
+        </section>
+
+        <!-- Updates -->
+        <section class="privacy-section" id="policy-updates">
+            <h2 class="section-title">7. Policy Updates</h2>
+            <div class="section-content">
+                <p>We may update this Privacy Policy from time to time to reflect changes in our practices or applicable laws. When we make significant changes:</p>
+                
+                <ul>
+                    <li>We will notify you via email or prominent website notice</li>
+                    <li>We will update the "Last Updated" date at the top of this policy</li>
+                    <li>We may request your consent for material changes that affect how we use your information</li>
+                </ul>
+
+                <p>We encourage you to review this Privacy Policy periodically to stay informed about how we protect your information.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <div class="contact-section" id="contact-info">
+            <h3 class="contact-title">Questions About Privacy?</h3>
+            <p>If you have any questions about this Privacy Policy or our privacy practices, please contact us:</p>
+            <div class="contact-info">
+                Email: <a href="mailto:privacy@skillaipath.com" class="contact-email">privacy@skillaipath.com</a>
+            </div>
+            <div class="contact-info">
+                General Inquiries: <a href="mailto:tech@skillaipath.com" class="contact-email">tech@skillaipath.com</a>
+            </div>
+            <div class="contact-info">
+                Company: Krishnav Tech Pvt. Ltd.
+            </div>
+            <div class="contact-info">
+                Response Time: Within 30 days of receiving your request
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="privacy-footer">
+        <p class="footer-text">
+            This Privacy Policy is effective as of January 2024 and applies to all users of Skill AI Path services.
+        </p>
+        <a href="/" class="back-home">← Back to Home</a>
+    </div>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight current section in navigation
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.privacy-section');
+            const navLinks = document.querySelectorAll('.nav-list a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.backgroundColor = '';
+                link.style.color = '';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.backgroundColor = '#667eea';
+                    link.style.color = 'white';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

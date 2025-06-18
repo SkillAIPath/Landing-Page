@@ -1,0 +1,26 @@
+# Lead Processing Redirects
+/submit-form /.netlify/functions/process-lead 200
+
+# Tier-based booking redirects
+/redirect/priority /booking-pages/priority-qualified.html 302
+/redirect/standard /booking-pages/standard-qualified.html 302
+/redirect/basic /booking-pages/basic-qualified.html 302
+/redirect/general /booking-pages/general-webinar.html 302
+
+# Confirmation page redirects
+/confirm/priority /confirmation-pages/confirmation-priority.html 302
+/confirm/standard /confirmation-pages/confirmation-standard.html 302
+/confirm/basic /confirmation-pages/confirmation-basic.html 302
+/confirm/general /confirmation-pages/confirmation-general.html 302
+
+# Pretty URLs
+/privacy /privacy-policy.html 200
+/booking/* /booking-pages/:splat 200
+/confirm/* /confirmation-pages/:splat 200
+
+# Fallback redirects
+/booking-pages/* /booking-pages/:splat 200
+/confirmation-pages/* /confirmation-pages/:splat 200
+
+# 404 fallback
+/* /index.html 404
