@@ -334,15 +334,15 @@
         }
         
         .hero-container {
-            max-width: 1600px;
+            max-width: 1200px;
             width: 100%;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 80px;
+            gap: 60px;
             position: relative;
             z-index: 2;
         }
@@ -357,7 +357,7 @@
         /* ENHANCED INSTRUCTOR SECTION - Now Below Main Content */
         .hero-instructor-section {
             width: 100%;
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -433,10 +433,15 @@
             background: var(--glassmorphism-strong);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 20px;
-            padding: 30px;
+            padding: 35px 40px;
             margin-bottom: 40px;
             backdrop-filter: blur(10px);
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+            max-width: 1200px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 40px;
         }
 
         .value-header {
@@ -551,7 +556,7 @@
             background: var(--glassmorphism-strong);
             backdrop-filter: blur(20px);
             border-radius: 30px;
-            padding: 60px 50px;
+            padding: 50px 40px;
             border: 2px solid rgba(255, 255, 255, 0.3);
             box-shadow: var(--shadow-premium);
             animation: cardFloat 6s ease-in-out infinite;
@@ -561,6 +566,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
         }
 
         @keyframes cardFloat {
@@ -616,17 +624,41 @@
         .instructor-title {
             color: var(--text-muted);
             font-size: 1.3em;
-            font-weight: 400;
-            margin-bottom: 40px;
+            font-weight: 500;
+            margin-bottom: 30px;
             letter-spacing: 0.3px;
             line-height: 1.4;
         }
 
+        .instructor-quote {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+
+        .instructor-quote p {
+            color: var(--text-muted);
+            font-size: 1.1em;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-style: italic;
+            opacity: 0.95;
+        }
+
+        .instructor-quote p:first-child {
+            font-size: 1.2em;
+            font-weight: 500;
+            color: var(--premium-gold);
+            margin-bottom: 20px;
+        }
+
         .expertise-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
             width: 100%;
+            margin-top: 40px;
         }
 
         .expertise-item {
@@ -637,6 +669,11 @@
             color: var(--text-bright);
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
         }
 
         .expertise-item:hover {
@@ -645,13 +682,13 @@
         }
 
         .expertise-icon {
-            font-size: 2.5em;
-            margin-bottom: 15px;
+            font-size: 2.2em;
+            margin-bottom: 12px;
             display: block;
         }
 
         .expertise-name {
-            font-size: 1.1em;
+            font-size: 1em;
             font-weight: 500;
             line-height: 1.3;
             letter-spacing: 0.2px;
@@ -1325,7 +1362,7 @@
             opacity: 0.8;
         }
 
-        <!-- FAQs Section -->
+        /* FAQs Section */
         .faqs-section {
             padding: 80px 40px;
             background: linear-gradient(135deg, #f8f9ff 0%, #e6f0ff 100%);
@@ -1950,12 +1987,28 @@
         /* ENHANCED RESPONSIVE DESIGN */
         @media (max-width: 1024px) {
             .hero-container {
-                gap: 60px;
+                gap: 50px;
                 padding: 0 30px;
+                max-width: 1000px;
             }
             
             .hero-title {
                 font-size: 3.5em;
+            }
+            
+            .unique-value-section {
+                padding: 30px 35px;
+                max-width: 1000px;
+            }
+            
+            .instructor-card {
+                padding: 40px 35px;
+                max-width: 1000px;
+            }
+            
+            .expertise-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
             
             .tracks-grid, .package-comparison {
@@ -1991,6 +2044,14 @@
                 font-size: 1.2em;
             }
 
+            .instructor-quote p {
+                font-size: 1em;
+            }
+
+            .instructor-quote p:first-child {
+                font-size: 1.1em;
+            }
+
             .faqs-title {
                 font-size: 2.8em;
             }
@@ -2005,6 +2066,7 @@
             .hero-container {
                 padding: 0 20px;
                 gap: 40px;
+                max-width: 100%;
             }
             
             .hero-title {
@@ -2013,6 +2075,20 @@
             
             .hero-subtitle {
                 font-size: 1.2em;
+            }
+            
+            .unique-value-section {
+                padding: 25px 20px;
+                margin-bottom: 30px;
+            }
+            
+            .instructor-card {
+                padding: 35px 25px;
+            }
+            
+            .expertise-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
             }
 
             .section-title {
@@ -2076,9 +2152,12 @@
                 font-size: 1.1em;
             }
 
-            .expertise-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
+            .instructor-quote p {
+                font-size: 0.95em;
+            }
+
+            .instructor-quote p:first-child {
+                font-size: 1.05em;
             }
 
             .package-card {
@@ -2192,6 +2271,20 @@
 
             .instructor-card {
                 padding: 40px 30px;
+            }
+
+            .instructor-quote {
+                margin-bottom: 30px;
+            }
+
+            .instructor-quote p {
+                font-size: 0.9em;
+                margin-bottom: 12px;
+            }
+
+            .instructor-quote p:first-child {
+                font-size: 1em;
+                margin-bottom: 15px;
             }
 
             .package-card {
@@ -2432,7 +2525,12 @@
                     <div class="instructor-card">
                         <div class="instructor-photo" id="instructorPhoto"></div>
                         <div class="instructor-name">Viresh Gendle</div>
-                        <div class="instructor-title">Real Business Problem Mentor<br>Founder, Skill AI Path</div>
+                        <div class="instructor-title">AI & Cloud Engineering • Data Platform Architect</div>
+                        <div class="instructor-quote">
+                            <p>"Most people only learn how to deliver in production after they're hired — this program gets you there first."</p>
+                            <p>Built from real enterprise delivery, Skill AI Path skips the fluff and focuses on the systems companies actually use.</p>
+                            <p>If you're serious about making it in tech, this is where it starts to feel real.</p>
+                        </div>
                         <div class="expertise-grid">
                             <div class="expertise-item">
                                 <div class="expertise-icon">📊</div>
@@ -3860,6 +3958,4 @@
         });
     </script>
 </body>
-</html>Form()">Free Strategy Call</a></li>
-                    <li><a href="#tracks">Compare All Tracks</a></li>
-                    <li><a href="javascript:void(0)" onclick="openPopup
+</html>
