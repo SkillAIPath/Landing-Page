@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 Call Confirmed! | Skill AI Path</title>
+    <meta name="description" content="Your guidance call is confirmed! Get ready for friendly career advice and learning path planning.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;909&family=Playfair+Display:wght@400;500;600;700;800;909&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --friendly-teal: #14b8a6;
+            --success-green: #10b981;
+            --warm-blue: #0ea5e9;
+            --deep-blue: #0369a1;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --text-bright: #ffffff;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--primary-gradient);
+            min-height: 100vh;
+        }
+
+        .confirmation-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .success-header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .success-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: gentle-bounce 2s infinite;
+        }
+
+        @keyframes gentle-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .success-badge {
+            display: inline-block;
+            background: var(--friendly-teal);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .success-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .success-subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .confirmation-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px 35px;
+            box-shadow: 0 20px 60px rgba(6, 182, 212, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .confirmation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--friendly-teal), var(--warm-blue));
+        }
+
+        .friendly-message {
+            background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+            border: 2px solid var(--success-green);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .message-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 10px;
+        }
+
+        .message-text {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .what-happens {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .steps-list {
+            list-style: none;
+            display: grid;
+            gap: 15px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 18px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border-left: 4px solid var(--friendly-teal);
+        }
+
+        .step-number {
+            background: var(--friendly-teal);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-weight: 600;
+            color: var(--deep-blue);
+            margin-bottom: 5px;
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .comfort-section {
+            background: linear-gradient(135deg, #fef7ed, #fff7ed);
+            border: 2px solid #f97316;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .comfort-title {
+            font-weight: 600;
+            color: var(--deep-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comfort-points {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .comfort-point {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        .comfort-check {
+            color: #f97316;
+            font-weight: 700;
+        }
+
+        .support-info {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .support-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .support-text {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .support-contact {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .confirmation-container { padding: 20px 15px; }
+            .success-title { font-size: 2.5em; }
+            .confirmation-card { padding: 30px 25px; }
+            .comfort-points { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <div class="success-header">
+            <div class="success-icon">🌟</div>
+            <div class="success-badge">🎯 GUIDANCE CALL CONFIRMED</div>
+            <h1 class="success-title">You're All Set!</h1>
+            <p class="success-subtitle">
+                Your guidance call is confirmed. We're excited to help you plan your AI & Data learning journey!
+            </p>
+        </div>
+
+        <div class="confirmation-card">
+            <div class="friendly-message">
+                <h3 class="message-title">🤝 No Pressure, Just Guidance</h3>
+                <p class="message-text">
+                    This is a friendly conversation to understand your goals and help you create a realistic learning plan. 
+                    We're here to support your journey, not to pressure you into anything.
+                </p>
+            </div>
+
+            <div class="what-happens">
+                <h2 class="section-title">🗺️ What We'll Cover Together</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Getting to Know You</h4>
+                            <p>We'll chat about your background, interests, and what brought you to AI & Data</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Understanding Your Goals</h4>
+                            <p>What do you want to achieve? Career change? New skills? We'll explore your aspirations</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Creating Your Roadmap</h4>
+                            <p>Together, we'll outline a step-by-step learning path that fits your schedule and pace</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Answering Your Questions</h4>
+                            <p>This is your time - ask anything about AI & Data careers, learning, or next steps</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="comfort-section">
+                <h3 class="comfort-title">
+                    😌 Feel Comfortable & Confident
+                </h3>
+                <div class="comfort-points">
+                    <div class="comfort-point">
+                        <span class="comfort-check">✓</span>
+                        <span>Casual, friendly conversation</span>
+                    </div>
+                    <div class="comfort-point">
+                        <span class="comfort-check">✓</span>
+                        <span>No technical pressure</span>
+                    </div>
+                    <div class="comfort-point">
+                        <span class="comfort-check">✓</span>
+                        <span>All questions are welcome</span>
+                    </div>
+                    <div class="comfort-point">
+                        <span class="comfort-check">✓</span>
+                        <span>Honest guidance & advice</span>
+                    </div>
+                    <div class="comfort-point">
+                        <span class="comfort-check">✓</span>
+                        <span>No obligations whatsoever</span>
+                    </div>
+                    <div class="comfort-point">
+                        <span class="comfort-check">✓</span>
+                        <span>Your pace, your choices</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="support-info">
+                <h3 class="support-title">Questions or Need to Reschedule?</h3>
+                <p class="support-text">
+                    We're here to help! Feel free to reach out if you have any questions or need to change your appointment time.
+                </p>
+                <div class="support-contact">
+                    📧 tech@skillaipath.com • 💬 WhatsApp Support Available
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'basic_confirmation_viewed', {
+                'tier': 'basic',
+                'page_type': 'confirmation'
+            });
+        }
+
+        setTimeout(() => {
+            document.querySelector('.confirmation-card').style.transform = 'translateY(0)';
+            document.querySelector('.confirmation-card').style.opacity = '1';
+        }, 300);
+
+        document.querySelector('.confirmation-card').style.transform = 'translateY(30px)';
+        document.querySelector('.confirmation-card').style.opacity = '0';
+        document.querySelector('.confirmation-card').style.transition = 'all 0.8s ease';
+    </script>
+</body>
+</html>
