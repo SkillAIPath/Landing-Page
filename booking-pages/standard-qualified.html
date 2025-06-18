@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✅ Great Application! - Standard Track | Skill AI Path</title>
+    <meta name="description" content="Excellent application! You qualify for our standard track with comprehensive guidance and structured learning path.">
+    
+    <!-- Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;909&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            /* Professional Color Palette */
+            --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            --success-green: #10b981;
+            --professional-blue: #3b82f6;
+            --deep-blue: #1e40af;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --text-bright: #ffffff;
+            
+            /* Glass Effects */
+            --glassmorphism: rgba(255, 255, 255, 0.15);
+            --glassmorphism-strong: rgba(255, 255, 255, 0.25);
+            
+            /* Shadows */
+            --shadow-premium: 0 20px 60px rgba(79, 70, 229, 0.2);
+            --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="12.5" cy="12.5" r="1.5" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+            animation: patternMove 30s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes patternMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(25px, 25px); }
+        }
+
+        /* Main Container */
+        .booking-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Header Section */
+        .standard-header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .standard-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--professional-blue);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .standard-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            line-height: 1.1;
+        }
+
+        .standard-subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.4;
+        }
+
+        /* Stats Row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-item {
+            background: var(--glassmorphism-strong);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: 800;
+            color: var(--professional-blue);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            color: white;
+        }
+
+        /* Main Booking Card */
+        .booking-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 45px 35px;
+            box-shadow: var(--shadow-premium);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--professional-blue), var(--success-green));
+        }
+
+        /* Progress Indicator */
+        .progress-indicator {
+            background: linear-gradient(135deg, #dbeafe, #eff6ff);
+            border: 2px solid var(--professional-blue);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .progress-text {
+            font-weight: 600;
+            color: var(--deep-blue);
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .batch-date {
+            font-weight: 800;
+            color: var(--professional-blue);
+            font-size: 1.1em;
+        }
+
+        /* Standard Benefits */
+        .standard-benefits {
+            margin-bottom: 35px;
+        }
+
+        .benefits-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border-left: 4px solid var(--professional-blue);
+        }
+
+        .benefit-icon {
+            color: var(--professional-blue);
+            font-size: 1.1em;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .benefit-text {
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        /* Recommended Path */
+        .recommended-path {
+            background: linear-gradient(135deg, #fef3c7, #fef9e6);
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .path-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .path-icon {
+            font-size: 2em;
+        }
+
+        .path-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--deep-blue);
+        }
+
+        .path-description {
+            color: var(--text-primary);
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .path-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .path-option {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .path-option:hover {
+            border-color: var(--professional-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.2);
+        }
+
+        .option-title {
+            font-weight: 600;
+            color: var(--deep-blue);
+            margin-bottom: 8px;
+        }
+
+        .option-description {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .option-cta {
+            background: var(--professional-blue);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 0.9em;
+        }
+
+        .option-cta:hover {
+            background: var(--deep-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Success Stories */
+        .success-stories {
+            margin-bottom: 30px;
+        }
+
+        .stories-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--deep-blue);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .story-item {
+            background: #f0f9ff;
+            border-left: 4px solid var(--professional-blue);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .story-text {
+            font-style: italic;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .story-author {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Guarantee Section */
+        .guarantee-section {
+            background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
+            border: 2px solid var(--success-green);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .guarantee-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .guarantee-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 10px;
+        }
+
+        .guarantee-text {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .guarantee-details {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid var(--success-green);
+            font-size: 0.9em;
+        }
+
+        .guarantee-details strong {
+            color: var(--deep-blue);
+        }
+
+        /* Footer */
+        .booking-footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .security-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            color: var(--text-secondary);
+            font-size: 0.85em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .booking-container {
+                padding: 20px 15px;
+            }
+
+            .standard-title {
+                font-size: 2.5em;
+            }
+
+            .booking-card {
+                padding: 30px 25px;
+            }
+
+            .stats-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .path-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .standard-title {
+                font-size: 2.2em;
+            }
+
+            .booking-card {
+                padding: 25px 20px;
+            }
+
+            .benefit-item, .story-item {
+                padding: 12px;
+            }
+
+            .recommended-path {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="booking-container">
+        <!-- Header Section -->
+        <div class="standard-header">
+            <div class="standard-badge">
+                ✅ QUALIFIED CANDIDATE
+            </div>
+            
+            <h1 class="standard-title">Excellent Application!</h1>
+            
+            <p class="standard-subtitle">
+                Your profile shows great potential. You qualify for our structured learning track with comprehensive guidance and support.
+            </p>
+
+            <!-- Stats Row -->
+            <div class="stats-row">
+                <div class="stat-item">
+                    <span class="stat-number">65+</span>
+                    <span class="stat-label">Your Qualification Score</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24</span>
+                    <span class="stat-label">Spots Available</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="nextBatchDate">Loading...</span>
+                    <span class="stat-label">Next Batch Starts</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Booking Card -->
+        <div class="booking-card">
+            <!-- Progress Indicator -->
+            <div class="progress-indicator">
+                <div class="progress-text">
+                    🎯 Next cohort starts <span class="batch-date" id="progressBatchDate">Loading...</span> - Secure your spot
+                </div>
+            </div>
+
+            <!-- Standard Benefits -->
+            <div class="standard-benefits">
+                <h3 class="benefits-title">📚 What You'll Get</h3>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✓</span>
+                        <span class="benefit-text">Complete AI & Data stack curriculum with real business projects</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✓</span>
+                        <span class="benefit-text">Weekly group mentoring sessions and doubt resolution</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✓</span>
+                        <span class="benefit-text">Professional portfolio development with hiring-ready projects</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✓</span>
+                        <span class="benefit-text">Career guidance and placement support throughout your journey</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✓</span>
+                        <span class="benefit-text">Active community access and peer learning opportunities</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommended Path -->
+            <div class="recommended-path">
+                <div class="path-header">
+                    <span class="path-icon">🎯</span>
+                    <span class="path-title">Recommended for Your Profile</span>
+                </div>
+                <div class="path-description">
+                    Based on your background and goals, I recommend starting with a focused consultation to map out your optimal learning path and timeline.
+                </div>
+                <div class="path-options">
+                    <div class="path-option" onclick="bookCall('consultation')">
+                        <div class="option-title">🔍 Strategy Call</div>
+                        <div class="option-description">30-min consultation to plan your roadmap</div>
+                        <button class="option-cta">Book Free Call</button>
+                    </div>
+                    <div class="path-option" onclick="bookCall('deep-dive')">
+                        <div class="option-title">📋 Deep Dive</div>
+                        <div class="option-description">60-min detailed planning session</div>
+                        <button class="option-cta">Book Deep Dive</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success Stories -->
+            <div class="success-stories">
+                <h3 class="stories-title">💼 Recent Success Stories</h3>
+                <div class="story-item">
+                    <div class="story-text">
+                        "The structured approach really worked for me. I went from complete beginner to landing my first data analyst role in 4 months."
+                    </div>
+                    <div class="story-author">- Rajesh K., Data Analyst at Tech Startup</div>
+                </div>
+                <div class="story-item">
+                    <div class="story-text">
+                        "Weekly mentoring sessions kept me on track. Built a strong portfolio that got me noticed by recruiters."
+                    </div>
+                    <div class="story-author">- Priya S., Business Intelligence Specialist</div>
+                </div>
+            </div>
+
+            <!-- Guarantee Section -->
+            <div class="guarantee-section">
+                <div class="guarantee-icon">🛡️</div>
+                <h3 class="guarantee-title">Success Guarantee</h3>
+                <p class="guarantee-text">
+                    We're committed to your success with our comprehensive support system.
+                </p>
+                <div class="guarantee-details">
+                    <strong>6-Month Program:</strong> First gig opportunity within 7 months<br>
+                    <strong>12-Month Program:</strong> Job placement within 14 months<br>
+                    <strong>Safety Net:</strong> Full refund + continued support if goals not met
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="booking-footer">
+                Free consultation with no pressure or obligations. Let's discuss your goals and create a personalized roadmap.
+                <div class="security-note">
+                    🔒 Secure booking • 💬 WhatsApp confirmation • 📧 Calendar invite sent
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dynamic Date Calculation - Next Monday
+        function getNextMonday() {
+            const today = new Date();
+            const dayOfWeek = today.getDay();
+            const daysUntilMonday = (1 + 7 - dayOfWeek) % 7 || 7;
+            
+            const nextMonday = new Date(today);
+            nextMonday.setDate(today.getDate() + daysUntilMonday);
+            
+            return nextMonday;
+        }
+
+        function formatDate(date) {
+            const options = { 
+                month: 'short', 
+                day: 'numeric'
+            };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        function formatFullDate(date) {
+            const options = { 
+                weekday: 'long',
+                month: 'long', 
+                day: 'numeric'
+            };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Update dates on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const nextMonday = getNextMonday();
+            const shortDate = formatDate(nextMonday);
+            const fullDate = formatFullDate(nextMonday);
+            
+            document.getElementById('nextBatchDate').textContent = shortDate;
+            document.getElementById('progressBatchDate').textContent = fullDate;
+            
+            setTimeout(() => {
+                document.querySelector('.booking-card').style.transform = 'translateY(0)';
+                document.querySelector('.booking-card').style.opacity = '1';
+            }, 300);
+        });
+
+        // Booking Functions
+        function bookCall(type) {
+            console.log(`Standard candidate booking: ${type}`);
+            
+            if (type === 'consultation') {
+                window.open('https://calendly.com/your-calendly/30min-consultation', '_blank');
+            } else {
+                window.open('https://calendly.com/your-calendly/60min-deep-dive', '_blank');
+            }
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'standard_booking_clicked', {
+                    'booking_type': type,
+                    'tier': 'standard',
+                    'score_range': '65-84'
+                });
+            }
+        }
+
+        // Add entrance animation
+        document.querySelector('.booking-card').style.transform = 'translateY(30px)';
+        document.querySelector('.booking-card').style.opacity = '0';
+        document.querySelector('.booking-card').style.transition = 'all 0.8s ease';
+    </script>
+</body>
+</html>

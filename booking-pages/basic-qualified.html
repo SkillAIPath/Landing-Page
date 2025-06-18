@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 You're Qualified! - Foundation Track | Skill AI Path</title>
+    <meta name="description" content="Great start! You qualify for our foundation track. Let's build your AI & Data skills step by step with proper guidance.">
+    
+    <!-- Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            /* Friendly Color Palette */
+            --primary-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --success-green: #10b981;
+            --friendly-teal: #14b8a6;
+            --warm-blue: #0ea5e9;
+            --deep-blue: #0369a1;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --text-bright: #ffffff;
+            
+            /* Glass Effects */
+            --glassmorphism: rgba(255, 255, 255, 0.15);
+            --glassmorphism-strong: rgba(255, 255, 255, 0.25);
+            
+            /* Shadows */
+            --shadow-friendly: 0 20px 60px rgba(6, 182, 212, 0.2);
+            --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hexagon" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M15,5 L25,12 L25,22 L15,29 L5,22 L5,12 Z" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23hexagon)"/></svg>');
+            animation: patternMove 35s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes patternMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+
+        /* Main Container */
+        .booking-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Header Section */
+        .basic-header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .basic-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--friendly-teal);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.4);
+        }
+
+        .basic-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            line-height: 1.1;
+        }
+
+        .basic-subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.4;
+        }
+
+        /* Stats Row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-item {
+            background: var(--glassmorphism-strong);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: 800;
+            color: var(--friendly-teal);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            color: white;
+        }
+
+        /* Main Booking Card */
+        .booking-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px 35px;
+            box-shadow: var(--shadow-friendly);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--friendly-teal), var(--warm-blue));
+        }
+
+        /* Welcome Message */
+        .welcome-message {
+            background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+            border: 2px solid var(--warm-blue);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .welcome-text {
+            font-weight: 600;
+            color: var(--deep-blue);
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .batch-info {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+        }
+
+        .batch-date {
+            font-weight: 700;
+            color: var(--warm-blue);
+        }
+
+        /* Foundation Benefits */
+        .foundation-benefits {
+            margin-bottom: 35px;
+        }
+
+        .benefits-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border-left: 4px solid var(--friendly-teal);
+        }
+
+        .benefit-icon {
+            color: var(--friendly-teal);
+            font-size: 1.1em;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .benefit-text {
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        /* Learning Path */
+        .learning-path {
+            background: linear-gradient(135deg, #fef7ed, #fff7ed);
+            border: 2px solid #f97316;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .path-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .path-icon {
+            font-size: 2em;
+        }
+
+        .path-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--deep-blue);
+        }
+
+        .path-description {
+            color: var(--text-primary);
+            line-height: 1.5;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .next-steps {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .step-card {
+            background: white;
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            border-color: var(--friendly-teal);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(20, 184, 166, 0.2);
+        }
+
+        .step-number {
+            background: var(--friendly-teal);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--deep-blue);
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .step-description {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .step-cta {
+            background: var(--friendly-teal);
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 0.85em;
+        }
+
+        .step-cta:hover {
+            background: var(--deep-blue);
+            transform: translateY(-1px);
+        }
+
+        /* Encouragement Section */
+        .encouragement {
+            background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+            border-left: 4px solid var(--success-green);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .encouragement-title {
+            font-weight: 600;
+            color: var(--deep-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .encouragement-text {
+            color: var(--text-primary);
+            line-height: 1.5;
+            font-size: 0.95em;
+        }
+
+        /* Simple Guarantee */
+        .simple-guarantee {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .guarantee-title {
+            font-weight: 600;
+            color: var(--deep-blue);
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .guarantee-text {
+            color: var(--text-secondary);
+            line-height: 1.4;
+            font-size: 0.9em;
+        }
+
+        /* Footer */
+        .booking-footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .security-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            color: var(--text-secondary);
+            font-size: 0.85em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .booking-container {
+                padding: 20px 15px;
+            }
+
+            .basic-title {
+                font-size: 2.5em;
+            }
+
+            .booking-card {
+                padding: 30px 25px;
+            }
+
+            .stats-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .next-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .basic-title {
+                font-size: 2.2em;
+            }
+
+            .booking-card {
+                padding: 25px 20px;
+            }
+
+            .learning-path {
+                padding: 20px;
+            }
+
+            .step-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="booking-container">
+        <!-- Header Section -->
+        <div class="basic-header">
+            <div class="basic-badge">
+                🌟 FOUNDATION TRACK QUALIFIED
+            </div>
+            
+            <h1 class="basic-title">You're Qualified!</h1>
+            
+            <p class="basic-subtitle">
+                Great application! You're ready to start your AI & Data journey with our structured foundation program.
+            </p>
+
+            <!-- Stats Row -->
+            <div class="stats-row">
+                <div class="stat-item">
+                    <span class="stat-number">45+</span>
+                    <span class="stat-label">Your Qualification Score</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">36</span>
+                    <span class="stat-label">Foundation Spots</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="nextBatchDate">Loading...</span>
+                    <span class="stat-label">Next Batch Starts</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Booking Card -->
+        <div class="booking-card">
+            <!-- Welcome Message -->
+            <div class="welcome-message">
+                <div class="welcome-text">
+                    🚀 Perfect timing! Foundation batch starting <span class="batch-date" id="welcomeBatchDate">Loading...</span>
+                </div>
+                <div class="batch-info">Let's plan your learning journey together</div>
+            </div>
+
+            <!-- Foundation Benefits -->
+            <div class="foundation-benefits">
+                <h3 class="benefits-title">🎯 Foundation Track Benefits</h3>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✓</span>
+                        <span class="benefit-text">Step-by-step curriculum designed for beginners with clear milestones</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✓</span>
+                        <span class="benefit-text">Weekly group sessions with doubt clearing and progress tracking</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✓</span>
+                        <span class="benefit-text">Hands-on projects that build your confidence gradually</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✓</span>
+                        <span class="benefit-text">Community support and peer learning opportunities</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✓</span>
+                        <span class="benefit-text">Career guidance and skill assessment throughout your journey</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Learning Path -->
+            <div class="learning-path">
+                <div class="path-header">
+                    <span class="path-icon">🗺️</span>
+                    <span class="path-title">Let's Plan Your Success</span>
+                </div>
+                <div class="path-description">
+                    Everyone's starting point is different. Let's have a friendly conversation to understand your goals and create a personalized roadmap that works for your schedule and pace.
+                </div>
+                <div class="next-steps">
+                    <div class="step-card" onclick="bookCall('guidance')">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Free Guidance Call</div>
+                        <div class="step-description">20-min friendly chat about your goals</div>
+                        <button class="step-cta">Get Guidance</button>
+                    </div>
+                    <div class="step-card" onclick="bookCall('assessment')">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Skill Assessment</div>
+                        <div class="step-description">45-min evaluation and roadmap creation</div>
+                        <button class="step-cta">Book Assessment</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Encouragement Section -->
+            <div class="encouragement">
+                <div class="encouragement-title">
+                    💪 You're Taking the Right Step!
+                </div>
+                <div class="encouragement-text">
+                    Starting your AI & Data journey is exciting! Our foundation track is specifically designed for people just like you - those who want to learn properly without feeling overwhelmed. We'll go at a pace that ensures you understand everything clearly.
+                </div>
+            </div>
+
+            <!-- Simple Guarantee -->
+            <div class="simple-guarantee">
+                <div class="guarantee-title">🤝 Our Commitment to You</div>
+                <div class="guarantee-text">
+                    We believe in your potential. If you complete our program and don't see progress in your skills and confidence, we'll work with you until you do - at no extra cost.
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="booking-footer">
+                No pressure, just a friendly conversation about your career goals and how we can help you achieve them.
+                <div class="security-note">
+                    🔒 Secure booking • 💬 WhatsApp reminder • 📧 Calendar invite sent
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dynamic Date Calculation - Next Monday
+        function getNextMonday() {
+            const today = new Date();
+            const dayOfWeek = today.getDay();
+            const daysUntilMonday = (1 + 7 - dayOfWeek) % 7 || 7;
+            
+            const nextMonday = new Date(today);
+            nextMonday.setDate(today.getDate() + daysUntilMonday);
+            
+            return nextMonday;
+        }
+
+        function formatDate(date) {
+            const options = { 
+                month: 'short', 
+                day: 'numeric'
+            };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        function formatFullDate(date) {
+            const options = { 
+                weekday: 'long',
+                month: 'long', 
+                day: 'numeric'
+            };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Update dates on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const nextMonday = getNextMonday();
+            const shortDate = formatDate(nextMonday);
+            const fullDate = formatFullDate(nextMonday);
+            
+            document.getElementById('nextBatchDate').textContent = shortDate;
+            document.getElementById('welcomeBatchDate').textContent = fullDate;
+            
+            setTimeout(() => {
+                document.querySelector('.booking-card').style.transform = 'translateY(0)';
+                document.querySelector('.booking-card').style.opacity = '1';
+            }, 300);
+        });
+
+        // Booking Functions
+        function bookCall(type) {
+            console.log(`Basic candidate booking: ${type}`);
+            
+            if (type === 'guidance') {
+                window.open('https://calendly.com/your-calendly/20min-guidance', '_blank');
+            } else {
+                window.open('https://calendly.com/your-calendly/45min-assessment', '_blank');
+            }
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'basic_booking_clicked', {
+                    'booking_type': type,
+                    'tier': 'basic',
+                    'score_range': '45-64'
+                });
+            }
+        }
+
+        // Add entrance animation
+        document.querySelector('.booking-card').style.transform = 'translateY(30px)';
+        document.querySelector('.booking-card').style.opacity = '0';
+        document.querySelector('.booking-card').style.transition = 'all 0.8s ease';
+    </script>
+</body>
+</html>
