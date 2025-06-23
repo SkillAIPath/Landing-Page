@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✅ Great Application! - Standard Track | Skill AI Path</title>
-    <meta name="description" content="Excellent application! You qualify for our standard track with comprehensive guidance and structured learning path.">
+    <title>🌟 You're Qualified! - Foundation Track | Skill AI Path</title>
+    <meta name="description" content="Great start! You qualify for our foundation track. Let's build your AI & Data skills step by step with proper guidance.">
     
     <!-- Fonts -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;909&family=Playfair+Display:wght@400;500;600;707;800;909&family=JetBrains+Mono:wght@400;500;600;707&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -18,11 +18,12 @@
         }
         
         :root {
-            /* Professional Color Palette */
-            --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            /* Friendly Color Palette */
+            --primary-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
             --success-green: #10b981;
-            --professional-blue: #3b82f6;
-            --deep-blue: #1e40af;
+            --friendly-teal: #14b8a6;
+            --warm-blue: #0ea5e9;
+            --deep-blue: #0369a1;
             --text-primary: #1a202c;
             --text-secondary: #4a5568;
             --text-bright: #ffffff;
@@ -32,7 +33,7 @@
             --glassmorphism-strong: rgba(255, 255, 255, 0.25);
             
             /* Shadows */
-            --shadow-premium: 0 20px 60px rgba(79, 70, 229, 0.2);
+            --shadow-friendly: 0 20px 60px rgba(6, 182, 212, 0.2);
             --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
         
@@ -53,15 +54,15 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="12.5" cy="12.5" r="1.5" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
-            animation: patternMove 30s linear infinite;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hexagon" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M15,5 L25,12 L25,22 L15,29 L5,22 L5,12 Z" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23hexagon)"/></svg>');
+            animation: patternMove 35s linear infinite;
             pointer-events: none;
             z-index: 1;
         }
 
         @keyframes patternMove {
             0% { transform: translate(0, 0); }
-            100% { transform: translate(25px, 25px); }
+            100% { transform: translate(30px, 30px); }
         }
 
         /* Main Container */
@@ -78,36 +79,36 @@
         }
 
         /* Header Section */
-        .standard-header {
+        .basic-header {
             text-align: center;
             margin-bottom: 50px;
             color: white;
         }
 
-        .standard-badge {
+        .basic-badge {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            background: var(--professional-blue);
+            background: var(--friendly-teal);
             color: white;
             padding: 12px 30px;
             border-radius: 30px;
             font-size: 1em;
             font-weight: 700;
             margin-bottom: 25px;
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.4);
         }
 
-        .standard-title {
+        .basic-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3.2em;
+            font-size: 3em;
             font-weight: 700;
             margin-bottom: 20px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             line-height: 1.1;
         }
 
-        .standard-subtitle {
+        .basic-subtitle {
             font-size: 1.2em;
             opacity: 0.95;
             max-width: 600px;
@@ -135,7 +136,7 @@
         .stat-number {
             font-size: 2em;
             font-weight: 800;
-            color: var(--professional-blue);
+            color: var(--friendly-teal);
             display: block;
             margin-bottom: 5px;
         }
@@ -151,8 +152,8 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border-radius: 25px;
-            padding: 45px 35px;
-            box-shadow: var(--shadow-premium);
+            padding: 40px 35px;
+            box-shadow: var(--shadow-friendly);
             border: 2px solid rgba(255, 255, 255, 0.3);
             position: relative;
             overflow: hidden;
@@ -165,34 +166,38 @@
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(90deg, var(--professional-blue), var(--success-green));
+            background: linear-gradient(90deg, var(--friendly-teal), var(--warm-blue));
         }
 
-        /* Progress Indicator */
-        .progress-indicator {
-            background: linear-gradient(135deg, #dbeafe, #eff6ff);
-            border: 2px solid var(--professional-blue);
+        /* Welcome Message */
+        .welcome-message {
+            background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+            border: 2px solid var(--warm-blue);
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 30px;
             text-align: center;
         }
 
-        .progress-text {
+        .welcome-text {
             font-weight: 600;
             color: var(--deep-blue);
             font-size: 1.1em;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+        }
+
+        .batch-info {
+            color: var(--text-secondary);
+            font-size: 0.95em;
         }
 
         .batch-date {
-            font-weight: 800;
-            color: var(--professional-blue);
-            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--warm-blue);
         }
 
-        /* Standard Benefits */
-        .standard-benefits {
+        /* Foundation Benefits */
+        .foundation-benefits {
             margin-bottom: 35px;
         }
 
@@ -217,11 +222,11 @@
             padding: 15px;
             background: #f8fafc;
             border-radius: 12px;
-            border-left: 4px solid var(--professional-blue);
+            border-left: 4px solid var(--friendly-teal);
         }
 
         .benefit-icon {
-            color: var(--professional-blue);
+            color: var(--friendly-teal);
             font-size: 1.1em;
             font-weight: 700;
             margin-top: 2px;
@@ -234,10 +239,10 @@
             line-height: 1.4;
         }
 
-        /* Recommended Path */
-        .recommended-path {
-            background: linear-gradient(135deg, #fef3c7, #fef9e6);
-            border: 2px solid #f59e0b;
+        /* Learning Path */
+        .learning-path {
+            background: linear-gradient(135deg, #fef7ed, #fff7ed);
+            border: 2px solid #f97316;
             border-radius: 15px;
             padding: 25px;
             margin-bottom: 30px;
@@ -263,134 +268,123 @@
         .path-description {
             color: var(--text-primary);
             line-height: 1.5;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
         }
 
-        .path-options {
+        .next-steps {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
 
-        .path-option {
+        .step-card {
             background: white;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 18px;
+            border-radius: 12px;
             border: 1px solid #e5e7eb;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .path-option:hover {
-            border-color: var(--professional-blue);
+        .step-card:hover {
+            border-color: var(--friendly-teal);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 5px 15px rgba(20, 184, 166, 0.2);
         }
 
-        .option-title {
+        .step-number {
+            background: var(--friendly-teal);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+
+        .step-title {
             font-weight: 600;
             color: var(--deep-blue);
             margin-bottom: 8px;
+            font-size: 0.95em;
         }
 
-        .option-description {
-            font-size: 0.9em;
+        .step-description {
+            font-size: 0.85em;
             color: var(--text-secondary);
             margin-bottom: 12px;
+            line-height: 1.3;
         }
 
-        .option-cta {
-            background: var(--professional-blue);
+        .step-cta {
+            background: var(--friendly-teal);
             color: white;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border: none;
-            border-radius: 20px;
+            border-radius: 15px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
-            font-size: 0.9em;
+            font-size: 0.85em;
         }
 
-        .option-cta:hover {
+        .step-cta:hover {
             background: var(--deep-blue);
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
 
-        /* Success Stories */
-        .success-stories {
-            margin-bottom: 30px;
+        /* Encouragement Section */
+        .encouragement {
+            background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+            border-left: 4px solid var(--success-green);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
         }
 
-        .stories-title {
-            font-size: 1.2em;
+        .encouragement-title {
             font-weight: 600;
             color: var(--deep-blue);
-            margin-bottom: 15px;
-            text-align: center;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .story-item {
-            background: #f0f9ff;
-            border-left: 4px solid var(--professional-blue);
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
-        .story-text {
-            font-style: italic;
+        .encouragement-text {
             color: var(--text-primary);
-            margin-bottom: 8px;
-            line-height: 1.4;
+            line-height: 1.5;
+            font-size: 0.95em;
         }
 
-        .story-author {
-            font-size: 0.9em;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        /* Guarantee Section */
-        .guarantee-section {
-            background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
-            border: 2px solid var(--success-green);
-            border-radius: 15px;
-            padding: 25px;
+        /* Simple Guarantee */
+        .simple-guarantee {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
             margin-bottom: 25px;
             text-align: center;
         }
 
-        .guarantee-icon {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
         .guarantee-title {
-            font-size: 1.2em;
-            font-weight: 700;
+            font-weight: 600;
             color: var(--deep-blue);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 1.1em;
         }
 
         .guarantee-text {
             color: var(--text-secondary);
-            line-height: 1.5;
-            margin-bottom: 15px;
-            font-size: 0.95em;
-        }
-
-        .guarantee-details {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid var(--success-green);
+            line-height: 1.4;
             font-size: 0.9em;
-        }
-
-        .guarantee-details strong {
-            color: var(--deep-blue);
         }
 
         /* Footer */
@@ -478,14 +472,14 @@
         }
 
         .booking-option:hover { 
-            border-color: #4f46e5; 
+            border-color: #06b6d4; 
             transform: translateY(-2px); 
-            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.15); 
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.15); 
         }
 
         .booking-option.primary { 
-            border-color: #4f46e5; 
-            background: linear-gradient(135deg, #f8faff, #ffffff); 
+            border-color: #06b6d4; 
+            background: linear-gradient(135deg, #f0f9ff, #ffffff); 
         }
 
         .booking-icon { 
@@ -510,7 +504,7 @@
 
         .booking-arrow { 
             font-size: 1.5em; 
-            color: #4f46e5; 
+            color: #06b6d4; 
             font-weight: bold; 
         }
 
@@ -523,82 +517,6 @@
             color: #64748b; 
             font-size: 0.9em; 
             margin: 0; 
-        }
-
-        /* Progress Tracker */
-        .progress-tracker {
-            background: #f0f9ff;
-            border: 2px solid #3b82f6;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-            display: none;
-        }
-
-        .progress-tracker.active {
-            display: block;
-        }
-
-        .progress-title {
-            font-weight: 600;
-            color: #1e40af;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .progress-steps {
-            display: grid;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .progress-step {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px;
-            background: white;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .progress-step.completed {
-            background: #dcfce7;
-            border-left: 4px solid #10b981;
-        }
-
-        .progress-step.active {
-            background: #dbeafe;
-            border-left: 4px solid #3b82f6;
-        }
-
-        /* WhatsApp Button */
-        .whatsapp-confirmation-btn {
-            background: #25D366;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            font-size: 1.1em;
-            margin: 10px 0;
-        }
-
-        .whatsapp-confirmation-btn:hover {
-            background: #128C7E;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-        }
-
-        .whatsapp-confirmation-btn:disabled {
-            background: #94a3b8;
-            cursor: not-allowed;
-            transform: none;
         }
 
         /* WhatsApp Confirmation Modal */
@@ -707,7 +625,7 @@
                 padding: 20px 15px;
             }
 
-            .standard-title {
+            .basic-title {
                 font-size: 2.5em;
             }
 
@@ -720,22 +638,13 @@
                 gap: 15px;
             }
 
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .path-options {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .confirmation-action-buttons {
+            .next-steps {
                 grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 480px) {
-            .standard-title {
+            .basic-title {
                 font-size: 2.2em;
             }
 
@@ -743,12 +652,16 @@
                 padding: 25px 20px;
             }
 
-            .benefit-item, .story-item {
-                padding: 12px;
+            .learning-path {
+                padding: 20px;
             }
 
-            .recommended-path {
-                padding: 20px;
+            .step-card {
+                padding: 15px;
+            }
+
+            .confirmation-action-buttons {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -756,26 +669,26 @@
 <body>
     <div class="booking-container">
         <!-- Header Section -->
-        <div class="standard-header">
-            <div class="standard-badge">
-                ✅ QUALIFIED CANDIDATE
+        <div class="basic-header">
+            <div class="basic-badge">
+                🌟 FOUNDATION TRACK QUALIFIED
             </div>
             
-            <h1 class="standard-title">Excellent Application!</h1>
+            <h1 class="basic-title">You're Qualified!</h1>
             
-            <p class="standard-subtitle">
-                Your profile shows great potential. You qualify for our structured learning track with comprehensive guidance and support.
+            <p class="basic-subtitle">
+                Great application! You're ready to start your AI & Data journey with our structured foundation program.
             </p>
 
             <!-- Stats Row -->
             <div class="stats-row">
                 <div class="stat-item">
-                    <span class="stat-number">65+</span>
+                    <span class="stat-number">45+</span>
                     <span class="stat-label">Your Qualification Score</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">24</span>
-                    <span class="stat-label">Spots Available</span>
+                    <span class="stat-number">36</span>
+                    <span class="stat-label">Foundation Spots</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number" id="nextBatchDate">Loading...</span>
@@ -786,125 +699,89 @@
 
         <!-- Main Booking Card -->
         <div class="booking-card">
-            <!-- Progress Indicator -->
-            <div class="progress-indicator">
-                <div class="progress-text">
-                    🎯 Next cohort starts <span class="batch-date" id="progressBatchDate">Loading...</span> - Secure your spot
+            <!-- Welcome Message -->
+            <div class="welcome-message">
+                <div class="welcome-text">
+                    🚀 Perfect timing! Foundation batch starting <span class="batch-date" id="welcomeBatchDate">Loading...</span>
                 </div>
+                <div class="batch-info">Let's plan your learning journey together</div>
             </div>
 
-            <!-- Standard Benefits -->
-            <div class="standard-benefits">
-                <h3 class="benefits-title">📚 What You'll Get</h3>
+            <!-- Foundation Benefits -->
+            <div class="foundation-benefits">
+                <h3 class="benefits-title">🎯 Foundation Track Benefits</h3>
                 <div class="benefits-grid">
                     <div class="benefit-item">
                         <span class="benefit-icon">✓</span>
-                        <span class="benefit-text">Complete AI & Data stack curriculum with real business projects</span>
+                        <span class="benefit-text">Step-by-step curriculum designed for beginners with clear milestones</span>
                     </div>
                     <div class="benefit-item">
                         <span class="benefit-icon">✓</span>
-                        <span class="benefit-text">Weekly group mentoring sessions and doubt resolution</span>
+                        <span class="benefit-text">Weekly group sessions with doubt clearing and progress tracking</span>
                     </div>
                     <div class="benefit-item">
                         <span class="benefit-icon">✓</span>
-                        <span class="benefit-text">Professional portfolio development with hiring-ready projects</span>
+                        <span class="benefit-text">Hands-on projects that build your confidence gradually</span>
                     </div>
                     <div class="benefit-item">
                         <span class="benefit-icon">✓</span>
-                        <span class="benefit-text">Career guidance and placement support throughout your journey</span>
+                        <span class="benefit-text">Community support and peer learning opportunities</span>
                     </div>
                     <div class="benefit-item">
                         <span class="benefit-icon">✓</span>
-                        <span class="benefit-text">Active community access and peer learning opportunities</span>
+                        <span class="benefit-text">Career guidance and skill assessment throughout your journey</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Recommended Path -->
-            <div class="recommended-path">
+            <!-- Learning Path -->
+            <div class="learning-path">
                 <div class="path-header">
-                    <span class="path-icon">🎯</span>
-                    <span class="path-title">Recommended for Your Profile</span>
+                    <span class="path-icon">🗺️</span>
+                    <span class="path-title">Let's Plan Your Success</span>
                 </div>
                 <div class="path-description">
-                    Based on your background and goals, I recommend starting with a focused consultation to map out your optimal learning path and timeline.
+                    Everyone's starting point is different. Let's have a friendly conversation to understand your goals and create a personalized roadmap that works for your schedule and pace.
                 </div>
-                <div class="path-options">
-                    <div class="path-option" onclick="enhancedBookCall('consultation', 'standard')">
-                        <div class="option-title">🔍 Strategy Call</div>
-                        <div class="option-description">30-min consultation to plan your roadmap</div>
-                        <button class="option-cta">Book Free Call</button>
+                <div class="next-steps">
+                    <div class="step-card" onclick="enhancedBookCall('guidance', 'basic')">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Free Guidance Call</div>
+                        <div class="step-description">20-min friendly chat about your goals</div>
+                        <button class="step-cta">Get Guidance</button>
                     </div>
-                    <div class="path-option" onclick="enhancedBookCall('deep-dive', 'standard')">
-                        <div class="option-title">📋 Deep Dive</div>
-                        <div class="option-description">60-min detailed planning session</div>
-                        <button class="option-cta">Book Deep Dive</button>
+                    <div class="step-card" onclick="enhancedBookCall('assessment', 'basic')">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Skill Assessment</div>
+                        <div class="step-description">45-min evaluation and roadmap creation</div>
+                        <button class="step-cta">Book Assessment</button>
                     </div>
-                </div>
-            </div>
-
-            <!-- Progress Tracker -->
-            <div class="progress-tracker" id="progressTracker">
-                <div class="progress-title">
-                    📋 Your Booking Progress
-                </div>
-                <div class="progress-steps">
-                    <div class="progress-step completed" id="step1">
-                        <span>✅</span> <span>Booking method selected</span>
-                    </div>
-                    <div class="progress-step" id="step2">
-                        <span>2.</span> <span>Complete Calendly booking</span>
-                    </div>
-                    <div class="progress-step" id="step3">
-                        <span>3.</span> <span>Send WhatsApp confirmation</span>
-                    </div>
-                </div>
-                
-                <button class="whatsapp-confirmation-btn" id="whatsappConfirmationBtn" onclick="sendWhatsAppConfirmation()" disabled>
-                    📱 Click here after completing Calendly booking
-                </button>
-                
-                <p style="text-align: center; font-size: 0.9em; color: #64748b; margin-top: 10px;">
-                    Complete your Calendly booking first, then return here to send WhatsApp confirmation
-                </p>
-            </div>
-
-            <!-- Success Stories -->
-            <div class="success-stories">
-                <h3 class="stories-title">💼 Recent Success Stories</h3>
-                <div class="story-item">
-                    <div class="story-text">
-                        "The structured approach really worked for me. I went from complete beginner to landing my first data analyst role in 4 months."
-                    </div>
-                    <div class="story-author">- Rajesh K., Data Analyst at Tech Startup</div>
-                </div>
-                <div class="story-item">
-                    <div class="story-text">
-                        "Weekly mentoring sessions kept me on track. Built a strong portfolio that got me noticed by recruiters."
-                    </div>
-                    <div class="story-author">- Priya S., Business Intelligence Specialist</div>
                 </div>
             </div>
 
-            <!-- Guarantee Section -->
-            <div class="guarantee-section">
-                <div class="guarantee-icon">🛡️</div>
-                <h3 class="guarantee-title">Success Guarantee</h3>
-                <p class="guarantee-text">
-                    We're committed to your success with our comprehensive support system.
-                </p>
-                <div class="guarantee-details">
-                    <strong>6-Month Program:</strong> First gig opportunity within 7 months<br>
-                    <strong>12-Month Program:</strong> Job placement within 14 months<br>
-                    <strong>Safety Net:</strong> Full refund + continued support if goals not met
+            <!-- Encouragement Section -->
+            <div class="encouragement">
+                <div class="encouragement-title">
+                    💪 You're Taking the Right Step!
+                </div>
+                <div class="encouragement-text">
+                    Starting your AI & Data journey is exciting! Our foundation track is specifically designed for people just like you - those who want to learn properly without feeling overwhelmed. We'll go at a pace that ensures you understand everything clearly.
+                </div>
+            </div>
+
+            <!-- Simple Guarantee -->
+            <div class="simple-guarantee">
+                <div class="guarantee-title">🤝 Our Commitment to You</div>
+                <div class="guarantee-text">
+                    We believe in your potential. If you complete our program and don't see progress in your skills and confidence, we'll work with you until you do - at no extra cost.
                 </div>
             </div>
 
             <!-- Footer -->
             <div class="booking-footer">
-                Free consultation with no pressure or obligations. Let's discuss your goals and create a personalized roadmap.
+                No pressure, just a friendly conversation about your career goals and how we can help you achieve them.
                 <div class="security-note">
-                    🔒 Secure booking • 💬 WhatsApp confirmation • 📧 Calendar invite sent
+                    🔒 Secure booking • 💬 WhatsApp reminder • 📧 Calendar invite sent
                 </div>
             </div>
         </div>
@@ -931,7 +808,7 @@
                     <div class="booking-icon">📱</div>
                     <div class="booking-details">
                         <div class="booking-title">Calendly + WhatsApp</div>
-                        <div class="booking-description">Book via Calendly, then get WhatsApp confirmation</div>
+                        <div class="booking-description">Book via Calendly, get confirmation on WhatsApp</div>
                     </div>
                     <div class="booking-arrow">→</div>
                 </div>
@@ -956,28 +833,28 @@
         <div class="whatsapp-confirmation-content">
             <div class="whatsapp-confirmation-header">
                 <h3>📱 Calendly + WhatsApp Booking</h3>
-                <p>Complete your consultation booking in 2 simple steps</p>
+                <p>Complete your booking process in 2 simple steps</p>
             </div>
             <div class="whatsapp-confirmation-body">
                 <div class="confirmation-step">
                     <div class="step-circle">1</div>
                     <div>
                         <strong>First: Book via Calendly</strong><br>
-                        <span style="color: #64748b; font-size: 0.9em;">We'll open Calendly in a new tab. Complete your booking there.</span>
+                        <span style="color: #64748b; font-size: 0.9em;">Complete your appointment booking on Calendly (will open in new tab)</span>
                     </div>
                 </div>
                 
                 <div class="confirmation-step">
                     <div class="step-circle">2</div>
                     <div>
-                        <strong>Then: Return here for WhatsApp confirmation</strong><br>
-                        <span style="color: #64748b; font-size: 0.9em;">After booking, come back to this page and click the WhatsApp confirmation button</span>
+                        <strong>Then: Get WhatsApp Confirmation</strong><br>
+                        <span style="color: #64748b; font-size: 0.9em;">Send your booking details to WhatsApp for confirmation and reminders</span>
                     </div>
                 </div>
 
                 <div class="confirmation-action-buttons">
                     <button class="whatsapp-btn" onclick="proceedWithCalendlyBooking()">
-                        📅 Open Calendly Now
+                        📅 Start Calendly Booking
                     </button>
                     <button class="close-btn" onclick="closeWhatsAppModal()">
                         Cancel
@@ -985,7 +862,7 @@
                 </div>
 
                 <p style="text-align: center; margin-top: 15px; font-size: 0.9em; color: #64748b;">
-                    We'll track your progress and enable WhatsApp confirmation after you complete Calendly booking
+                    After booking on Calendly, you'll be able to send confirmation details to WhatsApp
                 </p>
             </div>
         </div>
@@ -995,14 +872,14 @@
         // BOOKING CONFIGURATION WITH YOUR ACTUAL CALENDLY URLS
         const BOOKING_CONFIG = {
             calendly: {
-                'standard-consultation': 'https://calendly.com/tech-skillaipath/30-min-consultation',
-                'standard-deep-dive': 'https://calendly.com/tech-skillaipath/60-min-deep-dive',
+                'basic-guidance': 'https://calendly.com/tech-skillaipath/20-min-guidance-call',
+                'basic-assessment': 'https://calendly.com/tech-skillaipath/45-min-assessment',
             },
             whatsapp: {
                 number: '+919131641230',
                 community: 'https://chat.whatsapp.com/C5VDO1LekAf5ymTNTpSrJj',
                 messages: {
-                    standard: "Hi! I just booked my Standard Track consultation via Calendly. Here are my booking details:\n\n📋 Track: Standard Track\n📅 Consultation Type: Strategy Session\n⏰ Duration: 30-60 minutes\n🎯 Topic: Learning path planning\n📊 Qualification Score: 65+\n\nPlease confirm my booking and send me preparation materials. Thank you!",
+                    basic: "Hi! I just booked my Foundation Track guidance call via Calendly. Here are my booking details:\n\n📅 Call Type: Foundation Track Guidance\n⏰ Duration: 20-45 minutes\n🎯 Topic: Learning path planning\n\nPlease confirm my booking and send me any preparation materials. Thank you!",
                 }
             }
         };
@@ -1010,10 +887,6 @@
         let currentBookingUrl = '';
         let currentBookingType = '';
         let currentTier = '';
-        let bookingState = {
-            calendlyOpened: false,
-            bookingCompleted: false
-        };
 
         // Enhanced booking function
         function enhancedBookCall(bookingType, tier) {
@@ -1045,8 +918,8 @@
 
         function getCalendlyUrl(bookingType, tier) {
             const mapping = {
-                'consultation': 'standard-consultation',
-                'deep-dive': 'standard-deep-dive',
+                'guidance': 'basic-guidance',
+                'assessment': 'basic-assessment',
             };
             
             const configKey = mapping[bookingType];
@@ -1078,7 +951,7 @@
             }
         }
 
-        // IMPROVED: Calendly + WhatsApp flow
+        // NEW: Calendly + WhatsApp flow
         function openCalendlyThenWhatsApp() {
             closeBookingModal();
             showWhatsAppConfirmationModal();
@@ -1097,50 +970,16 @@
         }
 
         function proceedWithCalendlyBooking() {
-            // Close modal and show progress tracker
+            // Open Calendly in new tab
+            const calendlyWindow = window.open(currentBookingUrl, '_blank');
+            
+            // Close the modal
             closeWhatsAppModal();
             
-            // Show progress tracker
-            const tracker = document.getElementById('progressTracker');
-            tracker.classList.add('active');
-            
-            // Update progress
-            updateProgressStep(2, 'active');
-            
-            // Open Calendly in new tab
-            window.open(currentBookingUrl, '_blank');
-            bookingState.calendlyOpened = true;
-            
-            // Listen for when user returns to the page
-            let hasReturnedFromCalendly = false;
-            
-            // Method 1: Window focus event
-            window.addEventListener('focus', function() {
-                if (bookingState.calendlyOpened && !hasReturnedFromCalendly) {
-                    hasReturnedFromCalendly = true;
-                    setTimeout(() => {
-                        enableWhatsAppConfirmation();
-                    }, 2000); // Give user time to complete booking
-                }
-            });
-            
-            // Method 2: Page visibility change
-            document.addEventListener('visibilitychange', function() {
-                if (!document.hidden && bookingState.calendlyOpened && !hasReturnedFromCalendly) {
-                    hasReturnedFromCalendly = true;
-                    setTimeout(() => {
-                        enableWhatsAppConfirmation();
-                    }, 2000);
-                }
-            });
-            
-            // Method 3: Fallback timer (in case user doesn't leave the page)
+            // Show success message and WhatsApp option after a delay
             setTimeout(() => {
-                if (bookingState.calendlyOpened && !hasReturnedFromCalendly) {
-                    hasReturnedFromCalendly = true;
-                    enableWhatsAppConfirmation();
-                }
-            }, 10000); // 10 seconds fallback
+                showWhatsAppConfirmationOption();
+            }, 3000); // Wait 3 seconds for user to start booking
             
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'calendly_whatsapp_flow_started', {
@@ -1150,58 +989,25 @@
             }
         }
 
-        function enableWhatsAppConfirmation() {
-            const btn = document.getElementById('whatsappConfirmationBtn');
-            btn.disabled = false;
-            btn.textContent = '📱 Send WhatsApp Confirmation (Click if you completed Calendly booking)';
-            btn.style.background = '#25D366';
+        function showWhatsAppConfirmationOption() {
+            const confirmed = confirm('📱 Did you complete your Calendly booking?\n\nClick "OK" to send confirmation details to WhatsApp, or "Cancel" if you\'re still booking on Calendly.');
             
-            updateProgressStep(2, 'completed');
-            updateProgressStep(3, 'active');
-            
-            // Add visual indicator
-            btn.style.animation = 'pulse 2s infinite';
+            if (confirmed) {
+                sendWhatsAppConfirmation();
+            }
         }
 
         function sendWhatsAppConfirmation() {
-            if (!bookingState.calendlyOpened) {
-                alert('Please complete your Calendly booking first!');
-                return;
-            }
-
-            // Ask for confirmation
-            const confirmed = confirm('Did you complete your Calendly booking?\n\nClick OK to send WhatsApp confirmation with your booking details.');
+            const message = BOOKING_CONFIG.whatsapp.messages[currentTier] || BOOKING_CONFIG.whatsapp.messages.basic;
+            const whatsappUrl = `https://wa.me/${BOOKING_CONFIG.whatsapp.number}?text=${encodeURIComponent(message)}`;
             
-            if (confirmed) {
-                // Open WhatsApp with pre-filled message
-                const message = BOOKING_CONFIG.whatsapp.messages[currentTier] || BOOKING_CONFIG.whatsapp.messages.standard;
-                const whatsappUrl = `https://wa.me/${BOOKING_CONFIG.whatsapp.number}?text=${encodeURIComponent(message)}`;
-                
-                window.open(whatsappUrl, '_blank');
-                
-                // Update state and UI
-                bookingState.bookingCompleted = true;
-                updateProgressStep(3, 'completed');
-                
-                const btn = document.getElementById('whatsappConfirmationBtn');
-                btn.textContent = '✅ WhatsApp confirmation sent successfully!';
-                btn.disabled = true;
-                btn.style.background = '#10b981';
-                btn.style.animation = 'none';
-                
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'whatsapp_confirmation_sent', {
-                        'booking_type': currentBookingType,
-                        'tier': currentTier
-                    });
-                }
-            }
-        }
-
-        function updateProgressStep(stepNumber, status) {
-            const step = document.getElementById(`step${stepNumber}`);
-            if (step) {
-                step.className = `progress-step ${status}`;
+            window.open(whatsappUrl, '_blank');
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'whatsapp_confirmation_sent', {
+                    'booking_type': currentBookingType,
+                    'tier': currentTier
+                });
             }
         }
 
@@ -1212,7 +1018,7 @@
             
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'whatsapp_community_joined', {
-                    'source': 'standard_booking_modal'
+                    'source': 'booking_modal'
                 });
             }
         }
@@ -1270,7 +1076,7 @@
             const fullDate = formatFullDate(nextMonday);
             
             document.getElementById('nextBatchDate').textContent = shortDate;
-            document.getElementById('progressBatchDate').textContent = fullDate;
+            document.getElementById('welcomeBatchDate').textContent = fullDate;
             
             setTimeout(() => {
                 document.querySelector('.booking-card').style.transform = 'translateY(0)';

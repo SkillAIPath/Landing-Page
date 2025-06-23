@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✅ Great Application! - Standard Track | Skill AI Path</title>
-    <meta name="description" content="Excellent application! You qualify for our standard track with comprehensive guidance and structured learning path.">
+    <title>🎉 You're Pre-Approved! - Priority Track | Skill AI Path</title>
+    <meta name="description" content="Congratulations! You're in the top 15% of applicants. Secure your priority spot with personal mentoring from Viresh Gendle.">
     
     <!-- Fonts -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;909&family=Playfair+Display:wght@400;500;600;707;800;909&family=JetBrains+Mono:wght@400;500;600;707&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -18,22 +18,45 @@
         }
         
         :root {
-            /* Professional Color Palette */
-            --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-            --success-green: #10b981;
-            --professional-blue: #3b82f6;
-            --deep-blue: #1e40af;
-            --text-primary: #1a202c;
-            --text-secondary: #4a5568;
-            --text-bright: #ffffff;
+            /* Premium Color Palette */
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-gradient: linear-gradient(45deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+            --elite-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            --success-gradient: linear-gradient(135deg, #11998e, #38ef7d);
             
-            /* Glass Effects */
+            /* Sophisticated Color System */
+            --premium-gold: #ffd89b;
+            --premium-gold-light: #fff2d9;
+            --deep-blue: #1a365d;
+            --deep-blue-light: #2d3748;
+            --vibrant-purple: #805ad5;
+            --vibrant-teal: #38b2ac;
+            --warm-orange: #ed8936;
+            
+            /* Semantic Color System */
+            --priority-color: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            --standard-color: linear-gradient(135deg, #4834d4, #686de0);
+            --basic-color: linear-gradient(135deg, #00d2d3, #54a0ff);
+            --general-color: linear-gradient(135deg, #5f27cd, #341f97);
+            
+            /* Advanced Glass System */
             --glassmorphism: rgba(255, 255, 255, 0.15);
             --glassmorphism-strong: rgba(255, 255, 255, 0.25);
+            --glassmorphism-subtle: rgba(255, 255, 255, 0.08);
             
-            /* Shadows */
-            --shadow-premium: 0 20px 60px rgba(79, 70, 229, 0.2);
-            --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.1);
+            /* Enhanced Text Colors with Better Contrast */
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --text-tertiary: #718096;
+            --text-inverse: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.95);
+            --text-bright: #ffffff;
+            
+            /* Shadow System */
+            --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 15px 60px rgba(0, 0, 0, 0.15);
+            --shadow-premium: 0 25px 80px rgba(102, 126, 234, 0.25);
         }
         
         body {
@@ -53,15 +76,15 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="12.5" cy="12.5" r="1.5" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
-            animation: patternMove 30s linear infinite;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+            animation: patternMove 25s linear infinite;
             pointer-events: none;
             z-index: 1;
         }
 
         @keyframes patternMove {
             0% { transform: translate(0, 0); }
-            100% { transform: translate(25px, 25px); }
+            100% { transform: translate(50px, 50px); }
         }
 
         /* Main Container */
@@ -78,37 +101,43 @@
         }
 
         /* Header Section */
-        .standard-header {
+        .priority-header {
             text-align: center;
             margin-bottom: 50px;
             color: white;
         }
 
-        .standard-badge {
+        .priority-badge {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            background: var(--professional-blue);
-            color: white;
+            background: var(--premium-gold);
+            color: var(--text-primary);
             padding: 12px 30px;
             border-radius: 30px;
             font-size: 1em;
             font-weight: 700;
             margin-bottom: 25px;
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+            animation: pulse 2s infinite;
         }
 
-        .standard-title {
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6); }
+        }
+
+        .priority-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3.2em;
+            font-size: 3.5em;
             font-weight: 700;
             margin-bottom: 20px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             line-height: 1.1;
         }
 
-        .standard-subtitle {
-            font-size: 1.2em;
+        .priority-subtitle {
+            font-size: 1.3em;
             opacity: 0.95;
             max-width: 600px;
             margin: 0 auto 30px;
@@ -133,9 +162,9 @@
         }
 
         .stat-number {
-            font-size: 2em;
+            font-size: 2.2em;
             font-weight: 800;
-            color: var(--professional-blue);
+            color: var(--premium-gold);
             display: block;
             margin-bottom: 5px;
         }
@@ -151,7 +180,7 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border-radius: 25px;
-            padding: 45px 35px;
+            padding: 50px 40px;
             box-shadow: var(--shadow-premium);
             border: 2px solid rgba(255, 255, 255, 0.3);
             position: relative;
@@ -164,40 +193,55 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--professional-blue), var(--success-green));
+            height: 6px;
+            background: linear-gradient(90deg, var(--premium-gold), var(--success-gradient));
         }
 
-        /* Progress Indicator */
-        .progress-indicator {
-            background: linear-gradient(135deg, #dbeafe, #eff6ff);
-            border: 2px solid var(--professional-blue);
+        /* Urgency Banner */
+        .urgency-banner {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px 25px;
             border-radius: 12px;
-            padding: 20px;
             margin-bottom: 30px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .progress-text {
+        .urgency-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .urgency-text {
             font-weight: 600;
-            color: var(--deep-blue);
             font-size: 1.1em;
-            margin-bottom: 10px;
         }
 
         .batch-date {
             font-weight: 800;
-            color: var(--professional-blue);
-            font-size: 1.1em;
+            color: var(--premium-gold);
         }
 
-        /* Standard Benefits */
-        .standard-benefits {
-            margin-bottom: 35px;
+        /* Priority Benefits */
+        .priority-benefits {
+            margin-bottom: 40px;
         }
 
         .benefits-title {
-            font-size: 1.3em;
+            font-size: 1.4em;
             font-weight: 700;
             color: var(--deep-blue);
             margin-bottom: 20px;
@@ -206,8 +250,8 @@
 
         .benefits-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
 
         .benefit-item {
@@ -217,12 +261,12 @@
             padding: 15px;
             background: #f8fafc;
             border-radius: 12px;
-            border-left: 4px solid var(--professional-blue);
+            border-left: 4px solid var(--success-gradient);
         }
 
         .benefit-icon {
-            color: var(--professional-blue);
-            font-size: 1.1em;
+            color: var(--success-gradient);
+            font-size: 1.2em;
             font-weight: 700;
             margin-top: 2px;
         }
@@ -234,141 +278,148 @@
             line-height: 1.4;
         }
 
-        /* Recommended Path */
-        .recommended-path {
-            background: linear-gradient(135deg, #fef3c7, #fef9e6);
-            border: 2px solid #f59e0b;
+        /* Personal Message */
+        .personal-message {
+            background: linear-gradient(135deg, #e6f7ff, #f0f9ff);
+            border: 2px solid #3b82f6;
             border-radius: 15px;
             padding: 25px;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .instructor-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+
+        .message-from {
+            font-weight: 600;
+            color: var(--deep-blue);
+        }
+
+        .message-title {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        .message-content {
+            color: var(--text-primary);
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        /* Booking Options */
+        .booking-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
             margin-bottom: 30px;
         }
 
-        .path-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 15px;
-        }
-
-        .path-icon {
-            font-size: 2em;
-        }
-
-        .path-title {
-            font-size: 1.2em;
-            font-weight: 700;
-            color: var(--deep-blue);
-        }
-
-        .path-description {
-            color: var(--text-primary);
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        .path-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .path-option {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #e5e7eb;
+        .booking-option {
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 25px 20px;
             text-align: center;
-            cursor: pointer;
             transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            background: white;
         }
 
-        .path-option:hover {
-            border-color: var(--professional-blue);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.2);
+        .booking-option:hover {
+            border-color: var(--success-gradient);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+        }
+
+        .booking-option.recommended {
+            border-color: var(--premium-gold);
+            background: linear-gradient(135deg, #fff9e6, #ffffff);
+        }
+
+        .recommended-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--premium-gold);
+            color: var(--text-primary);
+            padding: 4px 15px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 700;
         }
 
         .option-title {
-            font-weight: 600;
+            font-size: 1.2em;
+            font-weight: 700;
             color: var(--deep-blue);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .option-description {
-            font-size: 0.9em;
             color: var(--text-secondary);
-            margin-bottom: 12px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
 
         .option-cta {
-            background: var(--professional-blue);
+            background: var(--success-gradient);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border: none;
-            border-radius: 20px;
+            border-radius: 25px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
-            font-size: 0.9em;
+            font-size: 0.95em;
         }
 
         .option-cta:hover {
-            background: var(--deep-blue);
+            background: #059669;
             transform: translateY(-2px);
         }
 
-        /* Success Stories */
-        .success-stories {
-            margin-bottom: 30px;
-        }
-
-        .stories-title {
-            font-size: 1.2em;
-            font-weight: 600;
-            color: var(--deep-blue);
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .story-item {
-            background: #f0f9ff;
-            border-left: 4px solid var(--professional-blue);
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
-        .story-text {
-            font-style: italic;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-
-        .story-author {
-            font-size: 0.9em;
-            color: var(--text-secondary);
-            font-weight: 500;
+        .booking-option.recommended .option-cta {
+            background: var(--primary-gradient);
         }
 
         /* Guarantee Section */
         .guarantee-section {
             background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
-            border: 2px solid var(--success-green);
+            border: 2px solid var(--success-gradient);
             border-radius: 15px;
             padding: 25px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             text-align: center;
         }
 
         .guarantee-icon {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 3em;
+            margin-bottom: 15px;
         }
 
         .guarantee-title {
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-weight: 700;
             color: var(--deep-blue);
             margin-bottom: 10px;
@@ -378,19 +429,51 @@
             color: var(--text-secondary);
             line-height: 1.5;
             margin-bottom: 15px;
-            font-size: 0.95em;
         }
 
         .guarantee-details {
             background: white;
             padding: 15px;
             border-radius: 10px;
-            border-left: 4px solid var(--success-green);
-            font-size: 0.9em;
+            border-left: 4px solid var(--success-gradient);
         }
 
         .guarantee-details strong {
             color: var(--deep-blue);
+        }
+
+        /* Social Proof */
+        .social-proof {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .proof-title {
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .proof-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .proof-stat {
+            text-align: center;
+        }
+
+        .proof-number {
+            font-size: 1.8em;
+            font-weight: 800;
+            color: var(--success-gradient);
+            display: block;
+        }
+
+        .proof-label {
+            font-size: 0.85em;
+            color: var(--text-secondary);
         }
 
         /* Footer */
@@ -465,7 +548,7 @@
             padding: 30px; 
         }
 
-        .booking-option { 
+        .booking-option-modal { 
             display: flex; 
             align-items: center; 
             gap: 15px; 
@@ -477,14 +560,14 @@
             transition: all 0.3s ease; 
         }
 
-        .booking-option:hover { 
-            border-color: #4f46e5; 
+        .booking-option-modal:hover { 
+            border-color: #667eea; 
             transform: translateY(-2px); 
-            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.15); 
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15); 
         }
 
-        .booking-option.primary { 
-            border-color: #4f46e5; 
+        .booking-option-modal.primary { 
+            border-color: #667eea; 
             background: linear-gradient(135deg, #f8faff, #ffffff); 
         }
 
@@ -510,7 +593,7 @@
 
         .booking-arrow { 
             font-size: 1.5em; 
-            color: #4f46e5; 
+            color: #667eea; 
             font-weight: bold; 
         }
 
@@ -523,82 +606,6 @@
             color: #64748b; 
             font-size: 0.9em; 
             margin: 0; 
-        }
-
-        /* Progress Tracker */
-        .progress-tracker {
-            background: #f0f9ff;
-            border: 2px solid #3b82f6;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-            display: none;
-        }
-
-        .progress-tracker.active {
-            display: block;
-        }
-
-        .progress-title {
-            font-weight: 600;
-            color: #1e40af;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .progress-steps {
-            display: grid;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .progress-step {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px;
-            background: white;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .progress-step.completed {
-            background: #dcfce7;
-            border-left: 4px solid #10b981;
-        }
-
-        .progress-step.active {
-            background: #dbeafe;
-            border-left: 4px solid #3b82f6;
-        }
-
-        /* WhatsApp Button */
-        .whatsapp-confirmation-btn {
-            background: #25D366;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            font-size: 1.1em;
-            margin: 10px 0;
-        }
-
-        .whatsapp-confirmation-btn:hover {
-            background: #128C7E;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-        }
-
-        .whatsapp-confirmation-btn:disabled {
-            background: #94a3b8;
-            cursor: not-allowed;
-            transform: none;
         }
 
         /* WhatsApp Confirmation Modal */
@@ -707,8 +714,8 @@
                 padding: 20px 15px;
             }
 
-            .standard-title {
-                font-size: 2.5em;
+            .priority-title {
+                font-size: 2.8em;
             }
 
             .booking-card {
@@ -724,8 +731,13 @@
                 grid-template-columns: 1fr;
             }
 
-            .path-options {
+            .booking-options {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .proof-stats {
+                flex-direction: column;
                 gap: 15px;
             }
 
@@ -735,7 +747,7 @@
         }
 
         @media (max-width: 480px) {
-            .standard-title {
+            .priority-title {
                 font-size: 2.2em;
             }
 
@@ -743,11 +755,11 @@
                 padding: 25px 20px;
             }
 
-            .benefit-item, .story-item {
+            .benefit-item {
                 padding: 12px;
             }
 
-            .recommended-path {
+            .personal-message {
                 padding: 20px;
             }
         }
@@ -756,26 +768,26 @@
 <body>
     <div class="booking-container">
         <!-- Header Section -->
-        <div class="standard-header">
-            <div class="standard-badge">
-                ✅ QUALIFIED CANDIDATE
+        <div class="priority-header">
+            <div class="priority-badge">
+                🏆 PRIORITY QUALIFIED - TOP 15%
             </div>
             
-            <h1 class="standard-title">Excellent Application!</h1>
+            <h1 class="priority-title">Congratulations! You're Pre-Approved</h1>
             
-            <p class="standard-subtitle">
-                Your profile shows great potential. You qualify for our structured learning track with comprehensive guidance and support.
+            <p class="priority-subtitle">
+                Based on your application, you qualify for our premium Priority Track with personal mentoring and exclusive benefits.
             </p>
 
             <!-- Stats Row -->
             <div class="stats-row">
                 <div class="stat-item">
-                    <span class="stat-number">65+</span>
+                    <span class="stat-number">85+</span>
                     <span class="stat-label">Your Qualification Score</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">24</span>
-                    <span class="stat-label">Spots Available</span>
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Priority Spots Available</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number" id="nextBatchDate">Loading...</span>
@@ -786,123 +798,110 @@
 
         <!-- Main Booking Card -->
         <div class="booking-card">
-            <!-- Progress Indicator -->
-            <div class="progress-indicator">
-                <div class="progress-text">
-                    🎯 Next cohort starts <span class="batch-date" id="progressBatchDate">Loading...</span> - Secure your spot
+            <!-- Urgency Banner -->
+            <div class="urgency-banner">
+                <div class="urgency-text">
+                    🚨 Priority spots are limited to maintain quality. Next batch starts <span class="batch-date" id="urgencyBatchDate">Loading...</span>
                 </div>
             </div>
 
-            <!-- Standard Benefits -->
-            <div class="standard-benefits">
-                <h3 class="benefits-title">📚 What You'll Get</h3>
+            <!-- Priority Benefits -->
+            <div class="priority-benefits">
+                <h3 class="benefits-title">🎯 Your Priority Benefits</h3>
                 <div class="benefits-grid">
                     <div class="benefit-item">
-                        <span class="benefit-icon">✓</span>
-                        <span class="benefit-text">Complete AI & Data stack curriculum with real business projects</span>
+                        <span class="benefit-icon">✅</span>
+                        <span class="benefit-text">Skip waitlist - immediate program access</span>
                     </div>
                     <div class="benefit-item">
-                        <span class="benefit-icon">✓</span>
-                        <span class="benefit-text">Weekly group mentoring sessions and doubt resolution</span>
+                        <span class="benefit-icon">✅</span>
+                        <span class="benefit-text">Personal 1-on-1 mentoring with Viresh</span>
                     </div>
                     <div class="benefit-item">
-                        <span class="benefit-icon">✓</span>
-                        <span class="benefit-text">Professional portfolio development with hiring-ready projects</span>
+                        <span class="benefit-icon">✅</span>
+                        <span class="benefit-text">All 6 tracks unlocked (complete stack)</span>
                     </div>
                     <div class="benefit-item">
-                        <span class="benefit-icon">✓</span>
-                        <span class="benefit-text">Career guidance and placement support throughout your journey</span>
+                        <span class="benefit-icon">✅</span>
+                        <span class="benefit-text">Priority job/gig placement support</span>
                     </div>
                     <div class="benefit-item">
-                        <span class="benefit-icon">✓</span>
-                        <span class="benefit-text">Active community access and peer learning opportunities</span>
+                        <span class="benefit-icon">✅</span>
+                        <span class="benefit-text">Exclusive founder's pricing (locked-in)</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">✅</span>
+                        <span class="benefit-text">Lifetime community access & updates</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Recommended Path -->
-            <div class="recommended-path">
-                <div class="path-header">
-                    <span class="path-icon">🎯</span>
-                    <span class="path-title">Recommended for Your Profile</span>
-                </div>
-                <div class="path-description">
-                    Based on your background and goals, I recommend starting with a focused consultation to map out your optimal learning path and timeline.
-                </div>
-                <div class="path-options">
-                    <div class="path-option" onclick="enhancedBookCall('consultation', 'standard')">
-                        <div class="option-title">🔍 Strategy Call</div>
-                        <div class="option-description">30-min consultation to plan your roadmap</div>
-                        <button class="option-cta">Book Free Call</button>
+            <!-- Personal Message from Viresh -->
+            <div class="personal-message">
+                <div class="message-header">
+                    <div class="instructor-avatar">VG</div>
+                    <div>
+                        <div class="message-from">Personal Message from Viresh Gendle</div>
+                        <div class="message-title">Founder & Lead Instructor</div>
                     </div>
-                    <div class="path-option" onclick="enhancedBookCall('deep-dive', 'standard')">
-                        <div class="option-title">📋 Deep Dive</div>
-                        <div class="option-description">60-min detailed planning session</div>
-                        <button class="option-cta">Book Deep Dive</button>
-                    </div>
+                </div>
+                <div class="message-content">
+                    "Your application stood out immediately. Students with your profile and mindset typically see the fastest results. I personally work with only 12 priority candidates each month to ensure quality outcomes. Looking forward to accelerating your AI & Data career."
                 </div>
             </div>
 
-            <!-- Progress Tracker -->
-            <div class="progress-tracker" id="progressTracker">
-                <div class="progress-title">
-                    📋 Your Booking Progress
+            <!-- Booking Options -->
+            <div class="booking-options">
+                <div class="booking-option" onclick="enhancedBookCall('immediate', 'priority')">
+                    <div class="option-title">🚀 Immediate Start</div>
+                    <div class="option-description">15-minute priority consultation to finalize your roadmap and secure your spot</div>
+                    <button class="option-cta">Book Priority Call</button>
                 </div>
-                <div class="progress-steps">
-                    <div class="progress-step completed" id="step1">
-                        <span>✅</span> <span>Booking method selected</span>
-                    </div>
-                    <div class="progress-step" id="step2">
-                        <span>2.</span> <span>Complete Calendly booking</span>
-                    </div>
-                    <div class="progress-step" id="step3">
-                        <span>3.</span> <span>Send WhatsApp confirmation</span>
-                    </div>
-                </div>
-                
-                <button class="whatsapp-confirmation-btn" id="whatsappConfirmationBtn" onclick="sendWhatsAppConfirmation()" disabled>
-                    📱 Click here after completing Calendly booking
-                </button>
-                
-                <p style="text-align: center; font-size: 0.9em; color: #64748b; margin-top: 10px;">
-                    Complete your Calendly booking first, then return here to send WhatsApp confirmation
-                </p>
-            </div>
 
-            <!-- Success Stories -->
-            <div class="success-stories">
-                <h3 class="stories-title">💼 Recent Success Stories</h3>
-                <div class="story-item">
-                    <div class="story-text">
-                        "The structured approach really worked for me. I went from complete beginner to landing my first data analyst role in 4 months."
-                    </div>
-                    <div class="story-author">- Rajesh K., Data Analyst at Tech Startup</div>
-                </div>
-                <div class="story-item">
-                    <div class="story-text">
-                        "Weekly mentoring sessions kept me on track. Built a strong portfolio that got me noticed by recruiters."
-                    </div>
-                    <div class="story-author">- Priya S., Business Intelligence Specialist</div>
+                <div class="booking-option recommended" onclick="enhancedBookCall('detailed', 'priority')">
+                    <div class="recommended-badge">RECOMMENDED</div>
+                    <div class="option-title">📋 Detailed Planning</div>
+                    <div class="option-description">30-minute strategy session to customize your learning path and career goals</div>
+                    <button class="option-cta">Book Strategy Session</button>
                 </div>
             </div>
 
             <!-- Guarantee Section -->
             <div class="guarantee-section">
                 <div class="guarantee-icon">🛡️</div>
-                <h3 class="guarantee-title">Success Guarantee</h3>
+                <h3 class="guarantee-title">Our Success Guarantee</h3>
                 <p class="guarantee-text">
-                    We're committed to your success with our comprehensive support system.
+                    We're so confident in your success that we guarantee results with our comprehensive safety net.
                 </p>
                 <div class="guarantee-details">
-                    <strong>6-Month Program:</strong> First gig opportunity within 7 months<br>
-                    <strong>12-Month Program:</strong> Job placement within 14 months<br>
-                    <strong>Safety Net:</strong> Full refund + continued support if goals not met
+                    <strong>6-Month Program:</strong> First freelance gig opportunity guaranteed within 7 months<br>
+                    <strong>12-Month Program:</strong> Job placement guaranteed within 14 months<br>
+                    <strong>Safety Net:</strong> If not achieved → Full refund + continued support until success
+                </div>
+            </div>
+
+            <!-- Social Proof -->
+            <div class="social-proof">
+                <div class="proof-title">Join successful priority candidates:</div>
+                <div class="proof-stats">
+                    <div class="proof-stat">
+                        <span class="proof-number">94%</span>
+                        <span class="proof-label">Success Rate</span>
+                    </div>
+                    <div class="proof-stat">
+                        <span class="proof-number">₹8.5L</span>
+                        <span class="proof-label">Avg. First Year Salary</span>
+                    </div>
+                    <div class="proof-stat">
+                        <span class="proof-number">3.2M</span>
+                        <span class="proof-label">Time to First Offer</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Footer -->
             <div class="booking-footer">
-                Free consultation with no pressure or obligations. Let's discuss your goals and create a personalized roadmap.
+                Your priority status is reserved for 48 hours. All consultations are completely free with no obligations.
                 <div class="security-note">
                     🔒 Secure booking • 💬 WhatsApp confirmation • 📧 Calendar invite sent
                 </div>
@@ -910,7 +909,7 @@
         </div>
     </div>
 
-    <!-- Booking Options Modal -->
+    <!-- Priority Booking Modal -->
     <div id="bookingModal" class="booking-modal">
         <div class="booking-modal-content">
             <div class="booking-modal-header">
@@ -918,7 +917,7 @@
                 <button class="booking-modal-close" onclick="closeBookingModal()">&times;</button>
             </div>
             <div class="booking-modal-body">
-                <div class="booking-option primary" onclick="openCalendlyDirect()">
+                <div class="booking-option-modal primary" onclick="openCalendlyDirect()">
                     <div class="booking-icon">📅</div>
                     <div class="booking-details">
                         <div class="booking-title">Book via Calendly</div>
@@ -927,16 +926,16 @@
                     <div class="booking-arrow">→</div>
                 </div>
                 
-                <div class="booking-option secondary" onclick="openCalendlyThenWhatsApp()">
+                <div class="booking-option-modal secondary" onclick="openCalendlyThenWhatsApp()">
                     <div class="booking-icon">📱</div>
                     <div class="booking-details">
                         <div class="booking-title">Calendly + WhatsApp</div>
-                        <div class="booking-description">Book via Calendly, then get WhatsApp confirmation</div>
+                        <div class="booking-description">Book via Calendly, get confirmation on WhatsApp</div>
                     </div>
                     <div class="booking-arrow">→</div>
                 </div>
                 
-                <div class="booking-option secondary" onclick="joinWhatsAppCommunity()">
+                <div class="booking-option-modal secondary" onclick="joinWhatsAppCommunity()">
                     <div class="booking-icon">👥</div>
                     <div class="booking-details">
                         <div class="booking-title">Join WhatsApp Community</div>
@@ -956,28 +955,28 @@
         <div class="whatsapp-confirmation-content">
             <div class="whatsapp-confirmation-header">
                 <h3>📱 Calendly + WhatsApp Booking</h3>
-                <p>Complete your consultation booking in 2 simple steps</p>
+                <p>Complete your priority consultation booking in 2 simple steps</p>
             </div>
             <div class="whatsapp-confirmation-body">
                 <div class="confirmation-step">
                     <div class="step-circle">1</div>
                     <div>
                         <strong>First: Book via Calendly</strong><br>
-                        <span style="color: #64748b; font-size: 0.9em;">We'll open Calendly in a new tab. Complete your booking there.</span>
+                        <span style="color: #64748b; font-size: 0.9em;">Complete your priority consultation booking on Calendly (will open in new tab)</span>
                     </div>
                 </div>
                 
                 <div class="confirmation-step">
                     <div class="step-circle">2</div>
                     <div>
-                        <strong>Then: Return here for WhatsApp confirmation</strong><br>
-                        <span style="color: #64748b; font-size: 0.9em;">After booking, come back to this page and click the WhatsApp confirmation button</span>
+                        <strong>Then: Get WhatsApp Confirmation</strong><br>
+                        <span style="color: #64748b; font-size: 0.9em;">Send your booking details to WhatsApp for VIP confirmation and personal reminders</span>
                     </div>
                 </div>
 
                 <div class="confirmation-action-buttons">
                     <button class="whatsapp-btn" onclick="proceedWithCalendlyBooking()">
-                        📅 Open Calendly Now
+                        📅 Start Calendly Booking
                     </button>
                     <button class="close-btn" onclick="closeWhatsAppModal()">
                         Cancel
@@ -985,7 +984,7 @@
                 </div>
 
                 <p style="text-align: center; margin-top: 15px; font-size: 0.9em; color: #64748b;">
-                    We'll track your progress and enable WhatsApp confirmation after you complete Calendly booking
+                    After booking on Calendly, you'll receive priority WhatsApp confirmation and preparation materials
                 </p>
             </div>
         </div>
@@ -995,14 +994,14 @@
         // BOOKING CONFIGURATION WITH YOUR ACTUAL CALENDLY URLS
         const BOOKING_CONFIG = {
             calendly: {
-                'standard-consultation': 'https://calendly.com/tech-skillaipath/30-min-consultation',
-                'standard-deep-dive': 'https://calendly.com/tech-skillaipath/60-min-deep-dive',
+                'priority-immediate': 'https://calendly.com/tech-skillaipath/15-min-priority-consultation',
+                'priority-detailed': 'https://calendly.com/tech-skillaipath/30min',
             },
             whatsapp: {
                 number: '+919131641230',
                 community: 'https://chat.whatsapp.com/C5VDO1LekAf5ymTNTpSrJj',
                 messages: {
-                    standard: "Hi! I just booked my Standard Track consultation via Calendly. Here are my booking details:\n\n📋 Track: Standard Track\n📅 Consultation Type: Strategy Session\n⏰ Duration: 30-60 minutes\n🎯 Topic: Learning path planning\n📊 Qualification Score: 65+\n\nPlease confirm my booking and send me preparation materials. Thank you!",
+                    priority: "Hi! I just booked my Priority Track consultation via Calendly. Here are my booking details:\n\n🏆 Track: Priority Track (Top 15%)\n📅 Consultation Type: Personal Strategy Session\n⏰ Duration: 15-30 minutes\n🎯 Topic: AI & Data career acceleration\n💎 Benefits: Personal mentoring + Complete stack access\n\nI scored 85+ in qualification. Please confirm my priority booking and send me preparation materials. Thank you!",
                 }
             }
         };
@@ -1010,12 +1009,8 @@
         let currentBookingUrl = '';
         let currentBookingType = '';
         let currentTier = '';
-        let bookingState = {
-            calendlyOpened: false,
-            bookingCompleted: false
-        };
 
-        // Enhanced booking function
+        // Enhanced booking function with multiple options
         function enhancedBookCall(bookingType, tier) {
             console.log(`Booking initiated: ${bookingType} for ${tier} tier`);
             
@@ -1045,8 +1040,8 @@
 
         function getCalendlyUrl(bookingType, tier) {
             const mapping = {
-                'consultation': 'standard-consultation',
-                'deep-dive': 'standard-deep-dive',
+                'immediate': 'priority-immediate',
+                'detailed': 'priority-detailed',
             };
             
             const configKey = mapping[bookingType];
@@ -1078,7 +1073,7 @@
             }
         }
 
-        // IMPROVED: Calendly + WhatsApp flow
+        // NEW: Calendly + WhatsApp flow
         function openCalendlyThenWhatsApp() {
             closeBookingModal();
             showWhatsAppConfirmationModal();
@@ -1097,50 +1092,16 @@
         }
 
         function proceedWithCalendlyBooking() {
-            // Close modal and show progress tracker
+            // Open Calendly in new tab
+            const calendlyWindow = window.open(currentBookingUrl, '_blank');
+            
+            // Close the modal
             closeWhatsAppModal();
             
-            // Show progress tracker
-            const tracker = document.getElementById('progressTracker');
-            tracker.classList.add('active');
-            
-            // Update progress
-            updateProgressStep(2, 'active');
-            
-            // Open Calendly in new tab
-            window.open(currentBookingUrl, '_blank');
-            bookingState.calendlyOpened = true;
-            
-            // Listen for when user returns to the page
-            let hasReturnedFromCalendly = false;
-            
-            // Method 1: Window focus event
-            window.addEventListener('focus', function() {
-                if (bookingState.calendlyOpened && !hasReturnedFromCalendly) {
-                    hasReturnedFromCalendly = true;
-                    setTimeout(() => {
-                        enableWhatsAppConfirmation();
-                    }, 2000); // Give user time to complete booking
-                }
-            });
-            
-            // Method 2: Page visibility change
-            document.addEventListener('visibilitychange', function() {
-                if (!document.hidden && bookingState.calendlyOpened && !hasReturnedFromCalendly) {
-                    hasReturnedFromCalendly = true;
-                    setTimeout(() => {
-                        enableWhatsAppConfirmation();
-                    }, 2000);
-                }
-            });
-            
-            // Method 3: Fallback timer (in case user doesn't leave the page)
+            // Show success message and WhatsApp option after a delay
             setTimeout(() => {
-                if (bookingState.calendlyOpened && !hasReturnedFromCalendly) {
-                    hasReturnedFromCalendly = true;
-                    enableWhatsAppConfirmation();
-                }
-            }, 10000); // 10 seconds fallback
+                showWhatsAppConfirmationOption();
+            }, 3000); // Wait 3 seconds for user to start booking
             
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'calendly_whatsapp_flow_started', {
@@ -1150,58 +1111,25 @@
             }
         }
 
-        function enableWhatsAppConfirmation() {
-            const btn = document.getElementById('whatsappConfirmationBtn');
-            btn.disabled = false;
-            btn.textContent = '📱 Send WhatsApp Confirmation (Click if you completed Calendly booking)';
-            btn.style.background = '#25D366';
+        function showWhatsAppConfirmationOption() {
+            const confirmed = confirm('📱 Did you complete your Calendly booking?\n\nClick "OK" to send confirmation details to WhatsApp for priority service, or "Cancel" if you\'re still booking on Calendly.');
             
-            updateProgressStep(2, 'completed');
-            updateProgressStep(3, 'active');
-            
-            // Add visual indicator
-            btn.style.animation = 'pulse 2s infinite';
+            if (confirmed) {
+                sendWhatsAppConfirmation();
+            }
         }
 
         function sendWhatsAppConfirmation() {
-            if (!bookingState.calendlyOpened) {
-                alert('Please complete your Calendly booking first!');
-                return;
-            }
-
-            // Ask for confirmation
-            const confirmed = confirm('Did you complete your Calendly booking?\n\nClick OK to send WhatsApp confirmation with your booking details.');
+            const message = BOOKING_CONFIG.whatsapp.messages[currentTier] || BOOKING_CONFIG.whatsapp.messages.priority;
+            const whatsappUrl = `https://wa.me/${BOOKING_CONFIG.whatsapp.number}?text=${encodeURIComponent(message)}`;
             
-            if (confirmed) {
-                // Open WhatsApp with pre-filled message
-                const message = BOOKING_CONFIG.whatsapp.messages[currentTier] || BOOKING_CONFIG.whatsapp.messages.standard;
-                const whatsappUrl = `https://wa.me/${BOOKING_CONFIG.whatsapp.number}?text=${encodeURIComponent(message)}`;
-                
-                window.open(whatsappUrl, '_blank');
-                
-                // Update state and UI
-                bookingState.bookingCompleted = true;
-                updateProgressStep(3, 'completed');
-                
-                const btn = document.getElementById('whatsappConfirmationBtn');
-                btn.textContent = '✅ WhatsApp confirmation sent successfully!';
-                btn.disabled = true;
-                btn.style.background = '#10b981';
-                btn.style.animation = 'none';
-                
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'whatsapp_confirmation_sent', {
-                        'booking_type': currentBookingType,
-                        'tier': currentTier
-                    });
-                }
-            }
-        }
-
-        function updateProgressStep(stepNumber, status) {
-            const step = document.getElementById(`step${stepNumber}`);
-            if (step) {
-                step.className = `progress-step ${status}`;
+            window.open(whatsappUrl, '_blank');
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'whatsapp_confirmation_sent', {
+                    'booking_type': currentBookingType,
+                    'tier': currentTier
+                });
             }
         }
 
@@ -1212,7 +1140,7 @@
             
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'whatsapp_community_joined', {
-                    'source': 'standard_booking_modal'
+                    'source': 'priority_booking_modal'
                 });
             }
         }
@@ -1237,8 +1165,8 @@
         // Dynamic Date Calculation - Next Monday
         function getNextMonday() {
             const today = new Date();
-            const dayOfWeek = today.getDay();
-            const daysUntilMonday = (1 + 7 - dayOfWeek) % 7 || 7;
+            const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+            const daysUntilMonday = (1 + 7 - dayOfWeek) % 7 || 7; // Days until next Monday
             
             const nextMonday = new Date(today);
             nextMonday.setDate(today.getDate() + daysUntilMonday);
@@ -1269,9 +1197,11 @@
             const shortDate = formatDate(nextMonday);
             const fullDate = formatFullDate(nextMonday);
             
+            // Update both date displays
             document.getElementById('nextBatchDate').textContent = shortDate;
-            document.getElementById('progressBatchDate').textContent = fullDate;
+            document.getElementById('urgencyBatchDate').textContent = fullDate;
             
+            // Add some animation delay for visual appeal
             setTimeout(() => {
                 document.querySelector('.booking-card').style.transform = 'translateY(0)';
                 document.querySelector('.booking-card').style.opacity = '1';
