@@ -348,13 +348,8 @@
             background-position: center;
             border: 5px solid rgba(255, 255, 255, 0.5);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            background-image: url('https://raw.githubusercontent.com/SkillAIPath/Landing-Page/main/dp.jpg');
             background-color: #667eea;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 2em;
             transition: all 0.3s ease;
         }
 
@@ -1985,7 +1980,7 @@
             <!-- Instructor Section -->
             <div class="instructor">
                 <div class="instructor-card">
-                    <div class="instructor-photo">VG</div>
+                    <div class="instructor-photo"></div>
                     <div class="instructor-name">Viresh Gendle</div>
                     <div class="instructor-title">AI & Cloud Architect • Enterprise Systems Builder</div>
                     <div class="instructor-quote">
@@ -2432,7 +2427,7 @@
                 <ul>
                     <li><a href="#roadmap">Free Blueprint</a></li>
                     <li><a href="#portfolio">Student Stories</a></li>
-                    <li><a href="https://github.com/SkillAIPath/Landing-Page/tree/main/Production%20Patterns" target="_blank">Enterprise Code</a></li>
+                    <li><a href="https://github.com/SkillAIPath/Production-Patterns" target="_blank">Enterprise Code</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -2530,11 +2525,27 @@
             }
         });
 
-        // Initialize instructor photo
+        // Initialize instructor photo with fallback
         function initializePhoto() {
             const photo = document.querySelector('.instructor-photo');
             if (photo) {
-                photo.textContent = 'VG';
+                // Test if image loads, if not show fallback initials
+                const img = new Image();
+                img.onload = function() {
+                    console.log('Instructor photo loaded successfully');
+                };
+                img.onerror = function() {
+                    console.log('Image failed to load, showing fallback');
+                    photo.style.backgroundImage = 'none';
+                    photo.style.display = 'flex';
+                    photo.style.alignItems = 'center';
+                    photo.style.justifyContent = 'center';
+                    photo.style.color = 'white';
+                    photo.style.fontWeight = 'bold';
+                    photo.style.fontSize = '2em';
+                    photo.textContent = 'VG';
+                };
+                img.src = 'https://raw.githubusercontent.com/SkillAIPath/Landing-Page/main/dp.jpg';
             }
         }
 
