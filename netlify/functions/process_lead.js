@@ -1,5 +1,5 @@
 // netlify/functions/process-lead.js
-// FIXED VERSION - matches your Airtable fields exactly
+// COMPLETE VERSION - Maps ALL form fields to your Airtable columns
 
 const sgMail = require('@sendgrid/mail');
 const Airtable = require('airtable');
@@ -49,17 +49,36 @@ exports.handler = async (event, context) => {
       apiKey: process.env.AIRTABLE_TOKEN 
     }).base(process.env.AIRTABLE_BASE_ID);
 
-    // Create record with ONLY the fields that exist in your Airtable
+    // Map form data to Airtable fields (matching your exact column names)
     const recordData = {
-      Email: formData.email,
+      // Core form fields
+      'Email': formData.email,
       'First Name': formData.first_name || formData.name || '',
+      'Last Name': formData.last_name || '',
+      'Phone': formData.phone || '',
+      'Interest': formData.interest || '',
+      'Status': formData.status || '',
+      'Challenge': formData.challenge || '',
+      
+      // System fields
       'Form Type': formData.formType || 'contact',
       'Email Sent': false,
       'Created Date': new Date().toISOString()
     };
 
+    // Add optional consent fields if they exist in your Airtable
+    if (formData.privacy !== undefined) {
+      recordData['Privacy Consent'] = formData.privacy ? 'Yes' : 'No';
+    }
+    if (formData.updates !== undefined) {
+      recordData['Updates Consent'] = formData.updates ? 'Yes' : 'No';
+    }
+
+    console.log('Creating Airtable record with data:', recordData);
+
     // Save to Airtable
     const airtableRecord = await base('Leads').create(recordData);
+    console.log('Airtable record created:', airtableRecord.id);
 
     // Determine email type and content
     const isLeadMagnet = ['lead-magnet', 'exit-intent', 'landing-popup'].includes(formData.formType);
@@ -78,6 +97,7 @@ exports.handler = async (event, context) => {
     };
 
     await sgMail.send(emailData);
+    console.log('Email sent successfully');
 
     // Update Airtable to mark email as sent
     await base('Leads').update(airtableRecord.id, { 'Email Sent': true });
@@ -208,6 +228,12 @@ function getApplicationEmail(data) {
                 <li>WhatsApp/Email contact within 72 hours</li>
                 <li>Discussion of investment options and timeline</li>
             </ol>
+            
+            <p><strong>Your Application Details:</strong></p>
+            <p>📧 Email: ${data.email}<br>
+            👤 Name: ${data.first_name} ${data.last_name || ''}<br>
+            🎯 Interest: ${data.interest}<br>
+            📋 Status: ${data.status}</p>
             
             <p><strong>While you wait:</strong></p>
             <p>Check out our enterprise code examples: <a href="https://github.com/SkillAIPath/Production-Patterns">GitHub Repository</a></p>
