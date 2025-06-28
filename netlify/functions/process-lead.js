@@ -60,8 +60,7 @@ exports.handler = async (event, context) => {
       'Status': formData.status || '',
       'Challenge': formData.challenge || '',
       'Form Type': formData.formType || 'contact',
-      'Email Sent': false,
-      'Created Date': new Date().toISOString()
+      'Email Sent': false
     };
 
     // Add consent fields if present
