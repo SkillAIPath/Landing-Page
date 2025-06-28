@@ -81,7 +81,7 @@ exports.handler = async (event, context) => {
 
     console.log('📊 Priority Score:', priorityScore, 'Tier:', tier);
 
-    // Create comprehensive Airtable record
+    // Create Airtable record with only confirmed fields
     const recordData = {
       'Email': formData.email,
       'First Name': formData.first_name || formData.name || '',
@@ -90,24 +90,11 @@ exports.handler = async (event, context) => {
       'Interest': formData.interest || '',
       'Status': formData.status || '',
       'Challenge': formData.challenge || '',
-      'Email Sent': false,
-      'Lead Source': 'Website Form',
-      'Priority Score': priorityScore,
-      'Tier': tier
+      'Email Sent': false
     };
 
-    // Add consent fields if present
-    if (formData.privacy !== undefined) {
-      recordData['Privacy Consent'] = formData.privacy ? 'Yes' : 'No';
-    }
-    if (formData.updates !== undefined) {
-      recordData['Updates Consent'] = formData.updates ? 'Yes' : 'No';
-    }
-
-    // Add form type if it's a safe value
-    if (formData.formType && ['contact', 'popup', 'lead-magnet', 'exit-intent', 'landing-popup'].includes(formData.formType)) {
-      recordData['Form Type'] = formData.formType;
-    }
+    // Only add fields that definitely exist in Airtable
+    // Skip consent fields to avoid field errors
 
     console.log('💾 Saving to Airtable...');
     
