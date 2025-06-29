@@ -1,383 +1,371 @@
 // netlify/functions/process-lead.js
-// MAXIMUM WORKING VERSION - All features that actually work
-
 const sgMail = require('@sendgrid/mail');
 const Airtable = require('airtable');
 
+// Initialize SendGrid
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+// Initialize Airtable
+const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
+
 exports.handler = async (event, context) => {
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS, GET'
-  };
-
-  if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
-  }
-
-  if (event.httpMethod !== "POST") {
-    return {
-      statusCode: 405,
-      headers,
-      body: JSON.stringify({ error: "Method not allowed" })
-    };
-  }
-
-  try {
-    const formData = JSON.parse(event.body);
-    console.log('📝 Processing form:', formData.email, formData.formType || 'standard');
-
-    // Validate environment variables
-    if (!process.env.AIRTABLE_TOKEN || !process.env.AIRTABLE_BASE_ID) {
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ error: 'Database service not configured' })
-      };
+    // Only allow POST requests
+    if (event.httpMethod !== 'POST') {
+        return {
+            statusCode: 405,
+            body: JSON.stringify({ error: 'Method not allowed' })
+        };
     }
 
-    if (!process.env.SENDGRID_API_KEY) {
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ error: 'Email service not configured' })
-      };
+    try {
+        const formData = JSON.parse(event.body);
+        
+        // Enhanced logging for debugging
+        console.log('Received form data:', formData);
+        
+        // Get current urgency data
+        const urgencyData = calculateUrgencyData();
+        
+        // Handle urgency check requests (don't save to database)
+        if (formData.formType === 'urgency-check') {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({
+                    success: true,
+                    urgencyData: urgencyData,
+                    message: 'Urgency data retrieved'
+                })
+            };
+        }
+        
+        // Determine if this is a lead magnet or application form
+        const isLeadMagnet = ['lead-magnet', 'landing-popup', 'exit-intent'].includes(formData.formType);
+        
+        let response = {
+            success: true,
+            message: isLeadMagnet ? 'Blueprint sent successfully!' : 'Application submitted successfully!',
+            urgencyData: urgencyData
+        };
+
+        if (isLeadMagnet) {
+            // Handle lead magnet forms
+            await handleLeadMagnet(formData);
+            response.message = 'Check your email for the Enterprise Revenue Forecasting Blueprint download link!';
+        } else {
+            // Handle application forms
+            const applicationResult = await handleApplication(formData);
+            response = { ...response, ...applicationResult };
+        }
+
+        // Save to Airtable (except urgency checks)
+        if (formData.formType !== 'urgency-check') {
+            await saveToAirtable(formData, response);
+        }
+
+        // ✅ NEW: Always include updated urgency data in response
+        response.urgencyData = urgencyData;
+
+        return {
+            statusCode: 200,
+            body: JSON.stringify(response)
+        };
+
+    } catch (error) {
+        console.error('Error processing form:', error);
+        
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ 
+                error: 'Internal server error',
+                details: error.message 
+            })
+        };
     }
-
-    // Initialize services
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    const base = new Airtable({ 
-      apiKey: process.env.AIRTABLE_TOKEN 
-    }).base(process.env.AIRTABLE_BASE_ID);
-
-    // Determine form type and email template
-    const isLeadMagnet = formData.formType && ['lead-magnet', 'exit-intent', 'landing-popup'].includes(formData.formType);
-    const isPopup = formData.formType === 'popup';
-
-    // Calculate simple priority score
-    let priorityScore = 0;
-    
-    // Basic scoring
-    if (formData.status === 'College Student') priorityScore += 40;
-    else if (formData.status === 'Recent Graduate') priorityScore += 35;
-    else if (formData.status === 'Looking for Career Change') priorityScore += 25;
-    else priorityScore += 15;
-    
-    if (formData.interest === 'Build analytics solutions') priorityScore += 30;
-    else if (formData.interest === 'Create automation systems') priorityScore += 25;
-    else priorityScore += 15;
-    
-    if (formData.challenge && formData.challenge.length > 100) priorityScore += 20;
-    else if (formData.challenge && formData.challenge.length > 50) priorityScore += 10;
-    
-    if (formData.email.includes('.edu')) priorityScore += 10;
-    else if (formData.email.includes('gmail')) priorityScore += 5;
-
-    // Determine tier
-    let tier = 'GENERAL';
-    if (priorityScore >= 80) tier = 'PRIORITY';
-    else if (priorityScore >= 60) tier = 'STANDARD';
-    else if (priorityScore >= 40) tier = 'BASIC';
-
-    console.log('📊 Priority Score:', priorityScore, 'Tier:', tier);
-
-    // Create Airtable record with only confirmed fields
-    const recordData = {
-      'Email': formData.email,
-      'First Name': formData.first_name || formData.name || '',
-      'Last Name': formData.last_name || '',
-      'Phone': formData.phone || '',
-      'Interest': formData.interest || '',
-      'Status': formData.status || '',
-      'Challenge': formData.challenge || '',
-      'Email Sent': false
-    };
-
-    // Only add fields that definitely exist in Airtable
-    // Skip consent fields to avoid field errors
-
-    console.log('💾 Saving to Airtable...');
-    
-    // Save to Airtable
-    const airtableRecord = await base('Leads').create(recordData);
-    console.log('✅ Airtable record created:', airtableRecord.id);
-
-    // Send appropriate email based on form type
-    console.log('📧 Sending email type:', isLeadMagnet ? 'Blueprint' : isPopup ? 'Quick Response' : 'Full Application');
-    
-    let emailTemplate;
-    let emailSubject;
-
-    if (isLeadMagnet) {
-      emailSubject = '🎁 Your Enterprise Revenue Forecasting Blueprint is Ready';
-      emailTemplate = getBlueprintEmail(formData);
-    } else if (isPopup) {
-      emailSubject = '⚡ Quick Response - Skill AI Path';
-      emailTemplate = getQuickResponseEmail(formData);
-    } else {
-      emailSubject = `✅ Application Received - ${tier} Track Assignment`;
-      emailTemplate = getFullApplicationEmail(formData, priorityScore, tier);
-    }
-
-    const emailData = {
-      to: formData.email,
-      from: {
-        email: 'tech@skillaipath.com',
-        name: 'Viresh - Skill AI Path'
-      },
-      subject: emailSubject,
-      html: emailTemplate
-    };
-
-    await sgMail.send(emailData);
-    console.log('✅ Email sent to:', formData.email);
-
-    // Update Airtable to mark email as sent
-    await base('Leads').update(airtableRecord.id, { 'Email Sent': true });
-    console.log('✅ Email status updated');
-
-    // Determine success message and potential redirect
-    let successMessage = 'Application submitted successfully! We will review and contact you via WhatsApp/Email within 72 hours with your custom track options.';
-    let redirectUrl = null;
-
-    if (tier === 'PRIORITY') {
-      successMessage = 'Priority application received! We\'ll contact you within 24 hours with exclusive track options.';
-      redirectUrl = '/booking-pages/priority-qualified.html';
-    } else if (tier === 'STANDARD') {
-      successMessage = 'Application received! We\'ll contact you within 48 hours with personalized track recommendations.';
-      redirectUrl = '/booking-pages/standard-qualified.html';
-    } else if (tier === 'BASIC') {
-      successMessage = 'Application received! We\'ll contact you within 72 hours with suitable learning options.';
-      redirectUrl = '/booking-pages/basic-qualified.html';
-    }
-
-    const response = {
-      success: true,
-      message: successMessage,
-      recordId: airtableRecord.id,
-      tier: tier,
-      score: priorityScore
-    };
-
-    if (redirectUrl) {
-      response.redirectUrl = redirectUrl;
-    }
-
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify(response)
-    };
-
-  } catch (error) {
-    console.error('❌ Processing error:', error);
-    
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({ 
-        error: 'Internal server error',
-        details: error.message
-      })
-    };
-  }
 };
 
-// EMAIL TEMPLATES
-
-function getBlueprintEmail(data) {
-  const name = data.name || data.first_name || 'there';
-  
-  return `
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
-        .container { max-width: 600px; margin: 0 auto; }
-        .header { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
-        .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; }
-        .cta-button { 
-            background: #667eea; color: white; padding: 15px 30px; text-decoration: none; 
-            border-radius: 5px; display: inline-block; margin: 20px 0; font-weight: bold;
+        // Calculate dynamic urgency data with CORRECT MATH
+function calculateUrgencyData() {
+    const now = new Date();
+    const currentDay = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
+    const currentHour = now.getHours();
+    
+    // Base slot tracking
+    let slotsRemaining = 0;
+    let totalSlots = 30;
+    let isActive = true;
+    let statusMessage = '';
+    
+    // Check if it's Monday (1) or Tuesday (2)
+    if (currentDay === 1 || currentDay === 2) {
+        slotsRemaining = 0;
+        isActive = false;
+        statusMessage = 'Review cycle closed - reopens Wednesday';
+    } else {
+        // Wednesday through Sunday - active period
+        isActive = true;
+        
+        // Calculate base slots with some randomization
+        const seed = getWeekSeed(); // Consistent seed for the week
+        const randomFactor = (seed % 5) + 1; // 1-5 additional variance
+        
+        if (currentDay === 3) { // Wednesday
+            slotsRemaining = 21 + randomFactor; // 22-26 slots
+            totalSlots = 30; // Keep total consistent
+        } else if (currentDay === 4) { // Thursday
+            slotsRemaining = 16 + Math.floor(randomFactor/2); // 16-18 slots
+            totalSlots = 30;
+        } else if (currentDay === 5) { // Friday
+            slotsRemaining = 11 + Math.floor(randomFactor/3); // 11-12 slots
+            totalSlots = 30;
+        } else if (currentDay === 6) { // Saturday
+            slotsRemaining = 6 + Math.floor(randomFactor/5); // 6-7 slots
+            totalSlots = 30;
+        } else if (currentDay === 0) { // Sunday
+            slotsRemaining = 2 + (randomFactor > 3 ? 1 : 0); // 2-3 slots
+            totalSlots = 30;
         }
-        .signature { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>🎁 Your Enterprise Blueprint is Here!</h1>
-            <p>Complete Revenue Forecasting Project Template</p>
-        </div>
-        <div class="content">
-            <p>Hi ${name},</p>
-            
-            <p>Thank you for your interest in building real business solutions! As promised, here's your complete Enterprise Revenue Forecasting Blueprint.</p>
-            
-            <h3>📦 What's Included:</h3>
-            <ul>
-                <li>✅ Full architecture diagram & system design</li>
-                <li>✅ Python code with Databricks Community edition</li>
-                <li>✅ SQL database schema & data pipeline</li>
-                <li>✅ Power BI dashboard templates</li>
-                <li>✅ Business presentation deck</li>
-                <li>✅ Step-by-step implementation guide</li>
-            </ul>
-            
-            <a href="https://github.com/SkillAIPath/Production-Patterns" class="cta-button">📥 Download Complete Blueprint</a>
-            
-            <p><strong>Next Steps:</strong></p>
-            <p>1. Download and review the blueprint<br>
-            2. Try implementing the basic structure<br>
-            3. Reply with any questions you have</p>
-            
-            <p>I'll personally review your application for custom track assignment and contact you within 72 hours via WhatsApp/Email.</p>
-            
-            <div class="signature">
-                <p>Best regards,<br>
-                <strong>Viresh Gendle</strong><br>
-                AI & Cloud Architect<br>
-                Skill AI Path<br>
-                📞 +91 9301310154<br>
-                📧 tech@skillaipath.com</p>
-            </div>
-        </div>
-    </div>
-</body>
-</html>`;
+        
+        // Add hourly variance (decrease throughout the day)
+        if (currentHour > 12) {
+            const hourlyDecrease = Math.floor((currentHour - 12) / 3); // Decrease every 3 hours after noon
+            slotsRemaining = Math.max(1, slotsRemaining - hourlyDecrease);
+        }
+        
+        // Generate realistic status messages with correct numbers AFTER hourly adjustments
+        const slotsFilled = totalSlots - slotsRemaining;
+        
+        if (currentDay === 3) { // Wednesday  
+            statusMessage = `Fresh batch opened! ${slotsFilled} early applications received`;
+        } else if (currentDay === 4) { // Thursday
+            const todayFilled = Math.min(4, Math.floor(Math.random() * 3) + 2); // 2-4 today
+            statusMessage = `${todayFilled} professionals applied today (${slotsFilled} total this week)`;
+        } else if (currentDay === 5) { // Friday
+            const todayFilled = Math.min(5, Math.floor(Math.random() * 4) + 3); // 3-6 today  
+            statusMessage = `Weekend rush - ${todayFilled} applications since morning`;
+        } else if (currentDay === 6) { // Saturday
+            statusMessage = `${slotsFilled} spots filled this week - ${slotsRemaining} final weekend slots`;
+        } else if (currentDay === 0) { // Sunday
+            statusMessage = `${slotsFilled} applications this week - only ${slotsRemaining} slots before Monday reset`;
+        }
+    }
+    
+    // CORRECT MATH: Calculate filled slots and percentage
+    const slotsFilled = totalSlots - slotsRemaining;
+    const progressPercentage = isActive ? Math.round((slotsFilled / totalSlots) * 100) : 0;
+    
+    // Calculate next reset time
+    const nextReset = getNextMondayTime();
+    const timeRemaining = nextReset - now;
+    
+    return {
+        slotsRemaining,
+        slotsFilled, // ✅ NEW: Correct filled count
+        totalSlots,
+        isActive,
+        statusMessage,
+        progressPercentage,
+        timeRemaining,
+        currentDay,
+        nextResetTime: nextReset.toISOString()
+    };
 }
 
-function getQuickResponseEmail(data) {
-  const name = data.name || data.first_name || 'there';
-  
-  return `
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
-        .container { max-width: 600px; margin: 0 auto; }
-        .header { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
-        .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; }
-        .signature { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>⚡ Quick Response!</h1>
-            <p>We Got Your Message</p>
-        </div>
-        <div class="content">
-            <p>Hi ${name},</p>
-            
-            <p>Thanks for reaching out to Skill AI Path! Your message has been received and I'll personally review it.</p>
-            
-            <p><strong>What happens next:</strong></p>
-            <ul>
-                <li>Personal review within 24 hours</li>
-                <li>Custom recommendations based on your needs</li>
-                <li>Direct contact via WhatsApp/Email</li>
-            </ul>
-            
-            <p>If you have any urgent questions, feel free to reach out directly.</p>
-            
-            <div class="signature">
-                <p>Best regards,<br>
-                <strong>Viresh Gendle</strong><br>
-                AI & Cloud Architect<br>
-                Skill AI Path<br>
-                📞 +91 9301310154<br>
-                📧 tech@skillaipath.com</p>
-            </div>
-        </div>
-    </div>
-</body>
-</html>`;
+// Get consistent weekly seed for randomization
+function getWeekSeed() {
+    const now = new Date();
+    const startOfWeek = new Date(now);
+    
+    // Get Monday of current week
+    const day = now.getDay();
+    const diff = now.getDate() - day + (day === 0 ? -6 : 1);
+    startOfWeek.setDate(diff);
+    startOfWeek.setHours(0, 0, 0, 0);
+    
+    // Use week start timestamp as seed
+    return Math.floor(startOfWeek.getTime() / 1000);
 }
 
-function getFullApplicationEmail(data, score, tier) {
-  const name = data.first_name || data.name || 'there';
-  
-  let tierMessage = '';
-  let nextSteps = '';
-  
-  if (tier === 'PRIORITY') {
-    tierMessage = 'Congratulations! Your application qualifies for our Priority Track with exclusive benefits.';
-    nextSteps = 'I\'ll contact you within 24 hours with priority track options and special offers.';
-  } else if (tier === 'STANDARD') {
-    tierMessage = 'Your application shows strong potential for our Standard Track programs.';
-    nextSteps = 'I\'ll contact you within 48 hours with personalized track recommendations.';
-  } else if (tier === 'BASIC') {
-    tierMessage = 'Your application has been received for our supportive Basic Track programs.';
-    nextSteps = 'I\'ll contact you within 72 hours with suitable learning options.';
-  } else {
-    tierMessage = 'Your application has been received and will be reviewed personally.';
-    nextSteps = 'I\'ll contact you within 72 hours to discuss the best learning path for your goals.';
-  }
-  
-  return `
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
-        .container { max-width: 600px; margin: 0 auto; }
-        .header { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
-        .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; }
-        .tier-badge { background: #ffd700; color: #333; padding: 10px 20px; border-radius: 20px; font-weight: bold; display: inline-block; margin: 15px 0; }
-        .signature { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>🎯 Application Processed!</h1>
-            <p>Your Track Assignment is Ready</p>
-        </div>
-        <div class="content">
-            <p>Hi ${name},</p>
-            
-            <p>Thank you for your detailed application to Skill AI Path! I've personally reviewed your background and goals.</p>
-            
-            <div class="tier-badge">${tier} TRACK - Priority Score: ${score}/100</div>
-            
-            <p><strong>${tierMessage}</strong></p>
-            
-            <p><strong>Your Application Summary:</strong></p>
-            <ul>
-                <li><strong>Email:</strong> ${data.email}</li>
-                <li><strong>Name:</strong> ${data.first_name || ''} ${data.last_name || ''}</li>
-                ${data.interest ? `<li><strong>Interest:</strong> ${data.interest}</li>` : ''}
-                ${data.status ? `<li><strong>Status:</strong> ${data.status}</li>` : ''}
-            </ul>
-            
-            <p><strong>Next Steps:</strong></p>
-            <p>${nextSteps}</p>
-            
-            <p><strong>What You Get:</strong></p>
-            <ul>
-                <li>✅ Personal mentorship and guidance</li>
-                <li>✅ Real business problem-solving projects</li>
-                <li>✅ Enterprise-grade tools and technologies</li>
-                <li>✅ Direct career placement support</li>
-            </ul>
-            
-            <p><strong>While you wait:</strong> Check out our enterprise code examples at <a href="https://github.com/SkillAIPath/Production-Patterns">GitHub</a></p>
-            
-            <div class="signature">
-                <p>Best regards,<br>
-                <strong>Viresh Gendle</strong><br>
-                AI & Cloud Architect<br>
-                Skill AI Path<br>
-                📞 +91 9301310154<br>
-                📧 tech@skillaipath.com</p>
+function getNextMondayTime() {
+    const now = new Date();
+    const nextMonday = new Date();
+    
+    const daysUntilMonday = (8 - now.getDay()) % 7;
+    const daysToAdd = daysUntilMonday === 0 ? 7 : daysUntilMonday;
+    
+    nextMonday.setDate(now.getDate() + daysToAdd);
+    nextMonday.setHours(0, 0, 0, 0);
+    
+    return nextMonday;
+}
+
+async function handleLeadMagnet(formData) {
+    const templateId = process.env.SENDGRID_BLUEPRINT_TEMPLATE_ID || 'd-your-template-id-here';
+    
+    const msg = {
+        to: formData.email,
+        from: {
+            email: 'tech@skillaipath.com',
+            name: 'Viresh - Skill AI Path'
+        },
+        templateId: templateId,
+        dynamicTemplateData: {
+            CUSTOMER_NAME: formData.name || 'Future Enterprise Builder',
+            email: formData.email,
+            downloadDate: new Date().toLocaleDateString('en-IN', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            }),
+            marketingConsent: formData.updates ? 'Yes' : 'No',
+            formSource: getFormSource(formData.formType)
+        }
+    };
+
+    await sgMail.send(msg);
+    console.log('Blueprint email sent to:', formData.email);
+    
+    // If user opted for updates, add them to marketing list
+    if (formData.updates) {
+        console.log('User opted for marketing updates:', formData.email);
+        // Add to marketing automation here if needed
+    }
+}
+
+async function handleApplication(formData) {
+    // Calculate priority score
+    const score = calculatePriorityScore(formData);
+    const tier = getPriorityTier(score);
+    
+    // Send notification email to admin
+    await sendAdminNotification(formData, score, tier);
+    
+    return {
+        score: score,
+        tier: tier,
+        message: `Application submitted successfully! Priority Level: ${tier} (Score: ${score}/100)`
+    };
+}
+
+function calculatePriorityScore(formData) {
+    let score = 50; // Base score
+    
+    // Status scoring
+    const statusScores = {
+        'Professional': 25,
+        'Career Change': 20,
+        'Entrepreneur': 20,
+        'Graduate': 15,
+        'Student': 10
+    };
+    score += statusScores[formData.status] || 0;
+    
+    // Interest/Goal scoring
+    const interestScores = {
+        'Data Analytics': 15,
+        'Automation': 15,
+        'Freelancing Pro': 10,
+        'Career Mastery': 10,
+        'Need Guidance': 5
+    };
+    score += interestScores[formData.interest] || 0;
+    
+    // Challenge complexity scoring
+    if (formData.challenge && formData.challenge.length > 100) {
+        score += 10; // Detailed challenges get bonus points
+    }
+    
+    return Math.min(100, score);
+}
+
+function getPriorityTier(score) {
+    if (score >= 80) return 'HIGH';
+    if (score >= 60) return 'MEDIUM';
+    return 'STANDARD';
+}
+
+async function sendAdminNotification(formData, score, tier) {
+    const fullName = formData.first_name && formData.last_name 
+        ? `${formData.first_name} ${formData.last_name}`
+        : formData.name || 'No name provided';
+        
+    const adminMsg = {
+        to: 'tech@skillaipath.com',
+        from: {
+            email: 'tech@skillaipath.com',
+            name: 'Skill AI Path Application System'
+        },
+        subject: `🎯 New ${tier} Priority Application - ${fullName}`,
+        html: `
+            <h2>New Application Received</h2>
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3>Applicant Details:</h3>
+                <p><strong>Name:</strong> ${fullName}</p>
+                <p><strong>Email:</strong> ${formData.email}</p>
+                <p><strong>Phone:</strong> ${formData.phone}</p>
+                <p><strong>Interest:</strong> ${formData.interest}</p>
+                <p><strong>Status:</strong> ${formData.status}</p>
+                <p><strong>Priority Score:</strong> ${score}/100 (${tier})</p>
+                <p><strong>Source:</strong> ${getFormSource(formData.formType)}</p>
             </div>
-        </div>
-    </div>
-</body>
-</html>`;
+            <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3>Challenge/Goals:</h3>
+                <p>${formData.challenge}</p>
+            </div>
+            <div style="background: #f3e5f5; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                <h3>Quick Actions:</h3>
+                <p>📞 WhatsApp: <a href="https://wa.me/${formData.phone?.replace(/[^0-9]/g, '')}">${formData.phone}</a></p>
+                <p>📧 Email: <a href="mailto:${formData.email}">${formData.email}</a></p>
+            </div>
+            <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                <h3>Consent Status:</h3>
+                <p><strong>Marketing Updates:</strong> ${formData.updates ? '✅ Yes' : '❌ No'}</p>
+                <p><strong>Privacy Policy:</strong> ${formData.privacy ? '✅ Agreed' : '❌ Not Agreed'}</p>
+            </div>
+        `
+    };
+
+    await sgMail.send(adminMsg);
+}
+
+async function saveToAirtable(formData, responseData) {
+    const recordData = {
+        'Name': formData.name || '',
+        'First Name': formData.first_name || formData.name || '',
+        'Last Name': formData.last_name || '',
+        'Email': formData.email || '',
+        'Phone': formData.phone || '',
+        'Interest': formData.interest || '',
+        'Status': formData.status || '',
+        'Challenge': formData.challenge || '',
+        'Form Type': formData.formType || 'unknown', // ✅ FIXED: This will now save properly
+        'Submission Date': new Date().toISOString(),
+        'Priority Score': responseData.score || 0,
+        'Priority Tier': responseData.tier || 'STANDARD',
+        'Privacy Consent': formData.privacy ? 'Yes' : 'No',
+        'Marketing Consent': formData.updates ? 'Yes' : 'No', // ✅ NEW: Consistent updates consent
+        'Source': getFormSource(formData.formType)
+    };
+
+    console.log('Saving to Airtable:', recordData); // Debug logging
+
+    try {
+        const record = await base('Applications').create(recordData);
+        console.log('Successfully saved to Airtable:', record.id);
+        return record;
+    } catch (error) {
+        console.error('Airtable save error:', error);
+        throw new Error(`Failed to save to Airtable: ${error.message}`);
+    }
+}
+
+function getFormSource(formType) {
+    const sources = {
+        'lead-magnet': 'Lead Magnet - Main Section',
+        'landing-popup': 'Landing Popup - Timed',
+        'exit-intent': 'Exit Intent Popup',
+        'contact': 'Contact Form - Main',
+        'popup': 'Application Popup'
+    };
+    return sources[formType] || 'Unknown Source';
 }
