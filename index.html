@@ -711,17 +711,22 @@
             border-color: #8B5CF6;
         }
 
-        /* Real Urgency Section */
+        /* Real Urgency Section - Enhanced Visibility */
         .urgency-section {
             padding: 80px 40px;
             background: linear-gradient(135deg, #ff6b6b, #ee5a24);
             color: white;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .urgency-container {
             max-width: 1000px;
             margin: 0 auto;
             text-align: center;
+            width: 100%;
         }
 
         .urgency-card {
@@ -730,6 +735,7 @@
             border-radius: 25px;
             padding: 50px;
             border: 2px solid rgba(255, 255, 255, 0.3);
+            width: 100%;
         }
 
         .urgency-card h2 {
@@ -790,6 +796,63 @@
             font-weight: 600;
             margin: 20px 0;
             text-align: center;
+        }
+
+        /* NEW: Slot tracking styles */
+        #slotStatus {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 0.95em;
+            color: var(--premium-gold);
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: statusPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { 
+                background: rgba(255, 255, 255, 0.1);
+                border-color: rgba(255, 255, 255, 0.2);
+            }
+            50% { 
+                background: rgba(255, 215, 155, 0.15);
+                border-color: rgba(255, 215, 155, 0.3);
+            }
+        }
+
+        #slotProgressBar {
+            margin-top: 15px;
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        #slotProgressFill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ffd89b, #ff6b6b);
+            border-radius: 5px;
+            transition: width 0.8s ease;
+            background-size: 200% 100%;
+            animation: progressShimmer 2s linear infinite;
+        }
+
+        @keyframes progressShimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .slot-progress-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.8em;
+            opacity: 0.8;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .contact-email {
@@ -927,6 +990,18 @@
             border-radius: 15px;
             font-size: 1em;
             background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .magnet-form input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        /* Specific styling for the lead magnet form checkbox */
+        #leadForm .form-checkbox-wrapper label {
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .contact-info {
@@ -1514,7 +1589,6 @@
             opacity: 0.8;
         }
 
-        /* Popup Modal */
         .popup-modal {
             position: fixed;
             top: 0;
@@ -1528,10 +1602,21 @@
             z-index: 3000;
             padding: 20px;
             backdrop-filter: blur(10px);
+            overflow: hidden; /* Prevent any scrolling */
         }
 
         .popup-modal.active {
             display: flex;
+        }
+
+        /* Hide scrollbars on popup elements only */
+        .popup-form {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        .popup-form::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
         }
 
         .popup-content {
@@ -1584,12 +1669,13 @@
 
         .popup-esc-hint {
             position: absolute;
-            bottom: 10px;
+            bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 0.8em;
             opacity: 0.6;
             color: white;
+            pointer-events: none;
         }
 
         /* MOBILE RESPONSIVE DESIGN */
@@ -1887,8 +1973,15 @@
                     </div>
                 </div>
                 <form class="landing-popup-form" id="landingPopupForm">
+                    <input type="hidden" name="formType" value="landing-popup" />
+                    <input type="text" name="name" placeholder="Your name" required>
                     <input type="email" name="email" placeholder="Enter your email address" required>
-                    <input type="text" name="name" placeholder="Your first name" required>
+                    <div class="form-checkbox-wrapper">
+                        <label style="color: var(--text-secondary);">
+                            <input type="checkbox" name="updates"> 
+                            I'd like updates about new projects and learning resources
+                        </label>
+                    </div>
                     <button type="submit" class="popup-download-btn">📥 Get Complete Blueprint (Worth ₹3,000)</button>
                 </form>
                 <div class="popup-contact-info">
@@ -1923,7 +2016,15 @@
                     </ul>
                 </div>
                 <form class="exit-form" id="exitForm">
+                    <input type="hidden" name="formType" value="exit-intent" />
+                    <input type="text" name="name" placeholder="Your name" required>
                     <input type="email" name="email" placeholder="Enter your email for instant access" required>
+                    <div class="form-checkbox-wrapper">
+                        <label style="color: var(--text-secondary);">
+                            <input type="checkbox" name="updates"> 
+                            I'd like updates about new projects and learning resources
+                        </label>
+                    </div>
                     <button type="submit" class="exit-btn">Get Complete Blueprint</button>
                 </form>
                 <div class="exit-note">No spam. Just real business value. 150+ downloads.</div>
@@ -2287,6 +2388,20 @@
                     <div class="no-slots-message" id="noSlotsMessage" style="display: none;">
                         ❌ No more slots available! Contact <a href="mailto:tech@skillaipath.com" class="contact-email">tech@skillaipath.com</a> for support
                     </div>
+                    
+                    <!-- NEW: Slot tracking message -->
+                    <div id="slotStatus" style="margin-top: 15px; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 8px; font-size: 0.95em; color: var(--premium-gold); font-weight: 500;">
+                        Loading current availability...
+                    </div>
+                    
+                    <!-- NEW: Progress bar -->
+                    <div id="slotProgressBar" style="margin-top: 15px; width: 100%; height: 8px; background: rgba(255, 255, 255, 0.2); border-radius: 4px; overflow: hidden;">
+                        <div id="slotProgressFill" style="height: 100%; background: linear-gradient(90deg, #ff6b6b, #ffd89b); border-radius: 4px; transition: width 0.3s ease; width: 0%;"></div>
+                    </div>
+                    <div class="slot-progress-labels">
+                        <span>0 filled</span>
+                        <span>30 total</span>
+                    </div>
                 </div>
                 
                 <div class="urgency-note">
@@ -2336,8 +2451,15 @@
                 <div class="magnet-form">
                     <h4>Download Free (Worth ₹3,000)</h4>
                     <form id="leadForm">
-                        <input type="email" name="email" placeholder="Enter your email" required>
+                        <input type="hidden" name="formType" value="lead-magnet" />
                         <input type="text" name="name" placeholder="Your name" required>
+                        <input type="email" name="email" placeholder="Enter your email" required>
+                        <div class="form-checkbox-wrapper">
+                            <label style="color: rgba(255, 255, 255, 0.9);">
+                                <input type="checkbox" name="updates"> 
+                                I'd like updates about new projects and learning resources
+                            </label>
+                        </div>
                         <button type="submit" class="download-btn">📥 Get Complete Blueprint</button>
                     </form>
                     <div class="contact-info">
@@ -2359,6 +2481,7 @@
             <p class="risk-free">✅ Free track consultation • WhatsApp/Email response within 72 hrs • Custom payment options • Enterprise mentorship</p>
             
             <form class="contact-form" id="contactForm">
+                <input type="hidden" name="formType" value="contact" />
                 <div class="form-row">
                     <input type="text" name="first_name" placeholder="First name" required>
                     <input type="text" name="last_name" placeholder="Last name" required>
@@ -2398,7 +2521,7 @@
                     </label>
                     <label>
                         <input type="checkbox" name="updates"> 
-                        I'd like updates about project examples and learning resources.
+                        I'd like updates about new projects and learning resources.
                     </label>
                 </div>
                 
@@ -2454,6 +2577,7 @@
                 <p class="popup-subtitle">Start building enterprise solutions that matter - personalized for your goals</p>
             </div>
             <form class="popup-form" id="popupForm">
+                <input type="hidden" name="formType" value="popup" />
                 <div class="form-row">
                     <input type="text" name="first_name" placeholder="First name" required>
                     <input type="text" name="last_name" placeholder="Last name" required>
@@ -2470,6 +2594,10 @@
                     <label>
                         <input type="checkbox" name="privacy" required> 
                         I agree to <a href="privacy-policy.html" target="_blank" class="privacy-link">privacy policy</a> and application review.
+                    </label>
+                    <label>
+                        <input type="checkbox" name="updates"> 
+                        I'd like updates about new projects and learning resources.
                     </label>
                 </div>
                 
@@ -2601,6 +2729,12 @@
                 const result = await response.json();
                 
                 if (response.ok) {
+                    // ✅ NEW: Update urgency data if received
+                    if (result.urgencyData) {
+                        urgencyData = result.urgencyData;
+                        updateUrgencyDisplay();
+                    }
+                    
                     handleFormSuccess(formType, form, submitBtn, originalText, result);
                     console.log('Success:', result);
                 } else {
@@ -2664,78 +2798,192 @@
             }
         }
 
-        // Enhanced weekly urgency system with proper reset logic
-        function updateWeeklyUrgency() {
-            const now = new Date();
-            
-            // Check if we're in the "no slots" period (48 hours after cycle ends)
-            const noSlotsStart = localStorage.getItem('noSlotsStartTime');
-            if (noSlotsStart) {
-                const noSlotsTime = new Date(parseInt(noSlotsStart));
-                const hoursSinceNoSlots = (now - noSlotsTime) / (1000 * 60 * 60);
+        // Global urgency data - fetched from server
+        let urgencyData = null;
+        
+        // SERVER-SIDE URGENCY SYSTEM - Logic hidden from inspect element
+        async function fetchUrgencyData() {
+            try {
+                // Fetch current urgency status from server
+                const response = await fetch('/.netlify/functions/process-lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ formType: 'urgency-check', email: 'check' })
+                });
                 
-                if (hoursSinceNoSlots < 48) {
-                    // Show "no slots" message for 48 hours
-                    document.getElementById('countdownTimer').style.display = 'none';
-                    document.getElementById('noSlotsMessage').style.display = 'block';
-                    document.getElementById('urgencyCta').disabled = true;
-                    document.getElementById('urgencyCta').textContent = '❌ No Slots Available';
-                    return;
-                } else if (hoursSinceNoSlots >= 72) {
-                    // Reset after 72 hours (48h no slots + 24h buffer)
-                    localStorage.removeItem('noSlotsStartTime');
-                    localStorage.removeItem('weeklyStartTime');
+                if (response.ok) {
+                    const result = await response.json();
+                    urgencyData = result.urgencyData;
+                    updateUrgencyDisplay();
+                } else {
+                    throw new Error('Server response failed');
                 }
+            } catch (error) {
+                console.log('Using fallback urgency data');
+                // Fallback to basic client-side logic if server fails
+                setFallbackUrgency();
             }
-            
-            // Get or set weekly cycle start time
-            let weeklyStart = localStorage.getItem('weeklyStartTime');
-            if (!weeklyStart) {
-                // Start new weekly cycle every Sunday
-                const sunday = new Date();
-                sunday.setDate(sunday.getDate() - sunday.getDay());
-                sunday.setHours(0, 0, 0, 0);
-                
-                weeklyStart = sunday.getTime();
-                localStorage.setItem('weeklyStartTime', weeklyStart);
-            }
-            
-            const weeklyStartTime = new Date(parseInt(weeklyStart));
-            const weeklyEndTime = new Date(weeklyStartTime.getTime() + (7 * 24 * 60 * 60 * 1000)); // 7 days
-            
-            const timeRemaining = weeklyEndTime - now;
-            
-            if (timeRemaining <= 0) {
-                // Week ended, trigger "no slots" period
-                localStorage.setItem('noSlotsStartTime', now.getTime());
-                localStorage.removeItem('weeklyStartTime');
-                updateWeeklyUrgency(); // Recursive call to handle the new state
+        }
+        
+        function updateUrgencyDisplay() {
+            if (!urgencyData) {
+                console.log('No urgency data available');
                 return;
             }
             
-            // Calculate time display in hours, minutes, seconds
-            const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+            const { slotsRemaining, slotsFilled, totalSlots, isActive, statusMessage, progressPercentage, timeRemaining } = urgencyData;
+            
+            console.log('Updating urgency display:', { slotsRemaining, slotsFilled, totalSlots, isActive, statusMessage, progressPercentage });
+            
+            // Update slot count
+            const reviewsLeftElement = document.getElementById('reviewsLeft');
+            if (reviewsLeftElement) {
+                reviewsLeftElement.textContent = slotsRemaining;
+            }
+            
+            // Update status message with tracking
+            const statusElement = document.getElementById('slotStatus');
+            if (statusElement) {
+                statusElement.textContent = statusMessage;
+                statusElement.style.display = isActive ? 'block' : 'none';
+            }
+            
+            // Update progress bar with CORRECT MATH
+            const progressBar = document.getElementById('slotProgressBar');
+            const progressFill = document.getElementById('slotProgressFill');
+            const progressLabels = document.querySelector('.slot-progress-labels');
+            
+            if (progressBar && progressFill) {
+                progressFill.style.width = `${progressPercentage}%`;
+                progressBar.style.display = isActive ? 'block' : 'none';
+                
+                // ✅ FIX: Update progress labels with correct numbers
+                if (progressLabels && isActive) {
+                    progressLabels.innerHTML = `
+                        <span>${slotsFilled} filled</span>
+                        <span>${totalSlots} total</span>
+                    `;
+                } else if (progressLabels) {
+                    progressLabels.innerHTML = `
+                        <span>0 filled</span>
+                        <span>${totalSlots} total</span>
+                    `;
+                }
+            }
+            
+            const timerElement = document.getElementById('countdownTimer');
+            const noSlotsElement = document.getElementById('noSlotsMessage');
+            const ctaElement = document.getElementById('urgencyCta');
+            
+            if (!isActive) {
+                // Show "No slots available"
+                if (timerElement) timerElement.style.display = 'none';
+                if (noSlotsElement) noSlotsElement.style.display = 'block';
+                if (ctaElement) {
+                    ctaElement.disabled = true;
+                    ctaElement.textContent = '❌ No Slots Available';
+                }
+                return;
+            }
+            
+            // Show active state
+            if (timerElement) timerElement.style.display = 'block';
+            if (noSlotsElement) noSlotsElement.style.display = 'none';
+            if (ctaElement) {
+                ctaElement.disabled = false;
+                
+                // ✅ FIX: Update button text based on actual remaining slots
+                if (slotsRemaining <= 3) {
+                    ctaElement.textContent = '🔥 Claim Final Slots Now';
+                } else if (slotsRemaining <= 8) {
+                    ctaElement.textContent = '⚡ Limited Slots Remaining';
+                } else {
+                    ctaElement.textContent = '⚡ Secure Your Review Slot Now';
+                }
+            }
+            
+            // Update countdown timer
+            updateCountdownTimer(timeRemaining);
+        }
+        
+        function updateCountdownTimer(timeRemaining) {
+            if (!timeRemaining || timeRemaining <= 0) {
+                fetchUrgencyData(); // Refresh from server
+                return;
+            }
+            
+            const totalHours = Math.floor(timeRemaining / (1000 * 60 * 60));
+            const days = Math.floor(totalHours / 24);
+            const hours = totalHours % 24;
             const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
             
-            const timeLeftElement = document.getElementById('countdownTimer');
-            if (timeLeftElement) {
-                timeLeftElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
-                timeLeftElement.style.display = 'block';
-                document.getElementById('noSlotsMessage').style.display = 'none';
-                document.getElementById('urgencyCta').disabled = false;
-                document.getElementById('urgencyCta').textContent = '⚡ Secure Your Review Slot Now';
+            let timeDisplay;
+            if (days > 0) {
+                timeDisplay = `${days}d ${hours}h ${minutes}m`;
+            } else {
+                timeDisplay = `${hours}h ${minutes}m ${seconds}s`;
             }
             
-            // Keep slots static at 21 for now - sales logic will be implemented later
-            const reviewsLeftElement = document.getElementById('reviewsLeft');
-            if (reviewsLeftElement) {
-                reviewsLeftElement.textContent = 21;
+            const timerElement = document.getElementById('countdownTimer');
+            if (timerElement) {
+                timerElement.textContent = timeDisplay;
             }
         }
-
-        // Update countdown every second for real urgency
-        setInterval(updateWeeklyUrgency, 1000);
+        
+        function setFallbackUrgency() {
+            const now = new Date();
+            const currentDay = now.getDay();
+            
+            // ✅ FIX: Correct fallback math
+            const totalSlots = 30;
+            let slotsRemaining = 15;
+            let statusMessage = 'Loading current availability...';
+            
+            if (currentDay === 1 || currentDay === 2) {
+                slotsRemaining = 0;
+                statusMessage = 'Review cycle closed - reopens Wednesday';
+            } else if (currentDay === 3) { // Wednesday
+                slotsRemaining = 24;
+                statusMessage = 'Fresh batch opened! Getting latest data...';
+            } else if (currentDay === 4) { // Thursday
+                slotsRemaining = 18;
+                statusMessage = 'Checking current applications...';
+            } else if (currentDay === 5) { // Friday
+                slotsRemaining = 12;
+                statusMessage = 'Weekend rush - updating availability...';
+            } else if (currentDay === 6) { // Saturday
+                slotsRemaining = 7;
+                statusMessage = 'Final weekend slots - loading...';
+            } else if (currentDay === 0) { // Sunday
+                slotsRemaining = 3;
+                statusMessage = 'Last call! Loading final availability...';
+            }
+            
+            const slotsFilled = totalSlots - slotsRemaining;
+            
+            urgencyData = {
+                slotsRemaining: slotsRemaining,
+                slotsFilled: slotsFilled, // ✅ NEW: Correct filled count
+                totalSlots: totalSlots,
+                isActive: currentDay !== 1 && currentDay !== 2,
+                statusMessage: statusMessage,
+                progressPercentage: currentDay === 1 || currentDay === 2 ? 0 : Math.round((slotsFilled / totalSlots) * 100),
+                timeRemaining: 24 * 60 * 60 * 1000 // 24 hours
+            };
+            
+            console.log('Setting fallback urgency:', urgencyData);
+            updateUrgencyDisplay();
+        }
+        
+        // Fetch urgency data every 5 minutes and update display every second
+        setInterval(fetchUrgencyData, 5 * 60 * 1000); // Refresh from server every 5 minutes
+        setInterval(() => {
+            if (urgencyData && urgencyData.timeRemaining > 0) {
+                urgencyData.timeRemaining -= 1000; // Decrease by 1 second
+                updateCountdownTimer(urgencyData.timeRemaining);
+            }
+        }, 1000);
 
         // Escape key to close popups
         document.addEventListener('keydown', function(e) {
@@ -2786,26 +3034,6 @@
             return hoursSinceShown >= 24;
         }
 
-        // Exit intent form submission
-        document.getElementById('exitForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = this.querySelector('input[name="email"]').value;
-            
-            console.log('Exit intent lead captured:', email);
-            
-            this.innerHTML = `
-                <div style="text-align: center; padding: 20px; color: var(--success-color);">
-                    <h4>🎉 Success!</h4>
-                    <p>Check your email for the Revenue Forecasting Blueprint download link.</p>
-                </div>
-            `;
-            
-            setTimeout(function() {
-                closeExitIntent();
-            }, 2000);
-        });
-
         // Landing Popup System
         let landingPopupShown = false;
 
@@ -2840,28 +3068,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Landing popup form submission
-        document.getElementById('landingPopupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = this.querySelector('input[name="email"]').value;
-            const name = this.querySelector('input[name="name"]').value;
-            
-            console.log('Landing popup lead captured:', { email, name });
-            
-            this.innerHTML = `
-                <div style="text-align: center; padding: 30px; color: var(--deep-blue);">
-                    <div style="font-size: 3em; margin-bottom: 15px;">🎉</div>
-                    <h4 style="font-size: 1.3em; margin-bottom: 10px;">Success!</h4>
-                    <p style="color: var(--text-secondary);">Check your email for the Revenue Forecasting Blueprint download link.</p>
-                </div>
-            `;
-            
-            setTimeout(function() {
-                closeLandingPopup();
-            }, 3000);
-        });
-
         // Close popups on outside click
         document.getElementById('exitIntentPopup').addEventListener('click', function(e) {
             if (e.target === this) {
@@ -2878,7 +3084,10 @@
         // Initialize everything when DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
             initializePhoto();
-            updateWeeklyUrgency();
+            
+            // ✅ Initialize urgency display immediately, then fetch from server
+            setFallbackUrgency(); // Show something immediately
+            fetchUrgencyData(); // Then fetch real data from server
             
             if (shouldShowExitIntent()) {
                 exitIntentShown = false;
