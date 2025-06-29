@@ -289,6 +289,11 @@ async function sendAdminNotification(formData, score, tier) {
         ? `${formData.first_name} ${formData.last_name}`
         : formData.name || 'No name provided';
         
+    const phoneDisplay = formData.phone ? formData.phone : 'Not provided';
+    const whatsappLink = formData.phone ? 
+        `<a href="https://wa.me/${formData.phone.replace(/[^0-9]/g, '')}">${formData.phone}</a>` : 
+        'No WhatsApp available';
+        
     const adminMsg = {
         to: 'tech@skillaipath.com',
         from: {
@@ -302,25 +307,28 @@ async function sendAdminNotification(formData, score, tier) {
                 <h3>Applicant Details:</h3>
                 <p><strong>Name:</strong> ${fullName}</p>
                 <p><strong>Email:</strong> ${formData.email}</p>
-                <p><strong>Phone:</strong> ${formData.phone}</p>
-                <p><strong>Interest:</strong> ${formData.interest}</p>
-                <p><strong>Status:</strong> ${formData.status}</p>
+                <p><strong>Phone:</strong> ${phoneDisplay}</p>
+                <p><strong>Interest:</strong> ${formData.interest || 'N/A (Lead Magnet)'}</p>
+                <p><strong>Status:</strong> ${formData.status || 'N/A (Lead Magnet)'}</p>
                 <p><strong>Priority Score:</strong> ${score}/100 (${tier})</p>
                 <p><strong>Source:</strong> ${getFormSource(formData.formType)}</p>
             </div>
+            ${formData.challenge ? `
             <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin: 20px 0;">
                 <h3>Challenge/Goals:</h3>
                 <p>${formData.challenge}</p>
             </div>
+            ` : ''}
             <div style="background: #f3e5f5; padding: 15px; border-radius: 8px; margin: 20px 0;">
                 <h3>Quick Actions:</h3>
-                <p>📞 WhatsApp: <a href="https://wa.me/${formData.phone?.replace(/[^0-9]/g, '')}">${formData.phone}</a></p>
+                <p>📞 WhatsApp: ${whatsappLink}</p>
                 <p>📧 Email: <a href="mailto:${formData.email}">${formData.email}</a></p>
             </div>
             <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 20px 0;">
                 <h3>Consent Status:</h3>
                 <p><strong>Marketing Updates:</strong> ${formData.updates ? '✅ Yes' : '❌ No'}</p>
                 <p><strong>Privacy Policy:</strong> ${formData.privacy ? '✅ Agreed' : '❌ Not Agreed'}</p>
+                <p><strong>Phone Provided:</strong> ${formData.phone ? '✅ Yes' : '❌ No'}</p>
             </div>
         `
     };
@@ -334,20 +342,21 @@ async function saveToAirtable(formData, responseData) {
         'First Name': formData.first_name || formData.name || '',
         'Last Name': formData.last_name || '',
         'Email': formData.email || '',
-        'Phone': formData.phone || '',
+        'Phone': formData.phone || '', // ✅ Now handles phone from all forms
         'Interest': formData.interest || '',
         'Status': formData.status || '',
         'Challenge': formData.challenge || '',
-        'Form Type': formData.formType || 'unknown', // ✅ FIXED: This will now save properly
+        'Form Type': formData.formType || 'unknown',
         'Submission Date': new Date().toISOString(),
         'Priority Score': responseData.score || 0,
         'Priority Tier': responseData.tier || 'STANDARD',
         'Privacy Consent': formData.privacy ? 'Yes' : 'No',
-        'Marketing Consent': formData.updates ? 'Yes' : 'No', // ✅ NEW: Consistent updates consent
-        'Source': getFormSource(formData.formType)
+        'Marketing Consent': formData.updates ? 'Yes' : 'No',
+        'Source': getFormSource(formData.formType),
+        'Has Phone': formData.phone ? 'Yes' : 'No' // ✅ Track if phone was provided
     };
 
-    console.log('Saving to Airtable:', recordData); // Debug logging
+    console.log('Saving to Airtable:', recordData);
 
     try {
         const record = await base('Applications').create(recordData);
@@ -361,11 +370,11 @@ async function saveToAirtable(formData, responseData) {
 
 function getFormSource(formType) {
     const sources = {
-        'lead-magnet': 'Lead Magnet - Main Section',
-        'landing-popup': 'Landing Popup - Timed',
-        'exit-intent': 'Exit Intent Popup',
-        'contact': 'Contact Form - Main',
-        'popup': 'Application Popup'
+        'lead-magnet': 'Lead Magnet - Main Section (3 fields)',
+        'landing-popup': 'Landing Popup - Timed (3 fields)',
+        'exit-intent': 'Exit Intent Popup (3 fields)', 
+        'contact': 'Contact Form - Main (Full Application)',
+        'popup': 'Application Popup (Full Application)'
     };
     return sources[formType] || 'Unknown Source';
 }
