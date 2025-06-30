@@ -21,7 +21,13 @@ exports.handler = async (event, context) => {
         const formData = JSON.parse(event.body);
         
         // Enhanced logging for debugging
-        console.log('Received form data:', formData);
+        console.log('Received form data:', {
+            formType: formData.formType,
+            email: formData.email,
+            hasName: !!formData.name,
+            hasFirstName: !!formData.first_name,
+            hasPhone: !!formData.phone
+        });
         
         // Get current urgency data
         const urgencyData = calculateUrgencyData();
@@ -38,6 +44,17 @@ exports.handler = async (event, context) => {
             };
         }
         
+        // Validate required fields
+        if (!formData.email) {
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ 
+                    error: 'Email is required',
+                    message: 'Please provide a valid email address'
+                })
+            };
+        }
+        
         // Determine if this is a lead magnet or application form
         const isLeadMagnet = ['lead-magnet', 'landing-popup', 'exit-intent'].includes(formData.formType);
         
@@ -47,22 +64,33 @@ exports.handler = async (event, context) => {
             urgencyData: urgencyData
         };
 
-        if (isLeadMagnet) {
-            // Handle lead magnet forms
-            await handleLeadMagnet(formData);
-            response.message = 'Check your email for the Enterprise Revenue Forecasting Blueprint download link!';
-        } else {
-            // Handle application forms
-            const applicationResult = await handleApplication(formData);
-            response = { ...response, ...applicationResult };
+        try {
+            if (isLeadMagnet) {
+                // Handle lead magnet forms
+                await handleLeadMagnet(formData);
+                response.message = 'Check your email for the Enterprise Revenue Forecasting Blueprint download link!';
+            } else {
+                // Handle application forms
+                const applicationResult = await handleApplication(formData);
+                response = { ...response, ...applicationResult };
+            }
+        } catch (emailError) {
+            console.error('Email sending failed:', emailError);
+            // Continue processing even if email fails
+            response.emailWarning = 'Form submitted but email may be delayed';
         }
 
-        // Save to Airtable (except urgency checks)
-        if (formData.formType !== 'urgency-check') {
-            await saveToAirtable(formData, response);
+        // Save to Airtable (don't fail if this doesn't work)
+        try {
+            if (formData.formType !== 'urgency-check') {
+                await saveToAirtable(formData, response);
+            }
+        } catch (airtableError) {
+            console.error('Airtable save failed, but continuing:', airtableError);
+            // Don't fail the whole request if Airtable fails
         }
 
-        // ✅ NEW: Always include updated urgency data in response
+        // ✅ Always include updated urgency data in response
         response.urgencyData = urgencyData;
 
         return {
@@ -77,6 +105,7 @@ exports.handler = async (event, context) => {
             statusCode: 500,
             body: JSON.stringify({ 
                 error: 'Internal server error',
+                message: 'Something went wrong. Please try again or contact us at tech@skillaipath.com',
                 details: error.message 
             })
         };
@@ -199,7 +228,15 @@ function getNextMondayTime() {
 }
 
 async function handleLeadMagnet(formData) {
+    // Validate we have required data
+    if (!formData.email) {
+        throw new Error('Email is required for blueprint delivery');
+    }
+    
     const templateId = process.env.SENDGRID_BLUEPRINT_TEMPLATE_ID || 'd-your-template-id-here';
+    
+    // Use the name that's available
+    const customerName = formData.name || formData.first_name || 'Future Enterprise Builder';
     
     const msg = {
         to: formData.email,
@@ -209,7 +246,7 @@ async function handleLeadMagnet(formData) {
         },
         templateId: templateId,
         dynamicTemplateData: {
-            CUSTOMER_NAME: formData.name || 'Future Enterprise Builder',
+            CUSTOMER_NAME: customerName,
             email: formData.email,
             downloadDate: new Date().toLocaleDateString('en-IN', {
                 weekday: 'long',
@@ -222,13 +259,20 @@ async function handleLeadMagnet(formData) {
         }
     };
 
-    await sgMail.send(msg);
-    console.log('Blueprint email sent to:', formData.email);
+    console.log('Sending blueprint email to:', formData.email, 'with template:', templateId);
     
-    // If user opted for updates, add them to marketing list
-    if (formData.updates) {
-        console.log('User opted for marketing updates:', formData.email);
-        // Add to marketing automation here if needed
+    try {
+        await sgMail.send(msg);
+        console.log('Blueprint email sent successfully to:', formData.email);
+        
+        // If user opted for updates, add them to marketing list
+        if (formData.updates) {
+            console.log('User opted for marketing updates:', formData.email);
+            // Add to marketing automation here if needed
+        }
+    } catch (emailError) {
+        console.error('SendGrid email failed:', emailError);
+        throw new Error(`Email delivery failed: ${emailError.message}`);
     }
 }
 
@@ -289,11 +333,6 @@ async function sendAdminNotification(formData, score, tier) {
         ? `${formData.first_name} ${formData.last_name}`
         : formData.name || 'No name provided';
         
-    const phoneDisplay = formData.phone ? formData.phone : 'Not provided';
-    const whatsappLink = formData.phone ? 
-        `<a href="https://wa.me/${formData.phone.replace(/[^0-9]/g, '')}">${formData.phone}</a>` : 
-        'No WhatsApp available';
-        
     const adminMsg = {
         to: 'tech@skillaipath.com',
         from: {
@@ -307,28 +346,25 @@ async function sendAdminNotification(formData, score, tier) {
                 <h3>Applicant Details:</h3>
                 <p><strong>Name:</strong> ${fullName}</p>
                 <p><strong>Email:</strong> ${formData.email}</p>
-                <p><strong>Phone:</strong> ${phoneDisplay}</p>
-                <p><strong>Interest:</strong> ${formData.interest || 'N/A (Lead Magnet)'}</p>
-                <p><strong>Status:</strong> ${formData.status || 'N/A (Lead Magnet)'}</p>
+                <p><strong>Phone:</strong> ${formData.phone}</p>
+                <p><strong>Interest:</strong> ${formData.interest}</p>
+                <p><strong>Status:</strong> ${formData.status}</p>
                 <p><strong>Priority Score:</strong> ${score}/100 (${tier})</p>
                 <p><strong>Source:</strong> ${getFormSource(formData.formType)}</p>
             </div>
-            ${formData.challenge ? `
             <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin: 20px 0;">
                 <h3>Challenge/Goals:</h3>
                 <p>${formData.challenge}</p>
             </div>
-            ` : ''}
             <div style="background: #f3e5f5; padding: 15px; border-radius: 8px; margin: 20px 0;">
                 <h3>Quick Actions:</h3>
-                <p>📞 WhatsApp: ${whatsappLink}</p>
+                <p>📞 WhatsApp: <a href="https://wa.me/${formData.phone?.replace(/[^0-9]/g, '')}">${formData.phone}</a></p>
                 <p>📧 Email: <a href="mailto:${formData.email}">${formData.email}</a></p>
             </div>
             <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 20px 0;">
                 <h3>Consent Status:</h3>
                 <p><strong>Marketing Updates:</strong> ${formData.updates ? '✅ Yes' : '❌ No'}</p>
                 <p><strong>Privacy Policy:</strong> ${formData.privacy ? '✅ Agreed' : '❌ Not Agreed'}</p>
-                <p><strong>Phone Provided:</strong> ${formData.phone ? '✅ Yes' : '❌ No'}</p>
             </div>
         `
     };
@@ -337,24 +373,55 @@ async function sendAdminNotification(formData, score, tier) {
 }
 
 async function saveToAirtable(formData, responseData) {
-    const recordData = {
-        'Name': formData.name || '',
-        'First Name': formData.first_name || formData.name || '',
-        'Last Name': formData.last_name || '',
-        'Email': formData.email || '',
-        'Phone': formData.phone || '', // ✅ Now handles phone from all forms
-        'Interest': formData.interest || '',
-        'Status': formData.status || '',
-        'Challenge': formData.challenge || '',
-        'Form Type': formData.formType || 'unknown',
-        'Submission Date': new Date().toISOString(),
-        'Priority Score': responseData.score || 0,
-        'Priority Tier': responseData.tier || 'STANDARD',
-        'Privacy Consent': formData.privacy ? 'Yes' : 'No',
-        'Marketing Consent': formData.updates ? 'Yes' : 'No',
-        'Source': getFormSource(formData.formType),
-        'Has Phone': formData.phone ? 'Yes' : 'No' // ✅ Track if phone was provided
-    };
+    // Create a clean record object with only the fields that exist
+    const recordData = {};
+    
+    // Handle name fields - use what's available
+    if (formData.name) {
+        recordData['Name'] = formData.name;
+    }
+    if (formData.first_name) {
+        recordData['First Name'] = formData.first_name;
+    }
+    if (formData.last_name) {
+        recordData['Last Name'] = formData.last_name;
+    }
+    
+    // Essential fields that should always be present
+    if (formData.email) {
+        recordData['Email'] = formData.email;
+    }
+    
+    // Optional fields - only add if they exist
+    if (formData.phone) {
+        recordData['Phone'] = formData.phone;
+    }
+    if (formData.interest) {
+        recordData['Interest'] = formData.interest;
+    }
+    if (formData.status) {
+        recordData['Status'] = formData.status;
+    }
+    if (formData.challenge) {
+        recordData['Challenge'] = formData.challenge;
+    }
+    
+    // Always include these tracking fields
+    recordData['Form Type'] = formData.formType || 'unknown';
+    recordData['Submission Date'] = new Date().toISOString();
+    recordData['Source'] = getFormSource(formData.formType);
+    
+    // Handle consent fields - convert boolean to string
+    recordData['Privacy Consent'] = formData.privacy ? 'Yes' : 'No';
+    recordData['Marketing Consent'] = formData.updates ? 'Yes' : 'No';
+    
+    // Only add scoring fields for application forms (not lead magnets)
+    if (responseData.score !== undefined) {
+        recordData['Priority Score'] = responseData.score;
+    }
+    if (responseData.tier) {
+        recordData['Priority Tier'] = responseData.tier;
+    }
 
     console.log('Saving to Airtable:', recordData);
 
@@ -364,17 +431,22 @@ async function saveToAirtable(formData, responseData) {
         return record;
     } catch (error) {
         console.error('Airtable save error:', error);
-        throw new Error(`Failed to save to Airtable: ${error.message}`);
+        console.error('Failed record data:', recordData);
+        
+        // If Airtable fails, don't throw error - just log it
+        // The form submission should still succeed
+        console.error('Continuing without Airtable save due to error:', error.message);
+        return null;
     }
 }
 
 function getFormSource(formType) {
     const sources = {
-        'lead-magnet': 'Lead Magnet - Main Section (3 fields)',
-        'landing-popup': 'Landing Popup - Timed (3 fields)',
-        'exit-intent': 'Exit Intent Popup (3 fields)', 
-        'contact': 'Contact Form - Main (Full Application)',
-        'popup': 'Application Popup (Full Application)'
+        'lead-magnet': 'Lead Magnet - Main Section',
+        'landing-popup': 'Landing Popup - Timed',
+        'exit-intent': 'Exit Intent Popup',
+        'contact': 'Contact Form - Main',
+        'popup': 'Application Popup'
     };
     return sources[formType] || 'Unknown Source';
 }
