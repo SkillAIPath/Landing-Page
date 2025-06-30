@@ -1,18 +1,51 @@
 // netlify/functions/process-lead.js
-const sgMail = require('@sendgrid/mail');
-const Airtable = require('airtable');
+let sgMail, Airtable, base;
 
-// Initialize SendGrid
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+// Try to initialize external services with error handling
+try {
+    sgMail = require('@sendgrid/mail');
+    if (process.env.SENDGRID_API_KEY) {
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+        console.log('✅ SendGrid initialized');
+    } else {
+        console.log('⚠️ No SendGrid API key found');
+    }
+} catch (error) {
+    console.log('⚠️ SendGrid not available:', error.message);
+}
 
-// Initialize Airtable
-const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
+try {
+    Airtable = require('airtable');
+    if (process.env.AIRTABLE_API_KEY && process.env.AIRTABLE_BASE_ID) {
+        base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
+        console.log('✅ Airtable initialized');
+    } else {
+        console.log('⚠️ Missing Airtable credentials:', {
+            hasApiKey: !!process.env.AIRTABLE_API_KEY,
+            hasBaseId: !!process.env.AIRTABLE_BASE_ID
+        });
+    }
+} catch (error) {
+    console.log('⚠️ Airtable not available:', error.message);
+}
 
 exports.handler = async (event, context) => {
-    // Only allow POST requests
+    // Handle CORS
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Content-Type': 'application/json'
+    };
+    
+    if (event.httpMethod === 'OPTIONS') {
+        return { statusCode: 200, headers, body: 'OK' };
+    }
+
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405,
+            headers,
             body: JSON.stringify({ error: 'Method not allowed' })
         };
     }
@@ -36,6 +69,7 @@ exports.handler = async (event, context) => {
         if (formData.formType === 'urgency-check') {
             return {
                 statusCode: 200,
+                headers,
                 body: JSON.stringify({
                     success: true,
                     urgencyData: urgencyData,
@@ -48,6 +82,7 @@ exports.handler = async (event, context) => {
         if (!formData.email) {
             return {
                 statusCode: 400,
+                headers,
                 body: JSON.stringify({ 
                     error: 'Email is required',
                     message: 'Please provide a valid email address'
@@ -64,30 +99,27 @@ exports.handler = async (event, context) => {
             urgencyData: urgencyData
         };
 
+        // Handle email sending
         try {
             if (isLeadMagnet) {
-                // Handle lead magnet forms
                 await handleLeadMagnet(formData);
                 response.message = 'Check your email for the Enterprise Revenue Forecasting Blueprint download link!';
             } else {
-                // Handle application forms
                 const applicationResult = await handleApplication(formData);
                 response = { ...response, ...applicationResult };
             }
         } catch (emailError) {
             console.error('Email sending failed:', emailError);
-            // Continue processing even if email fails
             response.emailWarning = 'Form submitted but email may be delayed';
         }
 
-        // Save to Airtable (don't fail if this doesn't work)
+        // Save to Airtable
         try {
             if (formData.formType !== 'urgency-check') {
                 await saveToAirtable(formData, response);
             }
         } catch (airtableError) {
             console.error('Airtable save failed, but continuing:', airtableError);
-            // Don't fail the whole request if Airtable fails
             response.airtableWarning = 'Data saved locally but sync may be delayed';
         }
 
@@ -96,6 +128,7 @@ exports.handler = async (event, context) => {
 
         return {
             statusCode: 200,
+            headers,
             body: JSON.stringify(response)
         };
 
@@ -104,6 +137,7 @@ exports.handler = async (event, context) => {
         
         return {
             statusCode: 500,
+            headers,
             body: JSON.stringify({ 
                 error: 'Internal server error',
                 message: 'Something went wrong. Please try again or contact us at tech@skillaipath.com',
@@ -113,83 +147,69 @@ exports.handler = async (event, context) => {
     }
 };
 
-// Calculate dynamic urgency data with CORRECT MATH
+// Calculate dynamic urgency data
 function calculateUrgencyData() {
     const now = new Date();
-    const currentDay = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
+    const currentDay = now.getDay();
     const currentHour = now.getHours();
     
-    // Base slot tracking
     let slotsRemaining = 0;
     let totalSlots = 30;
     let isActive = true;
     let statusMessage = '';
     
-    // Check if it's Monday (1) or Tuesday (2)
     if (currentDay === 1 || currentDay === 2) {
         slotsRemaining = 0;
         isActive = false;
         statusMessage = 'Review cycle closed - reopens Wednesday';
     } else {
-        // Wednesday through Sunday - active period
         isActive = true;
+        const seed = getWeekSeed();
+        const randomFactor = (seed % 5) + 1;
         
-        // Calculate base slots with some randomization
-        const seed = getWeekSeed(); // Consistent seed for the week
-        const randomFactor = (seed % 5) + 1; // 1-5 additional variance
-        
-        if (currentDay === 3) { // Wednesday
-            slotsRemaining = 21 + randomFactor; // 22-26 slots
-            totalSlots = 30; // Keep total consistent
-        } else if (currentDay === 4) { // Thursday
-            slotsRemaining = 16 + Math.floor(randomFactor/2); // 16-18 slots
-            totalSlots = 30;
-        } else if (currentDay === 5) { // Friday
-            slotsRemaining = 11 + Math.floor(randomFactor/3); // 11-12 slots
-            totalSlots = 30;
-        } else if (currentDay === 6) { // Saturday
-            slotsRemaining = 6 + Math.floor(randomFactor/5); // 6-7 slots
-            totalSlots = 30;
-        } else if (currentDay === 0) { // Sunday
-            slotsRemaining = 2 + (randomFactor > 3 ? 1 : 0); // 2-3 slots
-            totalSlots = 30;
+        if (currentDay === 3) {
+            slotsRemaining = 21 + randomFactor;
+        } else if (currentDay === 4) {
+            slotsRemaining = 16 + Math.floor(randomFactor/2);
+        } else if (currentDay === 5) {
+            slotsRemaining = 11 + Math.floor(randomFactor/3);
+        } else if (currentDay === 6) {
+            slotsRemaining = 6 + Math.floor(randomFactor/5);
+        } else if (currentDay === 0) {
+            slotsRemaining = 2 + (randomFactor > 3 ? 1 : 0);
         }
         
-        // Add hourly variance (decrease throughout the day)
         if (currentHour > 12) {
-            const hourlyDecrease = Math.floor((currentHour - 12) / 3); // Decrease every 3 hours after noon
+            const hourlyDecrease = Math.floor((currentHour - 12) / 3);
             slotsRemaining = Math.max(1, slotsRemaining - hourlyDecrease);
         }
         
-        // Generate realistic status messages with correct numbers AFTER hourly adjustments
         const slotsFilled = totalSlots - slotsRemaining;
         
-        if (currentDay === 3) { // Wednesday  
+        if (currentDay === 3) {
             statusMessage = `Fresh batch opened! ${slotsFilled} early applications received`;
-        } else if (currentDay === 4) { // Thursday
-            const todayFilled = Math.min(4, Math.floor(Math.random() * 3) + 2); // 2-4 today
+        } else if (currentDay === 4) {
+            const todayFilled = Math.min(4, Math.floor(Math.random() * 3) + 2);
             statusMessage = `${todayFilled} professionals applied today (${slotsFilled} total this week)`;
-        } else if (currentDay === 5) { // Friday
-            const todayFilled = Math.min(5, Math.floor(Math.random() * 4) + 3); // 3-6 today  
+        } else if (currentDay === 5) {
+            const todayFilled = Math.min(5, Math.floor(Math.random() * 4) + 3);
             statusMessage = `Weekend rush - ${todayFilled} applications since morning`;
-        } else if (currentDay === 6) { // Saturday
+        } else if (currentDay === 6) {
             statusMessage = `${slotsFilled} spots filled this week - ${slotsRemaining} final weekend slots`;
-        } else if (currentDay === 0) { // Sunday
+        } else if (currentDay === 0) {
             statusMessage = `${slotsFilled} applications this week - only ${slotsRemaining} slots before Monday reset`;
         }
     }
     
-    // CORRECT MATH: Calculate filled slots and percentage
     const slotsFilled = totalSlots - slotsRemaining;
     const progressPercentage = isActive ? Math.round((slotsFilled / totalSlots) * 100) : 0;
     
-    // Calculate next reset time
     const nextReset = getNextMondayTime();
     const timeRemaining = nextReset - now;
     
     return {
         slotsRemaining,
-        slotsFilled, // ✅ NEW: Correct filled count
+        slotsFilled,
         totalSlots,
         isActive,
         statusMessage,
@@ -200,49 +220,37 @@ function calculateUrgencyData() {
     };
 }
 
-// Get consistent weekly seed for randomization
 function getWeekSeed() {
     const now = new Date();
     const startOfWeek = new Date(now);
-    
-    // Get Monday of current week
     const day = now.getDay();
     const diff = now.getDate() - day + (day === 0 ? -6 : 1);
     startOfWeek.setDate(diff);
     startOfWeek.setHours(0, 0, 0, 0);
-    
-    // Use week start timestamp as seed
     return Math.floor(startOfWeek.getTime() / 1000);
 }
 
 function getNextMondayTime() {
     const now = new Date();
     const nextMonday = new Date();
-    
     const daysUntilMonday = (8 - now.getDay()) % 7;
     const daysToAdd = daysUntilMonday === 0 ? 7 : daysUntilMonday;
-    
     nextMonday.setDate(now.getDate() + daysToAdd);
     nextMonday.setHours(0, 0, 0, 0);
-    
     return nextMonday;
 }
 
 async function handleLeadMagnet(formData) {
-    // Skip email if no SendGrid key
-    if (!process.env.SENDGRID_API_KEY) {
-        console.log('No SendGrid API key - skipping email');
+    if (!sgMail || !process.env.SENDGRID_API_KEY) {
+        console.log('SendGrid not available - skipping email');
         return;
     }
     
-    // Validate we have required data
     if (!formData.email) {
         throw new Error('Email is required for blueprint delivery');
     }
     
     const templateId = process.env.SENDGRID_BLUEPRINT_TEMPLATE_ID || 'd-your-template-id-here';
-    
-    // Use the name that's available
     const customerName = formData.name || formData.first_name || 'Future Enterprise Builder';
     
     const msg = {
@@ -266,36 +274,20 @@ async function handleLeadMagnet(formData) {
         }
     };
 
-    console.log('Sending blueprint email to:', formData.email, 'with template:', templateId);
-    
-    try {
-        await sgMail.send(msg);
-        console.log('Blueprint email sent successfully to:', formData.email);
-        
-        // If user opted for updates, add them to marketing list
-        if (formData.updates) {
-            console.log('User opted for marketing updates:', formData.email);
-            // Add to marketing automation here if needed
-        }
-    } catch (emailError) {
-        console.error('SendGrid email failed:', emailError);
-        throw new Error(`Email delivery failed: ${emailError.message}`);
-    }
+    console.log('Sending blueprint email to:', formData.email);
+    await sgMail.send(msg);
+    console.log('Blueprint email sent successfully');
 }
 
 async function handleApplication(formData) {
-    // Skip email if no SendGrid key
-    if (!process.env.SENDGRID_API_KEY) {
-        console.log('No SendGrid API key - skipping admin notification');
-        return { score: 75, tier: 'STANDARD' };
-    }
-    
-    // Calculate priority score
     const score = calculatePriorityScore(formData);
     const tier = getPriorityTier(score);
     
-    // Send notification email to admin
-    await sendAdminNotification(formData, score, tier);
+    if (sgMail && process.env.SENDGRID_API_KEY) {
+        await sendAdminNotification(formData, score, tier);
+    } else {
+        console.log('SendGrid not available - skipping admin notification');
+    }
     
     return {
         score: score,
@@ -305,9 +297,8 @@ async function handleApplication(formData) {
 }
 
 function calculatePriorityScore(formData) {
-    let score = 50; // Base score
+    let score = 50;
     
-    // Status scoring
     const statusScores = {
         'Professional': 25,
         'Career Change': 20,
@@ -317,7 +308,6 @@ function calculatePriorityScore(formData) {
     };
     score += statusScores[formData.status] || 0;
     
-    // Interest/Goal scoring
     const interestScores = {
         'Data Analytics': 15,
         'Automation': 15,
@@ -327,9 +317,8 @@ function calculatePriorityScore(formData) {
     };
     score += interestScores[formData.interest] || 0;
     
-    // Challenge complexity scoring
     if (formData.challenge && formData.challenge.length > 100) {
-        score += 10; // Detailed challenges get bonus points
+        score += 10;
     }
     
     return Math.min(100, score);
@@ -369,16 +358,6 @@ async function sendAdminNotification(formData, score, tier) {
                 <h3>Challenge/Goals:</h3>
                 <p>${formData.challenge || 'Not provided'}</p>
             </div>
-            <div style="background: #f3e5f5; padding: 15px; border-radius: 8px; margin: 20px 0;">
-                <h3>Quick Actions:</h3>
-                <p>📞 WhatsApp: <a href="https://wa.me/${formData.phone?.replace(/[^0-9]/g, '')}">${formData.phone || 'Not provided'}</a></p>
-                <p>📧 Email: <a href="mailto:${formData.email}">${formData.email}</a></p>
-            </div>
-            <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 20px 0;">
-                <h3>Consent Status:</h3>
-                <p><strong>Marketing Updates:</strong> ${formData.updates ? '✅ Yes' : '❌ No'}</p>
-                <p><strong>Privacy Policy:</strong> ${formData.privacy ? '✅ Agreed' : '❌ Not Agreed'}</p>
-            </div>
         `
     };
 
@@ -386,74 +365,38 @@ async function sendAdminNotification(formData, score, tier) {
 }
 
 async function saveToAirtable(formData, responseData) {
-    // Skip Airtable if no key
-    if (!process.env.AIRTABLE_API_KEY || !process.env.AIRTABLE_BASE_ID) {
-        console.log('No Airtable credentials - skipping save');
+    if (!base || !process.env.AIRTABLE_API_KEY || !process.env.AIRTABLE_BASE_ID) {
+        console.log('Airtable not available - skipping save');
         return null;
     }
     
-    // Create a clean record object matching your existing Airtable schema
     const recordData = {};
     
-    // Handle name fields - use what's available
-    if (formData.name) {
-        recordData['Name'] = formData.name;
-    }
-    if (formData.first_name) {
-        recordData['First Name'] = formData.first_name;
-    }
-    // Note: Last Name field not visible in your schema, skipping
+    if (formData.name) recordData['Name'] = formData.name;
+    if (formData.first_name) recordData['First Name'] = formData.first_name;
+    if (formData.email) recordData['Email'] = formData.email;
+    if (formData.phone) recordData['Phone'] = formData.phone;
+    if (formData.interest) recordData['Interest'] = formData.interest;
+    if (formData.status) recordData['Status'] = formData.status;
+    if (formData.challenge) recordData['Challenge'] = formData.challenge;
     
-    // Essential fields
-    if (formData.email) {
-        recordData['Email'] = formData.email;
-    }
-    
-    // Optional fields - only add if they exist and match your schema
-    if (formData.phone) {
-        recordData['Phone'] = formData.phone;
-    }
-    if (formData.interest) {
-        recordData['Interest'] = formData.interest;
-    }
-    if (formData.status) {
-        recordData['Status'] = formData.status;
-    }
-    if (formData.challenge) {
-        recordData['Challenge'] = formData.challenge;
-    }
-    
-    // Form tracking fields - matching your schema
     recordData['Form Type'] = formData.formType || 'unknown';
     
-    // Handle consent fields - your schema shows "Marketing Consent"
     if (formData.updates !== undefined) {
         recordData['Marketing Consent'] = formData.updates ? 'Yes' : 'No';
     }
     
-    // Your schema shows "Lead Tier" not "Priority Tier"
     if (responseData.tier) {
         recordData['Lead Tier'] = responseData.tier;
     }
     
-    // Only add score if it exists (might not be in your schema)
-    if (responseData.score !== undefined) {
-        // Try both field names in case you have it
-        recordData['Priority Score'] = responseData.score;
-    }
-    
-    // Email sent tracking (your schema shows this field)
     recordData['Email Sent'] = responseData.emailWarning ? 'Failed' : 'Yes';
-    
-    // Created Date will be auto-populated by Airtable
 
-    console.log('Saving to Airtable with your schema:', recordData);
+    console.log('Saving to Airtable:', recordData);
 
     try {
-        // Use the exact table name from your base - try common names
         const tableNames = ['Table 1', 'Applications', 'Leads', 'tblApplications'];
         let record = null;
-        let lastError = null;
         
         for (const tableName of tableNames) {
             try {
@@ -462,31 +405,13 @@ async function saveToAirtable(formData, responseData) {
                 break;
             } catch (tableError) {
                 console.log(`Table "${tableName}" failed:`, tableError.message);
-                lastError = tableError;
                 continue;
             }
-        }
-        
-        if (!record) {
-            console.error('All table attempts failed. Last error:', lastError);
-            // Log the exact error details for debugging
-            if (lastError && lastError.message) {
-                console.error('Airtable error details:', lastError.message);
-                if (lastError.message.includes('field')) {
-                    console.error('Field mismatch detected. Your record data:', recordData);
-                }
-            }
-            throw new Error(`All table names failed. Last error: ${lastError?.message || 'Unknown error'}`);
         }
         
         return record;
     } catch (error) {
         console.error('Airtable save error:', error);
-        console.error('Failed record data:', recordData);
-        
-        // If Airtable fails, don't throw error - just log it
-        // The form submission should still succeed
-        console.error('Continuing without Airtable save due to error:', error.message);
         return null;
     }
 }
