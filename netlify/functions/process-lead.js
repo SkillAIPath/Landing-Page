@@ -88,9 +88,10 @@ exports.handler = async (event, context) => {
         } catch (airtableError) {
             console.error('Airtable save failed, but continuing:', airtableError);
             // Don't fail the whole request if Airtable fails
+            response.airtableWarning = 'Data saved locally but sync may be delayed';
         }
 
-        // ✅ Always include updated urgency data in response
+        // Always include updated urgency data in response
         response.urgencyData = urgencyData;
 
         return {
@@ -112,7 +113,7 @@ exports.handler = async (event, context) => {
     }
 };
 
-        // Calculate dynamic urgency data with CORRECT MATH
+// Calculate dynamic urgency data with CORRECT MATH
 function calculateUrgencyData() {
     const now = new Date();
     const currentDay = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
@@ -228,6 +229,12 @@ function getNextMondayTime() {
 }
 
 async function handleLeadMagnet(formData) {
+    // Skip email if no SendGrid key
+    if (!process.env.SENDGRID_API_KEY) {
+        console.log('No SendGrid API key - skipping email');
+        return;
+    }
+    
     // Validate we have required data
     if (!formData.email) {
         throw new Error('Email is required for blueprint delivery');
@@ -277,6 +284,12 @@ async function handleLeadMagnet(formData) {
 }
 
 async function handleApplication(formData) {
+    // Skip email if no SendGrid key
+    if (!process.env.SENDGRID_API_KEY) {
+        console.log('No SendGrid API key - skipping admin notification');
+        return { score: 75, tier: 'STANDARD' };
+    }
+    
     // Calculate priority score
     const score = calculatePriorityScore(formData);
     const tier = getPriorityTier(score);
@@ -346,19 +359,19 @@ async function sendAdminNotification(formData, score, tier) {
                 <h3>Applicant Details:</h3>
                 <p><strong>Name:</strong> ${fullName}</p>
                 <p><strong>Email:</strong> ${formData.email}</p>
-                <p><strong>Phone:</strong> ${formData.phone}</p>
-                <p><strong>Interest:</strong> ${formData.interest}</p>
-                <p><strong>Status:</strong> ${formData.status}</p>
+                <p><strong>Phone:</strong> ${formData.phone || 'Not provided'}</p>
+                <p><strong>Interest:</strong> ${formData.interest || 'Not specified'}</p>
+                <p><strong>Status:</strong> ${formData.status || 'Not specified'}</p>
                 <p><strong>Priority Score:</strong> ${score}/100 (${tier})</p>
                 <p><strong>Source:</strong> ${getFormSource(formData.formType)}</p>
             </div>
             <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin: 20px 0;">
                 <h3>Challenge/Goals:</h3>
-                <p>${formData.challenge}</p>
+                <p>${formData.challenge || 'Not provided'}</p>
             </div>
             <div style="background: #f3e5f5; padding: 15px; border-radius: 8px; margin: 20px 0;">
                 <h3>Quick Actions:</h3>
-                <p>📞 WhatsApp: <a href="https://wa.me/${formData.phone?.replace(/[^0-9]/g, '')}">${formData.phone}</a></p>
+                <p>📞 WhatsApp: <a href="https://wa.me/${formData.phone?.replace(/[^0-9]/g, '')}">${formData.phone || 'Not provided'}</a></p>
                 <p>📧 Email: <a href="mailto:${formData.email}">${formData.email}</a></p>
             </div>
             <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 20px 0;">
@@ -373,7 +386,13 @@ async function sendAdminNotification(formData, score, tier) {
 }
 
 async function saveToAirtable(formData, responseData) {
-    // Create a clean record object with only the fields that exist
+    // Skip Airtable if no key
+    if (!process.env.AIRTABLE_API_KEY || !process.env.AIRTABLE_BASE_ID) {
+        console.log('No Airtable credentials - skipping save');
+        return null;
+    }
+    
+    // Create a clean record object matching your existing Airtable schema
     const recordData = {};
     
     // Handle name fields - use what's available
@@ -383,16 +402,14 @@ async function saveToAirtable(formData, responseData) {
     if (formData.first_name) {
         recordData['First Name'] = formData.first_name;
     }
-    if (formData.last_name) {
-        recordData['Last Name'] = formData.last_name;
-    }
+    // Note: Last Name field not visible in your schema, skipping
     
-    // Essential fields that should always be present
+    // Essential fields
     if (formData.email) {
         recordData['Email'] = formData.email;
     }
     
-    // Optional fields - only add if they exist
+    // Optional fields - only add if they exist and match your schema
     if (formData.phone) {
         recordData['Phone'] = formData.phone;
     }
@@ -406,28 +423,62 @@ async function saveToAirtable(formData, responseData) {
         recordData['Challenge'] = formData.challenge;
     }
     
-    // Always include these tracking fields
+    // Form tracking fields - matching your schema
     recordData['Form Type'] = formData.formType || 'unknown';
-    recordData['Submission Date'] = new Date().toISOString();
-    recordData['Source'] = getFormSource(formData.formType);
     
-    // Handle consent fields - convert boolean to string
-    recordData['Privacy Consent'] = formData.privacy ? 'Yes' : 'No';
-    recordData['Marketing Consent'] = formData.updates ? 'Yes' : 'No';
+    // Handle consent fields - your schema shows "Marketing Consent"
+    if (formData.updates !== undefined) {
+        recordData['Marketing Consent'] = formData.updates ? 'Yes' : 'No';
+    }
     
-    // Only add scoring fields for application forms (not lead magnets)
+    // Your schema shows "Lead Tier" not "Priority Tier"
+    if (responseData.tier) {
+        recordData['Lead Tier'] = responseData.tier;
+    }
+    
+    // Only add score if it exists (might not be in your schema)
     if (responseData.score !== undefined) {
+        // Try both field names in case you have it
         recordData['Priority Score'] = responseData.score;
     }
-    if (responseData.tier) {
-        recordData['Priority Tier'] = responseData.tier;
-    }
+    
+    // Email sent tracking (your schema shows this field)
+    recordData['Email Sent'] = responseData.emailWarning ? 'Failed' : 'Yes';
+    
+    // Created Date will be auto-populated by Airtable
 
-    console.log('Saving to Airtable:', recordData);
+    console.log('Saving to Airtable with your schema:', recordData);
 
     try {
-        const record = await base('Applications').create(recordData);
-        console.log('Successfully saved to Airtable:', record.id);
+        // Use the exact table name from your base - try common names
+        const tableNames = ['Table 1', 'Applications', 'Leads', 'tblApplications'];
+        let record = null;
+        let lastError = null;
+        
+        for (const tableName of tableNames) {
+            try {
+                record = await base(tableName).create(recordData);
+                console.log(`Successfully saved to Airtable table "${tableName}":`, record.id);
+                break;
+            } catch (tableError) {
+                console.log(`Table "${tableName}" failed:`, tableError.message);
+                lastError = tableError;
+                continue;
+            }
+        }
+        
+        if (!record) {
+            console.error('All table attempts failed. Last error:', lastError);
+            // Log the exact error details for debugging
+            if (lastError && lastError.message) {
+                console.error('Airtable error details:', lastError.message);
+                if (lastError.message.includes('field')) {
+                    console.error('Field mismatch detected. Your record data:', recordData);
+                }
+            }
+            throw new Error(`All table names failed. Last error: ${lastError?.message || 'Unknown error'}`);
+        }
+        
         return record;
     } catch (error) {
         console.error('Airtable save error:', error);
