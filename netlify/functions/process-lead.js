@@ -224,7 +224,7 @@ async function sendAdminNotification(formData, score, tier) {
     console.log('📧 Preparing admin email for:', fullName);
         
     const msg = {
-        to: 'tech@skillaipath.com',
+        to: [formData.email, 'tech@skillaipath.com'],
         from: {
             email: 'tech@skillaipath.com',
             name: 'Skill AI Path Application System'
@@ -249,6 +249,29 @@ async function sendAdminNotification(formData, score, tier) {
     return result;
 }
 
+const interestMap = {
+  'Data Analytics': 'Build analytics solutions',
+  'Automation': 'Create automation',
+  'Freelancing Pro': 'Master client delivery',
+  'Career Mastery': 'Plan career transition',
+  'Need Guidance': 'Need track guidance'
+};
+
+const statusMap = {
+  'Student': 'College Student',
+  'Graduate': 'Recent Graduate',
+  'Professional': 'Working Professional',
+  'Career Change': 'Planning Career Change',
+  'Entrepreneur': 'Building Business'
+};
+
+const tierMap = {
+  HIGH: 'HOT',
+  MEDIUM: 'WARM',
+  STANDARD: 'COLD'
+};
+
+
 // Rest of the functions remain the same...
 async function saveToAirtable(formData, responseData) {
     if (!base) return null;
@@ -258,20 +281,31 @@ async function saveToAirtable(formData, responseData) {
     if (formData.first_name) recordData['First Name'] = formData.first_name;
     if (formData.email) recordData['Email'] = formData.email;
     if (formData.phone) recordData['Phone'] = formData.phone;
-    if (formData.interest) recordData['Interest'] = formData.interest;
-    if (formData.status) recordData['Status'] = formData.status;
+    // if (formData.interest) recordData['Interest'] = formData.interest;
+    if (formData.interest && interestMap[formData.interest]) {
+        recordData['Interest'] = interestMap[formData.interest];
+    }
+    // if (formData.status) recordData['Status'] = formData.status;
+    if (formData.status && statusMap[formData.status]) {
+        recordData['Status'] = statusMap[formData.status];
+    }
     if (formData.challenge) recordData['Challenge'] = formData.challenge;
     recordData['Form Type'] = formData.formType || 'unknown';
     if (formData.updates !== undefined) {
         recordData['Marketing Consent'] = formData.updates ? 'Yes' : 'No';
     }
-    if (responseData.tier) {
-        recordData['Lead Tier'] = responseData.tier;
+    // if (responseData.tier) {
+    //     recordData['Lead Tier'] = responseData.tier;
+    // }
+    if (responseData.tier && tierMap[responseData.tier]) {
+        recordData['Lead Tier'] = tierMap[responseData.tier];
     }
-    recordData['Email Sent'] = responseData.emailSent ? 'Yes' : 'Failed';
+    // recordData['Email Sent'] = responseData.emailSent ? 'Yes' : 'Failed';
+    recordData['Email Sent'] = responseData.emailSent === true;
+
 
     try {
-        const record = await base('Table 1').create(recordData);
+        const record = await base('tblALnkQGWD2zWRSw').create(recordData);
         console.log('✅ Airtable saved:', record.id);
         return record;
     } catch (error) {
