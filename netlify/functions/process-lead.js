@@ -507,18 +507,25 @@ async function handleApplication(formData) {
     };
 }
 async function getTemplateByScore(score) {
+  let fileName = 'basic-qualified.html';
 
-    let fileName = 'basic-qualified.html';
+  if (score > 45 && score <= 75) {
+    fileName = 'standard-qualified.html';
+  } else if (score > 75) {
+    fileName = 'priority-qualified.html';
+  }
 
-    if (score > 45 && score <= 75) {
-        fileName = 'standard-qualified.html';
-    } else if (score > 75) {
-        fileName = 'priority-qualified.html';
-    }
+  const siteUrl = process.env.URL || 'https://skillaipath.com/';
+  const templateUrl = `${siteUrl}/booking-pages/${fileName}`;
 
-    const filePath = path.join(__dirname, 'templates', fileName);
-    return fs.readFile(filePath, 'utf-8');
+  console.log('🌐 Fetching template from:', templateUrl);
+
+  const res = await fetch(templateUrl);
+  if (!res.ok) throw new Error(`Failed to fetch template: ${res.statusText}`);
+
+  return await res.text();
 }
+
 
 
 
