@@ -1,13 +1,13 @@
-// netlify/functions/process-lead.js - DIAGNOSTIC VERSION
+// netlify/functions/process-lead.js - UPDATED WITH BOOKING REDIRECTS
 const sgMail = require('@sendgrid/mail');
 const Airtable = require('airtable');
 
-// Initialize SendGrid with detailed logging
+// Initialize SendGrid
 if (process.env.SENDGRID_API_KEY) {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    console.log('✅ SendGrid initialized with key:', process.env.SENDGRID_API_KEY?.substring(0, 10) + '...');
+    console.log('✅ SendGrid initialized');
 } else {
-    console.log('❌ SENDGRID_API_KEY missing completely');
+    console.log('❌ SENDGRID_API_KEY missing');
 }
 
 // Initialize Airtable
@@ -44,11 +44,10 @@ exports.handler = async (event, context) => {
     try {
         const formData = JSON.parse(event.body);
         
-        console.log('📝 Form submission details:', {
+        console.log('📝 Form submission:', {
             formType: formData.formType,
             email: formData.email,
-            hasName: !!formData.name || !!formData.first_name,
-            allKeys: Object.keys(formData)
+            hasName: !!formData.name || !!formData.first_name
         });
         
         const urgencyData = calculateUrgencyData();
@@ -70,59 +69,42 @@ exports.handler = async (event, context) => {
                 statusCode: 400,
                 headers,
                 body: JSON.stringify({ 
-                    error: 'Email is required',
-                    message: 'Please provide a valid email address'
+                    error: 'Email is required'
                 })
             };
         }
         
         const isLeadMagnet = ['lead-magnet', 'landing-popup', 'exit-intent'].includes(formData.formType);
-        console.log('📧 Email type determined:', { isLeadMagnet, formType: formData.formType });
         
         let response = {
             success: true,
-            urgencyData: urgencyData,
-            debugInfo: {
-                hasApiKey: !!process.env.SENDGRID_API_KEY,
-                apiKeyLength: process.env.SENDGRID_API_KEY?.length || 0,
-                formType: formData.formType,
-                isLeadMagnet: isLeadMagnet
-            }
+            urgencyData: urgencyData
         };
 
-        // Email handling with extensive logging
+        // Email handling
         try {
             if (isLeadMagnet) {
-                console.log('📧 PROCESSING LEAD MAGNET EMAIL...');
+                console.log('📧 Processing lead magnet email...');
                 await sendBlueprintEmail(formData);
                 response.message = 'Success! Check your email for the Enterprise Revenue Forecasting Blueprint download link.';
                 response.emailSent = true;
                 response.emailType = 'blueprint';
-                console.log('✅ Lead magnet email completed successfully');
             } else {
-                console.log('📧 PROCESSING APPLICATION FORM...');
-                console.log('📧 About to call handleApplication...');
+                console.log('📧 Processing application form...');
                 const applicationResult = await handleApplication(formData);
-                console.log('📧 handleApplication returned:', applicationResult);
                 response = { ...response, ...applicationResult };
                 response.emailSent = true;
                 response.emailType = 'admin_notification';
-                console.log('✅ Application form completed successfully');
+                
+                // 🎯 NEW: Determine booking page redirect
+                response.bookingPage = getBookingPageUrl(applicationResult.score);
+                console.log(`📍 Redirect to: ${response.bookingPage}`);
             }
         } catch (emailError) {
-            console.error('❌ EMAIL COMPLETELY FAILED:', emailError);
-            console.error('❌ Error name:', emailError.name);
-            console.error('❌ Error message:', emailError.message);
-            console.error('❌ Error stack:', emailError.stack);
-            
+            console.error('❌ Email failed:', emailError);
             response.emailWarning = 'Form submitted but email failed';
             response.emailSent = false;
             response.emailError = emailError.message;
-            response.errorDetails = {
-                name: emailError.name,
-                message: emailError.message,
-                hasApiKey: !!process.env.SENDGRID_API_KEY
-            };
         }
 
         // Save to Airtable
@@ -142,29 +124,34 @@ exports.handler = async (event, context) => {
         };
 
     } catch (error) {
-        console.error('💥 FUNCTION COMPLETELY FAILED:', error);
+        console.error('💥 Function failed:', error);
         
         return {
             statusCode: 500,
             headers,
             body: JSON.stringify({ 
                 error: 'Internal server error',
-                message: 'Something went wrong. Please try again or contact us at tech@skillaipath.com',
-                details: error.message 
+                message: 'Something went wrong. Please try again or contact us at tech@skillaipath.com'
             })
         };
     }
 };
 
-async function sendBlueprintEmail(formData) {
-    console.log('📧 sendBlueprintEmail called for:', formData.email);
-    
-    if (!process.env.SENDGRID_API_KEY) {
-        throw new Error('SendGrid API key not configured');
+// 🎯 NEW: Determine booking page based on score
+function getBookingPageUrl(score) {
+    if (score <= 45) {
+        return '/booking-pages/basic-qualified.html';
+    } else if (score <= 75) {
+        return '/booking-pages/standard-qualified.html';
+    } else {
+        return '/booking-pages/priority-qualified.html';
     }
+}
+
+async function sendBlueprintEmail(formData) {
+    console.log('📧 Sending blueprint email to:', formData.email);
     
     const customerName = formData.name || formData.first_name || 'Future Enterprise Builder';
-    console.log('📧 Customer name determined:', customerName);
     
     const msg = {
         to: formData.email,
@@ -173,38 +160,50 @@ async function sendBlueprintEmail(formData) {
             name: 'Viresh - Skill AI Path'
         },
         subject: '🎯 Your Enterprise Revenue Forecasting Blueprint is Ready!',
-        html: `<p>Hi ${customerName},</p><p>Your blueprint is ready!</p><p>Download: <a href="https://drive.google.com/drive/folders/11l4e00K4qhioY2p_1BDzco49r6BjSbO4">Click Here</a></p>`
+        html: `
+            <h2>Hi ${customerName},</h2>
+            <p>Thank you for your interest in building real business solutions!</p>
+            <p><strong>Your Enterprise Revenue Forecasting Blueprint is ready for download:</strong></p>
+            <p><a href="https://drive.google.com/drive/folders/11l4e00K4qhioY2p_1BDzco49r6BjSbO4" style="background: #10b981; color: white; padding: 12px 25px; text-decoration: none; border-radius: 8px; display: inline-block; margin: 20px 0;">📥 Download Complete Blueprint</a></p>
+            
+            <h3>What's Inside:</h3>
+            <ul>
+                <li>✅ Complete project architecture & system design</li>
+                <li>✅ Python code with Databricks integration</li>
+                <li>✅ SQL database schema & data pipeline</li>
+                <li>✅ Power BI dashboard templates</li>
+                <li>✅ Business presentation deck</li>
+                <li>✅ Step-by-step implementation guide</li>
+            </ul>
+            
+            <p>Questions? Reply to this email or WhatsApp us at +91 9301310154</p>
+            
+            <p>Best regards,<br>
+            Viresh Gendle<br>
+            Founder, Skill AI Path</p>
+        `
     };
     
-    console.log('📧 About to send blueprint email via SendGrid...');
     const result = await sgMail.send(msg);
-    console.log('✅ Blueprint email sent. SendGrid response:', result[0]?.statusCode);
+    console.log('✅ Blueprint email sent:', result[0]?.statusCode);
     return result;
 }
 
 async function handleApplication(formData) {
-    console.log('📧 handleApplication started');
+    console.log('📧 Handling application');
     
     const score = calculatePriorityScore(formData);
     const tier = getPriorityTier(score);
     
     console.log('📊 Application scored:', { score, tier });
     
-    // Check SendGrid availability
-    if (!process.env.SENDGRID_API_KEY) {
-        console.error('❌ SendGrid API key missing - cannot send admin notification');
-        throw new Error('SendGrid not configured - cannot send admin notification');
-    }
-    
-    console.log('📧 SendGrid available - proceeding with admin notification');
-    console.log('📧 About to call sendAdminNotification...');
-    
+    // Send admin notification
     try {
-        const adminResult = await sendAdminNotification(formData, score, tier);
-        console.log('✅ sendAdminNotification completed successfully:', adminResult?.[0]?.statusCode);
+        await sendAdminNotification(formData, score, tier);
+        console.log('✅ Admin notification sent');
     } catch (adminError) {
-        console.error('❌ sendAdminNotification failed:', adminError);
-        throw adminError; // Re-throw to be caught by parent
+        console.error('❌ Admin notification failed:', adminError);
+        throw adminError;
     }
     
     return {
@@ -215,97 +214,99 @@ async function handleApplication(formData) {
 }
 
 async function sendAdminNotification(formData, score, tier) {
-    console.log('📧 sendAdminNotification called');
-    
     const fullName = formData.first_name && formData.last_name 
         ? `${formData.first_name} ${formData.last_name}`
         : formData.name || 'No name provided';
-    
-    console.log('📧 Preparing admin email for:', fullName);
         
     const msg = {
-        to: [formData.email, 'tech@skillaipath.com'],
+        to: 'tech@skillaipath.com',
         from: {
             email: 'tech@skillaipath.com',
             name: 'Skill AI Path Application System'
         },
-        subject: `🎯 New ${tier} Priority Application - ${fullName}`,
+        subject: `🎯 New ${tier} Priority Application - ${fullName} (Score: ${score})`,
         html: `
             <h2>🎯 New ${tier} Priority Application</h2>
-            <p><strong>Name:</strong> ${fullName}</p>
-            <p><strong>Email:</strong> ${formData.email}</p>
-            <p><strong>Phone:</strong> ${formData.phone || 'Not provided'}</p>
-            <p><strong>Interest:</strong> ${formData.interest || 'Not specified'}</p>
-            <p><strong>Status:</strong> ${formData.status || 'Not specified'}</p>
-            <p><strong>Score:</strong> ${score}/100 (${tier})</p>
-            <p><strong>Challenge:</strong> ${formData.challenge || 'Not provided'}</p>
-            <p><strong>Timestamp:</strong> ${new Date().toLocaleString('en-IN')}</p>
+            <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <p><strong>Name:</strong> ${fullName}</p>
+                <p><strong>Email:</strong> ${formData.email}</p>
+                <p><strong>Phone:</strong> ${formData.phone || 'Not provided'}</p>
+                <p><strong>Interest:</strong> ${formData.interest || 'Not specified'}</p>
+                <p><strong>Status:</strong> ${formData.status || 'Not specified'}</p>
+                <p><strong>Score:</strong> ${score}/100 (${tier})</p>
+                <p><strong>Challenge:</strong> ${formData.challenge || 'Not provided'}</p>
+                <p><strong>Timestamp:</strong> ${new Date().toLocaleString('en-IN')}</p>
+            </div>
+            
+            <h3>Recommended Next Steps:</h3>
+            ${getNextStepsForTier(tier, score)}
+            
+            <p><strong>Booking Page:</strong> ${getBookingPageUrl(score)}</p>
         `
     };
 
-    console.log('📧 About to send admin email to tech@skillaipath.com via SendGrid...');
     const result = await sgMail.send(msg);
-    console.log('✅ Admin email sent. SendGrid response:', result[0]?.statusCode);
+    console.log('✅ Admin email sent:', result[0]?.statusCode);
     return result;
 }
 
-const interestMap = {
-  'Data Analytics': 'Build analytics solutions',
-  'Automation': 'Create automation',
-  'Freelancing Pro': 'Master client delivery',
-  'Career Mastery': 'Plan career transition',
-  'Need Guidance': 'Need track guidance'
-};
+function getNextStepsForTier(tier, score) {
+    if (score <= 45) {
+        return `
+            <ul>
+                <li>🎓 Invite to Free Friday Webinar</li>
+                <li>📞 20-min Guidance Call for qualification</li>
+                <li>👥 WhatsApp Community Access</li>
+                <li>🎯 Foundation Track Consideration</li>
+            </ul>
+        `;
+    } else if (score <= 75) {
+        return `
+            <ul>
+                <li>📞 20-min Strategic Guidance Call</li>
+                <li>📋 60-min Deep Dive Planning Session</li>
+                <li>👥 WhatsApp Community Access</li>
+                <li>🎯 Standard Track Qualification</li>
+            </ul>
+        `;
+    } else {
+        return `
+            <ul>
+                <li>⚡ 45-min Priority Assessment Call</li>
+                <li>📋 60-min Deep Dive Strategy Session</li>
+                <li>👥 WhatsApp Community Access</li>
+                <li>🏆 Priority Track - Immediate Consideration</li>
+            </ul>
+        `;
+    }
+}
 
-const statusMap = {
-  'Student': 'College Student',
-  'Graduate': 'Recent Graduate',
-  'Professional': 'Working Professional',
-  'Career Change': 'Planning Career Change',
-  'Entrepreneur': 'Building Business'
-};
-
-const tierMap = {
-  HIGH: 'HOT',
-  MEDIUM: 'WARM',
-  STANDARD: 'COLD'
-};
-
-
-// Rest of the functions remain the same...
 async function saveToAirtable(formData, responseData) {
     if (!base) return null;
     
-    const recordData = {};
+    const recordData = {
+        'Email': formData.email,
+        'Form Type': formData.formType || 'unknown',
+        'Timestamp': new Date().toISOString(),
+        'Email Sent': responseData.emailSent ? 'Yes' : 'Failed'
+    };
+    
+    // Add optional fields
     if (formData.name) recordData['Name'] = formData.name;
     if (formData.first_name) recordData['First Name'] = formData.first_name;
-    if (formData.email) recordData['Email'] = formData.email;
+    if (formData.last_name) recordData['Last Name'] = formData.last_name;
     if (formData.phone) recordData['Phone'] = formData.phone;
-    // if (formData.interest) recordData['Interest'] = formData.interest;
-    if (formData.interest && interestMap[formData.interest]) {
-        recordData['Interest'] = interestMap[formData.interest];
-    }
-    // if (formData.status) recordData['Status'] = formData.status;
-    if (formData.status && statusMap[formData.status]) {
-        recordData['Status'] = statusMap[formData.status];
-    }
+    if (formData.interest) recordData['Interest'] = formData.interest;
+    if (formData.status) recordData['Status'] = formData.status;
     if (formData.challenge) recordData['Challenge'] = formData.challenge;
-    recordData['Form Type'] = formData.formType || 'unknown';
+    if (responseData.tier) recordData['Lead Tier'] = responseData.tier;
+    if (responseData.score) recordData['Score'] = responseData.score;
     if (formData.updates !== undefined) {
         recordData['Marketing Consent'] = formData.updates ? 'Yes' : 'No';
     }
-    // if (responseData.tier) {
-    //     recordData['Lead Tier'] = responseData.tier;
-    // }
-    if (responseData.tier && tierMap[responseData.tier]) {
-        recordData['Lead Tier'] = tierMap[responseData.tier];
-    }
-    // recordData['Email Sent'] = responseData.emailSent ? 'Yes' : 'Failed';
-    recordData['Email Sent'] = responseData.emailSent === true;
-
 
     try {
-        const record = await base('tblALnkQGWD2zWRSw').create(recordData);
+        const record = await base('Table 1').create(recordData);
         console.log('✅ Airtable saved:', record.id);
         return record;
     } catch (error) {
@@ -316,18 +317,33 @@ async function saveToAirtable(formData, responseData) {
 
 function calculateUrgencyData() {
     const now = new Date();
-    const currentDay = now.getDay();
-    const currentHour = now.getHours();
+    const currentDay = now.getDay(); // 0 = Sunday, 6 = Saturday
     
-    let slotsRemaining = 15;
-    let totalSlots = 30;
+    // Weekly cycle: Monday review, slots available Wed-Sunday
+    let slotsRemaining = 12; // Realistic number
+    let totalSlots = 20; // Realistic weekly capacity
     let isActive = true;
     let statusMessage = 'Active review period';
     
-    if (currentDay === 1 || currentDay === 2) {
+    if (currentDay === 1 || currentDay === 2) { // Monday-Tuesday: Review period
         slotsRemaining = 0;
         isActive = false;
-        statusMessage = 'Review cycle closed - reopens Wednesday';
+        statusMessage = 'Review cycle in progress - reopens Wednesday';
+    } else if (currentDay === 3) { // Wednesday: Fresh start
+        slotsRemaining = 18;
+        statusMessage = 'New review cycle started - priority slots available';
+    } else if (currentDay === 4) { // Thursday
+        slotsRemaining = 14;
+        statusMessage = 'Mid-week applications being processed';
+    } else if (currentDay === 5) { // Friday
+        slotsRemaining = 8;
+        statusMessage = 'Weekend rush - limited slots remaining';
+    } else if (currentDay === 6) { // Saturday
+        slotsRemaining = 4;
+        statusMessage = 'Final weekend slots available';
+    } else if (currentDay === 0) { // Sunday
+        slotsRemaining = 2;
+        statusMessage = 'Last call - review closes Monday';
     }
     
     const slotsFilled = totalSlots - slotsRemaining;
@@ -340,14 +356,15 @@ function calculateUrgencyData() {
         isActive,
         statusMessage,
         progressPercentage,
-        timeRemaining: 24 * 60 * 60 * 1000,
+        timeRemaining: 24 * 60 * 60 * 1000, // 24 hours
         currentDay
     };
 }
 
 function calculatePriorityScore(formData) {
-    let score = 50;
+    let score = 50; // Base score
     
+    // Status-based scoring (more realistic)
     const statusScores = {
         'Professional': 25,
         'Career Change': 20,
@@ -357,6 +374,7 @@ function calculatePriorityScore(formData) {
     };
     score += statusScores[formData.status] || 0;
     
+    // Interest-based scoring
     const interestScores = {
         'Data Analytics': 15,
         'Automation': 15,
@@ -366,6 +384,7 @@ function calculatePriorityScore(formData) {
     };
     score += interestScores[formData.interest] || 0;
     
+    // Challenge description quality
     if (formData.challenge && formData.challenge.length > 100) {
         score += 10;
     }
@@ -374,18 +393,7 @@ function calculatePriorityScore(formData) {
 }
 
 function getPriorityTier(score) {
-    if (score >= 80) return 'HIGH';
-    if (score >= 60) return 'MEDIUM';
-    return 'STANDARD';
-}
-
-function getFormSource(formType) {
-    const sources = {
-        'lead-magnet': 'Lead Magnet - Main Section',
-        'landing-popup': 'Landing Popup - Timed',
-        'exit-intent': 'Exit Intent Popup',
-        'contact': 'Contact Form - Main',
-        'popup': 'Application Popup'
-    };
-    return sources[formType] || 'Unknown Source';
+    if (score <= 45) return 'BASIC';
+    if (score <= 75) return 'STANDARD';
+    return 'PRIORITY';
 }
