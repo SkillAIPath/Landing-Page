@@ -40,6 +40,10 @@
                     <span class="stat-number" id="nextBatchDate" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 2em;font-weight: 800;color: var(--professional-blue);display: block;margin-bottom: 5px;">Loading...</span>
                     <span class="stat-label" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.9em;opacity: 0.9;color: white;">Next Batch Starts</span>
                 </div>
+                <div class="stat-item">
+                    <span class="stat-number">45+</span>
+                    <span class="stat-label">Students Served This Month</span>
+                </div>
             </div>
         </div>
 
@@ -654,6 +658,36 @@ Ready to accelerate my AI & Data journey! 💪`,
                 document.querySelector('.booking-card').style.opacity = '1';
             }, 300);
         });
+
+        // Booking Functions
+        function bookCall(type) {
+            console.log(`Standard candidate booking: ${type}`);
+            
+            if (type === 'consultation') {
+                window.open('https://calendly.com/tech-skillaipath/20-min-guidance-call', '_blank');
+            } else if (type === 'deep-dive') {
+                window.open('https://calendly.com/tech-skillaipath/60-min-deep-dive', '_blank');
+            }
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'standard_booking_clicked', {
+                    'booking_type': type,
+                    'tier': 'standard',
+                    'score_range': '45-75'
+                });
+            }
+        }
+
+        function joinCommunity() {
+            window.open('https://chat.whatsapp.com/Ljq76ZIK1BrHJF50RP3IYE', '_blank');
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'whatsapp_community_clicked', {
+                    'tier': 'standard',
+                    'source': 'booking_page'
+                });
+            }
+        }
 
         // Add entrance animation
         document.querySelector('.booking-card').style.transform = 'translateY(30px)';

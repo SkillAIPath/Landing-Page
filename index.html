@@ -1009,6 +1009,13 @@
             margin-right: 10px;
             width: auto;
             cursor: pointer;
+            display: flex;
+        }
+
+        #leadForm .form-checkbox-wrapper label input[type="checkbox"] {
+            margin-right: 10px;
+            width: auto;
+            cursor: pointer;
         }
 
         .contact-info {
@@ -1674,6 +1681,7 @@
             max-width: 600px;
             width: 100%;
             /* max-height: 90vh; */
+            /* max-height: 90vh; */
             overflow-y: auto;
             position: relative;
             color: white;
@@ -1732,6 +1740,10 @@
         @media (max-height: 600px) {
             .popup-esc-hint {
                 display: none;
+            }
+
+            .popup-content{
+                max-height: 90vh;
             }
 
             .popup-content{
@@ -1861,6 +1873,7 @@
             .landing-popup-body {
                 padding: 25px 20px;
             }
+
 
         }
 
@@ -2042,6 +2055,7 @@
                     <div class="form-checkbox-wrapper">
                         <label style="color: var(--text-secondary);">
                             <input type="checkbox" name="updates"> 
+                            <span>I'd like updates about new projects and learning resources</span>
                             <span>I'd like updates about new projects and learning resources</span>
                         </label>
                     </div>

@@ -40,6 +40,10 @@
                     <span class="stat-number" id="nextBatchDate" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 2em;font-weight: 800;color: var(--friendly-teal);display: block;margin-bottom: 5px;">Loading...</span>
                     <span class="stat-label" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.9em;opacity: 0.9;color: white;">Next Batch Starts</span>
                 </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="nextWebinarDate">Loading...</span>
+                    <span class="stat-label">Free Workshop Available</span>
+                </div>
             </div>
         </div>
 
@@ -629,6 +633,17 @@ Looking forward to our friendly conversation! 😊`,
             return nextMonday;
         }
 
+        function getNextFriday() {
+            const today = new Date();
+            const dayOfWeek = today.getDay();
+            const daysUntilFriday = (5 + 7 - dayOfWeek) % 7 || 7;
+            
+            const nextFriday = new Date(today);
+            nextFriday.setDate(today.getDate() + daysUntilFriday);
+            
+            return nextFriday;
+        }
+
         function formatDate(date) {
             const options = { 
                 month: 'short', 
@@ -649,10 +664,13 @@ Looking forward to our friendly conversation! 😊`,
         // Update dates on page load
         document.addEventListener('DOMContentLoaded', function() {
             const nextMonday = getNextMonday();
+            const nextFriday = getNextFriday();
             const shortDate = formatDate(nextMonday);
+            const fridayDate = formatDate(nextFriday);
             const fullDate = formatFullDate(nextMonday);
             
             document.getElementById('nextBatchDate').textContent = shortDate;
+            document.getElementById('nextWebinarDate').textContent = fridayDate;
             document.getElementById('welcomeBatchDate').textContent = fullDate;
             
             setTimeout(() => {
@@ -660,6 +678,36 @@ Looking forward to our friendly conversation! 😊`,
                 document.querySelector('.booking-card').style.opacity = '1';
             }, 300);
         });
+
+        // Booking Functions
+        function bookCall(type) {
+            console.log(`Basic candidate booking: ${type}`);
+            
+            if (type === 'guidance') {
+                window.open('https://calendly.com/tech-skillaipath/20-min-guidance-call', '_blank');
+            } else if (type === 'webinar') {
+                window.open('https://calendly.com/tech-skillaipath/friday-ai-career-workshop', '_blank');
+            }
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'basic_booking_clicked', {
+                    'booking_type': type,
+                    'tier': 'basic',
+                    'score_range': 'under-45'
+                });
+            }
+        }
+
+        function joinCommunity() {
+            window.open('https://chat.whatsapp.com/Ljq76ZIK1BrHJF50RP3IYE', '_blank');
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'whatsapp_community_clicked', {
+                    'tier': 'basic',
+                    'source': 'booking_page'
+                });
+            }
+        }
 
         // Add entrance animation
         document.querySelector('.booking-card').style.transform = 'translateY(30px)';
