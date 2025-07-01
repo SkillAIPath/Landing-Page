@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✅ Great Application! - Standard Track | Skill AI Path</title>
-    <meta name="description" content="Excellent application! You qualify for our standard track with comprehensive guidance and structured learning path.">
+    <title>✅ Great Application! - Qualified Track | Skill AI Path</title>
+    <meta name="description" content="Excellent application! You qualify for our structured learning track with comprehensive guidance and personalized roadmap.">
     
     <!-- Fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;909&family=JetBrains+Mono:wght@400;500;600;707&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;909&family=Playfair+Display:wght@400;500;600;707;800;909&family=JetBrains+Mono:wght@400;500;600;707&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;909&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;909&family=Playfair+Display:wght@400;500;600;700;800;909&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -18,17 +18,22 @@
         }
         
         :root {
-            /* Professional Color Palette */
+            /* Professional Color Palette - IMPROVED CONTRAST */
             --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
             --success-green: #10b981;
-            --professional-blue: #3b82f6;
+            --professional-blue: #2563eb; /* Darker blue for better contrast */
             --deep-blue: #1e40af;
             --text-primary: #1a202c;
             --text-secondary: #4a5568;
             --text-bright: #ffffff;
+            
+            /* Glass Effects */
             --glassmorphism: rgba(255, 255, 255, 0.15);
             --glassmorphism-strong: rgba(255, 255, 255, 0.25);
+            
+            /* Shadows */
             --shadow-premium: 0 20px 60px rgba(79, 70, 229, 0.2);
+            --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
         
         body {
@@ -48,7 +53,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hexagons" width="30" height="26" patternUnits="userSpaceOnUse"><polygon points="15,2 25,8 25,20 15,26 5,20 5,8" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23hexagons)"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="12.5" cy="12.5" r="1.5" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
             animation: patternMove 30s linear infinite;
             pointer-events: none;
             z-index: 1;
@@ -56,7 +61,7 @@
 
         @keyframes patternMove {
             0% { transform: translate(0, 0); }
-            100% { transform: translate(30px, 26px); }
+            100% { transform: translate(25px, 25px); }
         }
 
         /* Main Container */
@@ -90,7 +95,7 @@
             font-size: 1em;
             font-weight: 700;
             margin-bottom: 25px;
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
         }
 
         .standard-title {
@@ -110,35 +115,35 @@
             line-height: 1.4;
         }
 
-        /* Stats Row */
+        /* Stats Row - IMPROVED VISIBILITY */
         .stats-row {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             margin-bottom: 40px;
         }
 
         .stat-item {
-            background: var(--glassmorphism-strong);
+            background: rgba(255, 255, 255, 0.9); /* More opaque for better contrast */
             backdrop-filter: blur(20px);
             padding: 20px;
             border-radius: 15px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.5);
         }
 
         .stat-number {
             font-size: 2em;
             font-weight: 800;
-            color: var(--professional-blue);
+            color: var(--professional-blue); /* Darker blue for visibility */
             display: block;
             margin-bottom: 5px;
         }
 
         .stat-label {
             font-size: 0.9em;
-            opacity: 0.9;
-            color: white;
+            color: var(--text-primary); /* Dark text for contrast */
+            font-weight: 600;
         }
 
         /* Main Booking Card */
@@ -231,8 +236,8 @@
 
         /* Recommended Path */
         .recommended-path {
-            background: linear-gradient(135deg, #fef7ed, #fff7ed);
-            border: 2px solid #f97316;
+            background: linear-gradient(135deg, #fef3c7, #fef9e6);
+            border: 2px solid #f59e0b;
             border-radius: 15px;
             padding: 25px;
             margin-bottom: 30px;
@@ -263,7 +268,7 @@
 
         .path-options {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 15px;
         }
 
@@ -280,19 +285,21 @@
         .path-option:hover {
             border-color: var(--professional-blue);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
         }
 
         .option-title {
             font-weight: 600;
             color: var(--deep-blue);
             margin-bottom: 8px;
+            font-size: 0.95em;
         }
 
         .option-description {
-            font-size: 0.9em;
+            font-size: 0.85em;
             color: var(--text-secondary);
             margin-bottom: 12px;
+            line-height: 1.3;
         }
 
         .option-cta {
@@ -311,82 +318,6 @@
         .option-cta:hover {
             background: var(--deep-blue);
             transform: translateY(-2px);
-        }
-
-        /* Progress Tracker */
-        .progress-tracker {
-            background: #f0f9ff;
-            border: 2px solid #3b82f6;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-            display: none;
-        }
-
-        .progress-tracker.active {
-            display: block;
-        }
-
-        .progress-title {
-            font-weight: 600;
-            color: #1e40af;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .progress-steps {
-            display: grid;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .progress-step {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px;
-            background: white;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .progress-step.completed {
-            background: #dcfce7;
-            border-left: 4px solid #10b981;
-        }
-
-        .progress-step.active {
-            background: #dbeafe;
-            border-left: 4px solid #3b82f6;
-        }
-
-        /* WhatsApp Button */
-        .whatsapp-confirmation-btn {
-            background: #25D366;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            font-size: 1.1em;
-            margin: 10px 0;
-        }
-
-        .whatsapp-confirmation-btn:hover {
-            background: #128C7E;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-        }
-
-        .whatsapp-confirmation-btn:disabled {
-            background: #94a3b8;
-            cursor: not-allowed;
-            transform: none;
         }
 
         /* Success Stories */
@@ -482,318 +413,6 @@
             font-size: 0.85em;
         }
 
-        /* Booking Modal Styles */
-        .booking-modal { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: rgba(0,0,0,0.8); 
-            display: none; 
-            justify-content: center; 
-            align-items: center; 
-            z-index: 10000; 
-        }
-
-        .booking-modal.active {
-            display: flex;
-        }
-
-        .booking-modal-content { 
-            background: white; 
-            border-radius: 20px; 
-            max-width: 500px; 
-            width: 90%; 
-            padding: 0; 
-            box-shadow: 0 25px 80px rgba(0,0,0,0.3); 
-        }
-
-        .booking-modal-header { 
-            padding: 25px 30px 20px; 
-            border-bottom: 1px solid #e2e8f0; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-        }
-
-        .booking-modal-header h3 { 
-            color: #1a365d; 
-            font-size: 1.3em; 
-            font-weight: 700; 
-            margin: 0; 
-        }
-
-        .booking-modal-close { 
-            background: none; 
-            border: none; 
-            font-size: 2em; 
-            cursor: pointer; 
-            color: #64748b; 
-        }
-
-        .booking-modal-body { 
-            padding: 30px; 
-        }
-
-        .booking-option { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-            padding: 20px; 
-            border: 2px solid #e2e8f0; 
-            border-radius: 15px; 
-            margin-bottom: 15px; 
-            cursor: pointer; 
-            transition: all 0.3s ease; 
-        }
-
-        .booking-option:hover { 
-            border-color: #4f46e5; 
-            transform: translateY(-2px); 
-            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.15); 
-        }
-
-        .booking-option.primary { 
-            border-color: #4f46e5; 
-            background: linear-gradient(135deg, #f8faff, #ffffff); 
-        }
-
-        .booking-icon { 
-            font-size: 2em; 
-        }
-
-        .booking-details { 
-            flex: 1; 
-        }
-
-        .booking-title { 
-            font-weight: 600; 
-            font-size: 1.1em; 
-            margin-bottom: 5px; 
-            color: #1a365d; 
-        }
-
-        .booking-description { 
-            font-size: 0.9em; 
-            color: #64748b; 
-        }
-
-        .booking-arrow { 
-            font-size: 1.5em; 
-            color: #4f46e5; 
-            font-weight: bold; 
-        }
-
-        .booking-modal-footer { 
-            padding: 20px 30px 30px; 
-            text-align: center; 
-        }
-
-        .booking-modal-footer p { 
-            color: #64748b; 
-            font-size: 0.9em; 
-            margin: 0; 
-        }
-
-        /* WhatsApp Confirmation Modal */
-        .whatsapp-confirmation-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 11000;
-        }
-
-        .whatsapp-confirmation-modal.active {
-            display: flex;
-        }
-
-        .whatsapp-confirmation-content {
-            background: white;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 90%;
-            padding: 0;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
-        }
-
-        .whatsapp-confirmation-header {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: white;
-            padding: 30px;
-            border-radius: 20px 20px 0 0;
-            text-align: center;
-        }
-
-        .whatsapp-confirmation-body {
-            padding: 30px;
-        }
-
-        .confirmation-step {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            padding: 15px;
-            background: #f8fafc;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .step-circle {
-            background: #25D366;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .confirmation-action-buttons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .whatsapp-btn {
-            background: #25D366;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .whatsapp-btn:hover {
-            background: #128C7E;
-            transform: translateY(-2px);
-        }
-
-        .close-btn {
-            background: #64748b;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .close-btn:hover {
-            background: #475569;
-        }
-
-        /* NEW: Booking Completion Check Modal */
-        .completion-check-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 12000;
-            backdrop-filter: blur(10px);
-        }
-
-        .completion-check-modal.active {
-            display: flex;
-        }
-
-        .completion-check-content {
-            background: white;
-            border-radius: 20px;
-            max-width: 450px;
-            width: 90%;
-            padding: 0;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
-            text-align: center;
-            animation: modalSlideIn 0.3s ease-out;
-        }
-
-        @keyframes modalSlideIn {
-            from { transform: scale(0.8) translateY(20px); opacity: 0; }
-            to { transform: scale(1) translateY(0); opacity: 1; }
-        }
-
-        .completion-check-header {
-            background: linear-gradient(135deg, #3b82f6, #1e40af);
-            color: white;
-            padding: 30px;
-            border-radius: 20px 20px 0 0;
-        }
-
-        .completion-check-header h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-
-        .completion-check-body {
-            padding: 30px;
-        }
-
-        .completion-question {
-            font-size: 1.1em;
-            color: var(--text-primary);
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-
-        .completion-buttons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .completion-yes {
-            background: #25D366;
-            color: white;
-            padding: 15px 25px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1em;
-        }
-
-        .completion-yes:hover {
-            background: #128C7E;
-            transform: translateY(-2px);
-        }
-
-        .completion-no {
-            background: #e2e8f0;
-            color: var(--text-primary);
-            padding: 15px 25px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1em;
-        }
-
-        .completion-no:hover {
-            background: #cbd5e1;
-            transform: translateY(-2px);
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             .booking-container {
@@ -813,20 +432,7 @@
                 gap: 15px;
             }
 
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-
             .path-options {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .confirmation-action-buttons {
-                grid-template-columns: 1fr;
-            }
-
-            .completion-buttons {
                 grid-template-columns: 1fr;
             }
         }
@@ -861,22 +467,18 @@
             <h1 class="standard-title">Excellent Application!</h1>
             
             <p class="standard-subtitle">
-                Your profile shows great potential. You qualify for our structured learning track with comprehensive guidance and support.
+                Your profile shows great potential. You qualify for our structured learning track with comprehensive guidance and personalized support.
             </p>
 
             <!-- Stats Row -->
             <div class="stats-row">
                 <div class="stat-item">
-                    <span class="stat-number">65+</span>
-                    <span class="stat-label">Your Qualification Score</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">24</span>
-                    <span class="stat-label">Spots Available</span>
-                </div>
-                <div class="stat-item">
                     <span class="stat-number" id="nextBatchDate">Loading...</span>
                     <span class="stat-label">Next Batch Starts</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">45+</span>
+                    <span class="stat-label">Students Served This Month</span>
                 </div>
             </div>
         </div>
@@ -924,46 +526,25 @@
                     <span class="path-title">Recommended for Your Profile</span>
                 </div>
                 <div class="path-description">
-                    Based on your background and goals, I recommend starting with a focused consultation to map out your optimal learning path and timeline.
+                    Based on your background and goals, let's have a focused conversation to map out your optimal learning path and timeline.
                 </div>
                 <div class="path-options">
-                    <div class="path-option" onclick="enhancedBookCall('consultation', 'standard')">
+                    <div class="path-option" onclick="bookCall('consultation')">
                         <div class="option-title">🔍 Strategy Call</div>
-                        <div class="option-description">30-min consultation to plan your roadmap</div>
+                        <div class="option-description">20-min consultation to plan your roadmap</div>
                         <button class="option-cta">Book Free Call</button>
                     </div>
-                    <div class="path-option" onclick="enhancedBookCall('deep-dive', 'standard')">
+                    <div class="path-option" onclick="bookCall('deep-dive')">
                         <div class="option-title">📋 Deep Dive</div>
                         <div class="option-description">60-min detailed planning session</div>
                         <button class="option-cta">Book Deep Dive</button>
                     </div>
-                </div>
-            </div>
-
-            <!-- Progress Tracker -->
-            <div class="progress-tracker" id="progressTracker">
-                <div class="progress-title">
-                    📋 Your Booking Progress
-                </div>
-                <div class="progress-steps">
-                    <div class="progress-step completed" id="step1">
-                        <span>✅</span> <span>Booking method selected</span>
-                    </div>
-                    <div class="progress-step" id="step2">
-                        <span>2.</span> <span>Complete Calendly booking</span>
-                    </div>
-                    <div class="progress-step" id="step3">
-                        <span>3.</span> <span>Send WhatsApp confirmation</span>
+                    <div class="path-option" onclick="joinCommunity()">
+                        <div class="option-title">👥 Join Community</div>
+                        <div class="option-description">Connect with fellow learners</div>
+                        <button class="option-cta">Join WhatsApp</button>
                     </div>
                 </div>
-                
-                <button class="whatsapp-confirmation-btn" id="whatsappConfirmationBtn" onclick="sendWhatsAppConfirmation()" disabled>
-                    📱 Click here after completing Calendly booking
-                </button>
-                
-                <p style="text-align: center; font-size: 0.9em; color: #64748b; margin-top: 10px;">
-                    Complete your Calendly booking first, then return here to send WhatsApp confirmation
-                </p>
             </div>
 
             <!-- Success Stories -->
@@ -1007,448 +588,7 @@
         </div>
     </div>
 
-    <!-- Booking Options Modal -->
-    <div id="bookingModal" class="booking-modal">
-        <div class="booking-modal-content">
-            <div class="booking-modal-header">
-                <h3>🚀 Choose Your Booking Method</h3>
-                <button class="booking-modal-close" onclick="closeBookingModal()">&times;</button>
-            </div>
-            <div class="booking-modal-body">
-                <div class="booking-option primary" onclick="openCalendlyDirect()">
-                    <div class="booking-icon">📅</div>
-                    <div class="booking-details">
-                        <div class="booking-title">Book via Calendly</div>
-                        <div class="booking-description">Quick online scheduling (Recommended)</div>
-                    </div>
-                    <div class="booking-arrow">→</div>
-                </div>
-                
-                <div class="booking-option secondary" onclick="openCalendlyThenWhatsApp()">
-                    <div class="booking-icon">📱</div>
-                    <div class="booking-details">
-                        <div class="booking-title">Calendly + WhatsApp</div>
-                        <div class="booking-description">Book via Calendly, then get WhatsApp confirmation</div>
-                    </div>
-                    <div class="booking-arrow">→</div>
-                </div>
-                
-                <div class="booking-option secondary" onclick="joinWhatsAppCommunity()">
-                    <div class="booking-icon">👥</div>
-                    <div class="booking-details">
-                        <div class="booking-title">Join WhatsApp Community</div>
-                        <div class="booking-description">Connect with learners & get updates</div>
-                    </div>
-                    <div class="booking-arrow">→</div>
-                </div>
-            </div>
-            <div class="booking-modal-footer">
-                <p>All methods are free and secure. Choose what's most convenient for you!</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- WhatsApp Confirmation Modal -->
-    <div id="whatsappConfirmationModal" class="whatsapp-confirmation-modal">
-        <div class="whatsapp-confirmation-content">
-            <div class="whatsapp-confirmation-header">
-                <h3>📱 Calendly + WhatsApp Booking</h3>
-                <p>Complete your consultation booking in 2 simple steps</p>
-            </div>
-            <div class="whatsapp-confirmation-body">
-                <div class="confirmation-step">
-                    <div class="step-circle">1</div>
-                    <div>
-                        <strong>First: Book via Calendly</strong><br>
-                        <span style="color: #64748b; font-size: 0.9em;">We'll open Calendly in a new tab. Complete your booking there.</span>
-                    </div>
-                </div>
-                
-                <div class="confirmation-step">
-                    <div class="step-circle">2</div>
-                    <div>
-                        <strong>Then: Return here for WhatsApp confirmation</strong><br>
-                        <span style="color: #64748b; font-size: 0.9em;">After booking, come back to this page and click the WhatsApp confirmation button</span>
-                    </div>
-                </div>
-
-                <div class="confirmation-action-buttons">
-                    <button class="whatsapp-btn" onclick="proceedWithCalendlyBooking()">
-                        📅 Open Calendly Now
-                    </button>
-                    <button class="close-btn" onclick="closeWhatsAppModal()">
-                        Cancel
-                    </button>
-                </div>
-
-                <p style="text-align: center; margin-top: 15px; font-size: 0.9em; color: #64748b;">
-                    We'll track your progress and enable WhatsApp confirmation after you complete Calendly booking
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- NEW: Booking Completion Check Modal -->
-    <div id="completionCheckModal" class="completion-check-modal">
-        <div class="completion-check-content">
-            <div class="completion-check-header">
-                <h3>📋 Booking Status Check</h3>
-                <p>Let's confirm your Calendly booking progress</p>
-            </div>
-            <div class="completion-check-body">
-                <div class="completion-question">
-                    Did you successfully complete your consultation booking on Calendly?
-                </div>
-                <div class="completion-buttons">
-                    <button class="completion-yes" onclick="handleBookingCompleted()">
-                        ✅ Yes, Booked Successfully
-                    </button>
-                    <button class="completion-no" onclick="handleBookingIncomplete()">
-                        ❌ No, Still Need Help
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // BOOKING CONFIGURATION WITH YOUR ACTUAL CALENDLY URLS
-        const BOOKING_CONFIG = {
-            calendly: {
-                'standard-consultation': 'https://calendly.com/tech-skillaipath/30-min-consultation',
-                'standard-deep-dive': 'https://calendly.com/tech-skillaipath/60-min-deep-dive',
-            },
-            whatsapp: {
-                number: '+919131641230',
-                community: 'https://chat.whatsapp.com/C5VDO1LekAf5ymTNTpSrJj',
-                messages: {
-                    standard: `📋 *STANDARD TRACK CONSULTATION CONFIRMED* 📋
-
-Hi there! 👋
-
-I've successfully booked my Standard Track consultation via Calendly. Here are my booking details:
-
-📊 *Track:* Standard Track (Qualified Candidate)
-📅 *Session Type:* Strategy & Planning Consultation  
-⏰ *Duration:* 30-60 minutes
-🎯 *Focus:* Learning path planning & career guidance
-📈 *Qualification Score:* 65+ (Professional Tier)
-
-✨ *What I'm Looking Forward To:*
-• Personalized learning roadmap
-• Career goal alignment
-• Program structure overview
-• Portfolio planning discussion
-
-Please confirm my booking and send me preparation materials. Thank you! 🚀
-
-Ready to accelerate my AI & Data journey! 💪`,
-                }
-            }
-        };
-
-        let currentBookingUrl = '';
-        let currentBookingType = '';
-        let currentTier = '';
-        let bookingState = {
-            calendlyOpened: false,
-            bookingCompleted: false,
-            tabDetectionEnabled: false
-        };
-
-        // Enhanced booking function
-        function enhancedBookCall(bookingType, tier) {
-            console.log(`Booking initiated: ${bookingType} for ${tier} tier`);
-            
-            currentBookingType = bookingType;
-            currentTier = tier;
-            
-            // Track the booking attempt
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'booking_attempt', {
-                    'booking_type': bookingType,
-                    'tier': tier,
-                    'method': 'modal_opened'
-                });
-            }
-            
-            // Get the Calendly URL
-            const calendlyUrl = getCalendlyUrl(bookingType, tier);
-            
-            if (calendlyUrl) {
-                currentBookingUrl = calendlyUrl;
-                showBookingOptionsModal();
-            } else {
-                console.error('Calendly URL not found for:', bookingType, tier);
-                showFallbackBookingOptions(bookingType, tier);
-            }
-        }
-
-        function getCalendlyUrl(bookingType, tier) {
-            const mapping = {
-                'consultation': 'standard-consultation',
-                'deep-dive': 'standard-deep-dive',
-            };
-            
-            const configKey = mapping[bookingType];
-            return configKey ? BOOKING_CONFIG.calendly[configKey] : null;
-        }
-
-        function showBookingOptionsModal() {
-            const modal = document.getElementById('bookingModal');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeBookingModal() {
-            const modal = document.getElementById('bookingModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Direct Calendly booking
-        function openCalendlyDirect() {
-            closeBookingModal();
-            window.open(currentBookingUrl, '_blank');
-            
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'calendly_direct_booking', {
-                    'booking_type': currentBookingType,
-                    'tier': currentTier
-                });
-            }
-        }
-
-        // ENHANCED: Calendly + WhatsApp flow
-        function openCalendlyThenWhatsApp() {
-            closeBookingModal();
-            showWhatsAppConfirmationModal();
-        }
-
-        function showWhatsAppConfirmationModal() {
-            const modal = document.getElementById('whatsappConfirmationModal');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeWhatsAppModal() {
-            const modal = document.getElementById('whatsappConfirmationModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function proceedWithCalendlyBooking() {
-            // Close modal and show progress tracker
-            closeWhatsAppModal();
-            
-            // Show progress tracker
-            const tracker = document.getElementById('progressTracker');
-            tracker.classList.add('active');
-            
-            // Update progress
-            updateProgressStep(2, 'active');
-            
-            // Open Calendly in new tab
-            window.open(currentBookingUrl, '_blank');
-            bookingState.calendlyOpened = true;
-            bookingState.tabDetectionEnabled = true;
-            
-            // Enhanced detection system
-            setupBookingDetection();
-            
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'calendly_whatsapp_flow_started', {
-                    'booking_type': currentBookingType,
-                    'tier': currentTier
-                });
-            }
-        }
-
-        // Enhanced booking detection system
-        function setupBookingDetection() {
-            let detectionAttempts = 0;
-            const maxAttempts = 3;
-            
-            // Method 1: Immediate check after 3 seconds
-            setTimeout(() => {
-                if (bookingState.tabDetectionEnabled && detectionAttempts < maxAttempts) {
-                    detectionAttempts++;
-                    showBookingCompletionCheck();
-                }
-            }, 3000);
-            
-            // Method 2: Window focus detection
-            const focusHandler = () => {
-                if (bookingState.calendlyOpened && bookingState.tabDetectionEnabled && detectionAttempts < maxAttempts) {
-                    setTimeout(() => {
-                        if (bookingState.tabDetectionEnabled) {
-                            detectionAttempts++;
-                            showBookingCompletionCheck();
-                        }
-                    }, 1000);
-                }
-            };
-            
-            window.addEventListener('focus', focusHandler);
-            
-            // Method 3: Page visibility change
-            const visibilityHandler = () => {
-                if (!document.hidden && bookingState.calendlyOpened && bookingState.tabDetectionEnabled && detectionAttempts < maxAttempts) {
-                    setTimeout(() => {
-                        if (bookingState.tabDetectionEnabled) {
-                            detectionAttempts++;
-                            showBookingCompletionCheck();
-                        }
-                    }, 1000);
-                }
-            };
-            
-            document.addEventListener('visibilitychange', visibilityHandler);
-            
-            // Method 4: Backup timer
-            setTimeout(() => {
-                if (bookingState.calendlyOpened && bookingState.tabDetectionEnabled && detectionAttempts < maxAttempts) {
-                    detectionAttempts++;
-                    showBookingCompletionCheck();
-                }
-            }, 8000);
-            
-            // Cleanup function
-            setTimeout(() => {
-                window.removeEventListener('focus', focusHandler);
-                document.removeEventListener('visibilitychange', visibilityHandler);
-                bookingState.tabDetectionEnabled = false;
-            }, 30000);
-        }
-
-        function showBookingCompletionCheck() {
-            if (!bookingState.tabDetectionEnabled) return;
-            
-            const modal = document.getElementById('completionCheckModal');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            bookingState.tabDetectionEnabled = false;
-        }
-
-        function handleBookingCompleted() {
-            const modal = document.getElementById('completionCheckModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            
-            bookingState.bookingCompleted = true;
-            enableWhatsAppConfirmation();
-            
-            setTimeout(() => {
-                openWhatsAppWithMessage();
-            }, 500);
-        }
-
-        function handleBookingIncomplete() {
-            const modal = document.getElementById('completionCheckModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            
-            alert('No problem! Please complete your Calendly booking first. We\'ll check again in a moment.');
-            
-            bookingState.tabDetectionEnabled = true;
-            setTimeout(() => {
-                if (bookingState.tabDetectionEnabled) {
-                    showBookingCompletionCheck();
-                }
-            }, 5000);
-        }
-
-        function enableWhatsAppConfirmation() {
-            const btn = document.getElementById('whatsappConfirmationBtn');
-            btn.disabled = false;
-            btn.textContent = '📱 Send WhatsApp Confirmation (Click if you completed Calendly booking)';
-            btn.style.background = '#25D366';
-            
-            updateProgressStep(2, 'completed');
-            updateProgressStep(3, 'active');
-            
-            btn.style.animation = 'pulse 2s infinite';
-        }
-
-        function openWhatsAppWithMessage() {
-            const message = BOOKING_CONFIG.whatsapp.messages[currentTier] || BOOKING_CONFIG.whatsapp.messages.standard;
-            const whatsappUrl = `https://wa.me/${BOOKING_CONFIG.whatsapp.number}?text=${encodeURIComponent(message)}`;
-            
-            window.open(whatsappUrl, '_blank');
-            
-            updateProgressStep(3, 'completed');
-            
-            const btn = document.getElementById('whatsappConfirmationBtn');
-            btn.textContent = '✅ WhatsApp confirmation sent successfully!';
-            btn.disabled = true;
-            btn.style.background = '#10b981';
-            btn.style.animation = 'none';
-            
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'whatsapp_confirmation_sent', {
-                    'booking_type': currentBookingType,
-                    'tier': currentTier,
-                    'method': 'automatic'
-                });
-            }
-        }
-
-        function sendWhatsAppConfirmation() {
-            if (!bookingState.calendlyOpened) {
-                alert('Please complete your Calendly booking first!');
-                return;
-            }
-
-            const confirmed = confirm('Did you complete your Calendly booking?\n\nClick OK to send WhatsApp confirmation with your booking details.');
-            
-            if (confirmed) {
-                openWhatsAppWithMessage();
-            }
-        }
-
-        function updateProgressStep(stepNumber, status) {
-            const step = document.getElementById(`step${stepNumber}`);
-            if (step) {
-                step.className = `progress-step ${status}`;
-            }
-        }
-
-        // Join WhatsApp Community
-        function joinWhatsAppCommunity() {
-            closeBookingModal();
-            window.open(BOOKING_CONFIG.whatsapp.community, '_blank');
-            
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'whatsapp_community_joined', {
-                    'source': 'standard_booking_modal'
-                });
-            }
-        }
-
-        function showFallbackBookingOptions(bookingType, tier) {
-            alert(`Calendly temporarily unavailable. Please contact us via:\n\nWhatsApp: ${BOOKING_CONFIG.whatsapp.number}\nOr join our community: ${BOOKING_CONFIG.whatsapp.community}`);
-        }
-
-        // Close modals on outside click
-        document.getElementById('bookingModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeBookingModal();
-            }
-        });
-
-        document.getElementById('whatsappConfirmationModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeWhatsAppModal();
-            }
-        });
-
-        document.getElementById('completionCheckModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                handleBookingIncomplete();
-            }
-        });
-
         // Dynamic Date Calculation - Next Monday
         function getNextMonday() {
             const today = new Date();
@@ -1492,6 +632,36 @@ Ready to accelerate my AI & Data journey! 💪`,
                 document.querySelector('.booking-card').style.opacity = '1';
             }, 300);
         });
+
+        // Booking Functions
+        function bookCall(type) {
+            console.log(`Standard candidate booking: ${type}`);
+            
+            if (type === 'consultation') {
+                window.open('https://calendly.com/tech-skillaipath/20-min-guidance-call', '_blank');
+            } else if (type === 'deep-dive') {
+                window.open('https://calendly.com/tech-skillaipath/60-min-deep-dive', '_blank');
+            }
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'standard_booking_clicked', {
+                    'booking_type': type,
+                    'tier': 'standard',
+                    'score_range': '45-75'
+                });
+            }
+        }
+
+        function joinCommunity() {
+            window.open('https://chat.whatsapp.com/Ljq76ZIK1BrHJF50RP3IYE', '_blank');
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'whatsapp_community_clicked', {
+                    'tier': 'standard',
+                    'source': 'booking_page'
+                });
+            }
+        }
 
         // Add entrance animation
         document.querySelector('.booking-card').style.transform = 'translateY(30px)';
