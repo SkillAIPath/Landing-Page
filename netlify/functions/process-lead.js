@@ -516,7 +516,7 @@ async function getTemplateByScore(score) {
         fileName = 'priority-qualified.html';
     }
 
-    const filePath = path.join(__dirname, '../../booking-pages', fileName);
+    const filePath = path.join(__dirname, 'templates', fileName);
     return fs.readFile(filePath, 'utf-8');
 }
 
