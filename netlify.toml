@@ -1,2 +1,2 @@
 [functions."process-lead"]
-  included_files = ["netlify/functions/templates/*.html"]
+  included_files = ["functions/templates/*.html"]
