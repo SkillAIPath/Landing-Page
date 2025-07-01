@@ -1,6 +1,7 @@
-// netlify/functions/process-lead.js - UPDATED WITH BOOKING REDIRECTS
 const sgMail = require('@sendgrid/mail');
 const Airtable = require('airtable');
+const fs = require('fs/promises');
+const path = require('path');
 
 // Initialize SendGrid
 if (process.env.SENDGRID_API_KEY) {
@@ -97,8 +98,8 @@ exports.handler = async (event, context) => {
                 response.emailType = 'admin_notification';
                 
                 // 🎯 NEW: Determine booking page redirect
-                response.bookingPage = getBookingPageUrl(applicationResult.score);
-                console.log(`📍 Redirect to: ${response.bookingPage}`);
+                // response.bookingPage = getBookingPageUrl(applicationResult.score);
+                // console.log(`📍 Redirect to: ${response.bookingPage}`);
             }
         } catch (emailError) {
             console.error('❌ Email failed:', emailError);
@@ -136,17 +137,6 @@ exports.handler = async (event, context) => {
         };
     }
 };
-
-// 🎯 NEW: Determine booking page based on score
-function getBookingPageUrl(score) {
-    if (score <= 45) {
-        return '/booking-pages/basic-qualified.html';
-    } else if (score <= 75) {
-        return '/booking-pages/standard-qualified.html';
-    } else {
-        return '/booking-pages/priority-qualified.html';
-    }
-}
 
 // Updated sendBlueprintEmail function for process-lead.js
 // Replace the existing sendBlueprintEmail function with this enhanced version
@@ -489,6 +479,7 @@ async function sendBlueprintEmail(formData) {
     
     const result = await sgMail.send(msg);
     console.log('✅ Enhanced blueprint email sent:', result[0]?.statusCode);
+    console.log('✅ Enhanced blueprint email sent:', result[0]?.statusCode);
     return result;
 }
 
@@ -515,101 +506,129 @@ async function handleApplication(formData) {
         message: `Application submitted successfully! Priority Level: ${tier} (Score: ${score}/100)`
     };
 }
+async function getTemplateByScore(score) {
+
+    let fileName = 'basic-qualified.html';
+
+    if (score > 45 && score <= 75) {
+        fileName = 'standard-qualified.html';
+    } else if (score > 75) {
+        fileName = 'priority-qualified.html';
+    }
+
+    const filePath = path.join(__dirname, '../../booking-pages', fileName);
+    return fs.readFile(filePath, 'utf-8');
+}
+
+
 
 async function sendAdminNotification(formData, score, tier) {
     const fullName = formData.first_name && formData.last_name 
         ? `${formData.first_name} ${formData.last_name}`
         : formData.name || 'No name provided';
-        
+
+    const htmlTemplate = await getTemplateByScore(score);
+
     const msg = {
-        to: 'tech@skillaipath.com',
+        to: [formData.email, 'tech@skillaipath.com'],
         from: {
             email: 'tech@skillaipath.com',
             name: 'Skill AI Path Application System'
         },
-        subject: `🎯 New ${tier} Priority Application - ${fullName} (Score: ${score})`,
-        html: `
-            <h2>🎯 New ${tier} Priority Application</h2>
-            <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                <p><strong>Name:</strong> ${fullName}</p>
-                <p><strong>Email:</strong> ${formData.email}</p>
-                <p><strong>Phone:</strong> ${formData.phone || 'Not provided'}</p>
-                <p><strong>Interest:</strong> ${formData.interest || 'Not specified'}</p>
-                <p><strong>Status:</strong> ${formData.status || 'Not specified'}</p>
-                <p><strong>Score:</strong> ${score}/100 (${tier})</p>
-                <p><strong>Challenge:</strong> ${formData.challenge || 'Not provided'}</p>
-                <p><strong>Timestamp:</strong> ${new Date().toLocaleString('en-IN')}</p>
-            </div>
-            
-            <h3>Recommended Next Steps:</h3>
-            ${getNextStepsForTier(tier, score)}
-            
-            <p><strong>Booking Page:</strong> ${getBookingPageUrl(score)}</p>
-        `
+        subject: `🎯 New ${tier} Priority Application - ${fullName}`,
+        html: htmlTemplate
     };
 
     const result = await sgMail.send(msg);
-    console.log('✅ Admin email sent:', result[0]?.statusCode);
     return result;
 }
 
-function getNextStepsForTier(tier, score) {
-    if (score <= 45) {
-        return `
-            <ul>
-                <li>🎓 Invite to Free Friday Webinar</li>
-                <li>📞 20-min Guidance Call for qualification</li>
-                <li>👥 WhatsApp Community Access</li>
-                <li>🎯 Foundation Track Consideration</li>
-            </ul>
-        `;
-    } else if (score <= 75) {
-        return `
-            <ul>
-                <li>📞 20-min Strategic Guidance Call</li>
-                <li>📋 60-min Deep Dive Planning Session</li>
-                <li>👥 WhatsApp Community Access</li>
-                <li>🎯 Standard Track Qualification</li>
-            </ul>
-        `;
-    } else {
-        return `
-            <ul>
-                <li>⚡ 45-min Priority Assessment Call</li>
-                <li>📋 60-min Deep Dive Strategy Session</li>
-                <li>👥 WhatsApp Community Access</li>
-                <li>🏆 Priority Track - Immediate Consideration</li>
-            </ul>
-        `;
-    }
-}
+
+const interestMap = {
+  'data analytics': 'Build analytics solutions',
+  'automation': 'Create automation',
+  'freelancing pro': 'Master client delivery',
+  'career mastery': 'Plan career transition',
+  'need guidance': 'Need track guidance'
+};
+
+const statusMap = {
+  'student': 'College Student',
+  'graduate': 'Recent Graduate',
+  'professional': 'Working Professional',
+  'career change': 'Planning Career Change',
+  'entrepreneur': 'Building Business'
+};
+
+const tierMap = {
+  HIGH: 'HOT',
+  MEDIUM: 'WARM',
+  STANDARD: 'COLD'
+};
+
+
+// Rest of the functions remain the same...
+const allowedInterests = [
+    'Create automation',
+    'Run webinar',
+    'Track engagement',
+    // ✅ Add all valid select options from Airtable here
+];
+
+const allowedStatuses = [
+    'New',
+    'Contacted',
+    'Qualified',
+    // ✅ Add all valid status options
+];
+
+const allowedTiers = [
+    'Priority',
+    'Standard',
+    'Basic',
+    // ✅ Match the exact options from Airtable
+];
 
 async function saveToAirtable(formData, responseData) {
+    console.log('📥 Incoming form data:', formData);
     if (!base) return null;
-    
-    const recordData = {
-        'Email': formData.email,
-        'Form Type': formData.formType || 'unknown',
-        'Timestamp': new Date().toISOString(),
-        'Email Sent': responseData.emailSent ? 'Yes' : 'Failed'
-    };
-    
-    // Add optional fields
+
+    const recordData = {};
+
+    // Basic fields
     if (formData.name) recordData['Name'] = formData.name;
     if (formData.first_name) recordData['First Name'] = formData.first_name;
     if (formData.last_name) recordData['Last Name'] = formData.last_name;
     if (formData.phone) recordData['Phone'] = formData.phone;
-    if (formData.interest) recordData['Interest'] = formData.interest;
-    if (formData.status) recordData['Status'] = formData.status;
     if (formData.challenge) recordData['Challenge'] = formData.challenge;
-    if (responseData.tier) recordData['Lead Tier'] = responseData.tier;
-    if (responseData.score) recordData['Score'] = responseData.score;
+
+    // Marketing consent
     if (formData.updates !== undefined) {
         recordData['Marketing Consent'] = formData.updates ? 'Yes' : 'No';
     }
 
+    // Interest field (mapped + validated)
+    const mappedInterest = interestMap[formData.interest];
+    if (mappedInterest && allowedInterests.includes(mappedInterest)) {
+        recordData['Interest'] = mappedInterest;
+    }
+
+    // Status field (mapped + validated)
+    const mappedStatus = statusMap[formData.status];
+    if (mappedStatus && allowedStatuses.includes(mappedStatus)) {
+        recordData['Status'] = mappedStatus;
+    }
+
+    const mappedTier = tierMap[responseData.tier];
+    if (mappedTier && allowedTiers.includes(mappedTier)) {
+        recordData['Lead Tier'] = mappedTier;
+    }
+
+    // Email sent status
+    recordData['Email Sent'] = responseData.emailSent === true;
+
     try {
-        const record = await base('Table 1').create(recordData);
+        const record = await base('tblALnkQGWD2zWRSw').create(recordData);
         console.log('✅ Airtable saved:', record.id);
         return record;
     } catch (error) {
