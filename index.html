@@ -1265,7 +1265,7 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin-bottom: 30px;
         }
@@ -1299,6 +1299,13 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 20px;
             color: rgba(255, 255, 255, 0.7);
+        }
+
+        .legal-info {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.4;
         }
 
         /* Popup Styles */
@@ -2014,6 +2021,8 @@
                 <li><a href="#proof">Proof</a></li>
                 <li><a href="#tracks">Tracks</a></li>
                 <li><a href="#contact">Apply</a></li>
+                <li><a href="/terms-and-conditions.html">Terms</a></li>
+                <li><a href="/refund-policy.html">Refund Policy</a></li>
             </ul>
             <button class="nav-cta" onclick="openPopup()">Start Building Now</button>
         </div>
@@ -2596,7 +2605,7 @@
                 <div class="consent-checkboxes">
                     <label>
                         <input type="checkbox" name="privacy" required> 
-                        I agree to the <a href="./privacy-policy.html" target="_blank" class="privacy-link">privacy policy</a> and consent to application review.
+                        I agree to the <a href="/terms-and-conditions.html" target="_blank" class="privacy-link">terms and conditions</a> and <a href="/privacy-policy.html" target="_blank" class="privacy-link">privacy policy</a>.
                     </label>
                     <label>
                         <input type="checkbox" name="updates"> 
@@ -2633,6 +2642,14 @@
                 </ul>
             </div>
             <div class="footer-section">
+                <h4>Policies</h4>
+                <ul>
+                    <li><a href="/terms-and-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="/refund-policy.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
                 <h4>Connect</h4>
                 <ul>
                     <li><a href="mailto:tech@skillaipath.com">tech@skillaipath.com</a></li>
@@ -2643,7 +2660,11 @@
         </div>
         
         <div class="footer-bottom">
-            © 2024 Krishnav Tech Pvt. Ltd. | Skill AI Path - Enterprise-Grade Business Problem Solving
+            <div>© 2024 KRISHNAV TEKNOLZY PRIVATE LIMITED | Skill AI Path - Enterprise-Grade Business Problem Solving</div>
+            <div class="legal-info">
+                CIN: [Company Identification Number] | GST: [GST Number] | Address: [Registered Office Address]<br>
+                Building the next generation of AI & Data professionals through real business problem solving.
+            </div>
         </div>
     </footer>
 
@@ -2672,7 +2693,7 @@
                 <div class="consent-checkboxes">
                     <label>
                         <input type="checkbox" name="privacy" required> 
-                        I agree to <a href="./privacy-policy.html" target="_blank" class="privacy-link">privacy policy</a> and application review.
+                        I agree to <a href="/terms-and-conditions.html" target="_blank" class="privacy-link">terms</a> and <a href="/privacy-policy.html" target="_blank" class="privacy-link">privacy policy</a>.
                     </label>
                     <label>
                         <input type="checkbox" name="updates"> 
