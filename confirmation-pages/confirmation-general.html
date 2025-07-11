@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 Workshop Confirmed! | Skill AI Path</title>
+    <meta name="description" content="You're registered for our free AI Career Workshop! Get ready to explore exciting opportunities in AI & Data.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;909&family=Playfair+Display:wght@400;500;600;700;800;909&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+            --success-green: #10b981;
+            --warm-green: #22c55e;
+            --friendly-emerald: #059669;
+            --deep-green: #047857;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --text-bright: #ffffff;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--primary-gradient);
+            min-height: 100vh;
+        }
+
+        .confirmation-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .success-header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .success-icon {
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            animation: celebrate 3s infinite;
+        }
+
+        @keyframes celebrate {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(10deg) scale(1.1); }
+            75% { transform: rotate(-10deg) scale(1.1); }
+        }
+
+        .success-badge {
+            display: inline-block;
+            background: var(--warm-green);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .success-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .success-subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .confirmation-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px 35px;
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .confirmation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--warm-green), var(--friendly-emerald));
+        }
+
+        .workshop-details {
+            background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
+            border: 2px solid var(--success-green);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .workshop-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--deep-green);
+            margin-bottom: 15px;
+        }
+
+        .workshop-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .info-label {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-weight: 700;
+            color: var(--deep-green);
+            font-size: 1.1em;
+        }
+
+        .join-button {
+            background: var(--success-green);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .join-button:hover {
+            background: var(--deep-green);
+            transform: translateY(-2px);
+        }
+
+        .learning-preview {
+            margin-bottom: 30px;
+        }
+
+        .preview-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--deep-green);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .preview-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border-left: 4px solid var(--warm-green);
+        }
+
+        .preview-icon {
+            color: var(--warm-green);
+            font-size: 1.2em;
+            margin-top: 2px;
+        }
+
+        .preview-text {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .bonus-section {
+            background: linear-gradient(135deg, #fef3c7, #fef9e6);
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .bonus-title {
+            font-weight: 700;
+            color: var(--deep-green);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .bonus-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            list-style: none;
+        }
+
+        .bonus-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        .bonus-check {
+            color: #f59e0b;
+            font-weight: 700;
+        }
+
+        .community-invite {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .community-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .community-text {
+            font-size: 0.95em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .community-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 1.3em;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .stat-label {
+            font-size: 0.8em;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .confirmation-container { padding: 20px 15px; }
+            .success-title { font-size: 2.8em; }
+            .confirmation-card { padding: 30px 25px; }
+            .workshop-info, .preview-grid, .bonus-list, .community-stats { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <div class="success-header">
+            <div class="success-icon">🎓</div>
+            <div class="success-badge">🎉 WORKSHOP REGISTRATION CONFIRMED</div>
+            <h1 class="success-title">Welcome to the Workshop!</h1>
+            <p class="success-subtitle">
+                You're all set for our free AI Career Workshop! Get ready to discover exciting opportunities and clear next steps for your future.
+            </p>
+        </div>
+
+        <div class="confirmation-card">
+            <div class="workshop-details">
+                <h3 class="workshop-title">📅 Your Workshop Details</h3>
+                <div class="workshop-info">
+                    <div class="info-item">
+                        <div class="info-label">When</div>
+                        <div class="info-value" id="workshopDate">Loading...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Time</div>
+                        <div class="info-value">7:00 PM IST</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Duration</div>
+                        <div class="info-value">90 Minutes</div>
+                    </div>
+                </div>
+                <a href="#" class="join-button" onclick="addToCalendar()">
+                    📅 Add to Calendar
+                </a>
+            </div>
+
+            <div class="learning-preview">
+                <h3 class="preview-title">🎯 What You'll Discover</h3>
+                <div class="preview-grid">
+                    <div class="preview-item">
+                        <span class="preview-icon">🚀</span>
+                        <span class="preview-text">High-growth AI & Data career opportunities in 2024</span>
+                    </div>
+                    <div class="preview-item">
+                        <span class="preview-icon">💰</span>
+                        <span class="preview-text">Realistic salary expectations and career progression</span>
+                    </div>
+                    <div class="preview-item">
+                        <span class="preview-icon">🛠️</span>
+                        <span class="preview-text">Essential skills companies actually hire for</span>
+                    </div>
+                    <div class="preview-item">
+                        <span class="preview-icon">🗺️</span>
+                        <span class="preview-text">Step-by-step learning roadmap for beginners</span>
+                    </div>
+                    <div class="preview-item">
+                        <span class="preview-icon">💼</span>
+                        <span class="preview-text">Real project examples from successful transitions</span>
+                    </div>
+                    <div class="preview-item">
+                        <span class="preview-icon">❓</span>
+                        <span class="preview-text">Live Q&A to get your specific questions answered</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bonus-section">
+                <h3 class="bonus-title">🎁 Free Workshop Bonuses</h3>
+                <ul class="bonus-list">
+                    <li class="bonus-item">
+                        <span class="bonus-check">✓</span>
+                        <span>Career roadmap template</span>
+                    </li>
+                    <li class="bonus-item">
+                        <span class="bonus-check">✓</span>
+                        <span>Skill assessment checklist</span>
+                    </li>
+                    <li class="bonus-item">
+                        <span class="bonus-check">✓</span>
+                        <span>Free learning resources list</span>
+                    </li>
+                    <li class="bonus-item">
+                        <span class="bonus-check">✓</span>
+                        <span>Job search strategy guide</span>
+                    </li>
+                    <li class="bonus-item">
+                        <span class="bonus-check">✓</span>
+                        <span>Workshop recording access</span>
+                    </li>
+                    <li class="bonus-item">
+                        <span class="bonus-check">✓</span>
+                        <span>Community group invitation</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="community-invite">
+                <h3 class="community-title">🌟 Join Our Learning Community</h3>
+                <p class="community-text">
+                    Connect with fellow learners, get ongoing support, and access exclusive resources even after the workshop.
+                </p>
+                <div class="community-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">1,200+</span>
+                        <span class="stat-label">Active Members</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4.8★</span>
+                        <span class="stat-label">Workshop Rating</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">87%</span>
+                        <span class="stat-label">Found Clarity</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Calculate and display next Friday
+        function getNextFriday() {
+            const today = new Date();
+            const dayOfWeek = today.getDay();
+            const daysUntilFriday = (5 + 7 - dayOfWeek) % 7 || 7;
+            
+            const nextFriday = new Date(today);
+            nextFriday.setDate(today.getDate() + daysUntilFriday);
+            
+            return nextFriday;
+        }
+
+        function formatWorkshopDate(date) {
+            const options = { 
+                weekday: 'long',
+                month: 'long', 
+                day: 'numeric'
+            };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const nextFriday = getNextFriday();
+            const workshopDate = formatWorkshopDate(nextFriday);
+            document.getElementById('workshopDate').textContent = workshopDate;
+        });
+
+        function addToCalendar() {
+            alert('Calendar integration coming soon! Workshop link will be sent via email and WhatsApp.');
+        }
+
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'workshop_confirmation_viewed', {
+                'tier': 'general',
+                'page_type': 'confirmation'
+            });
+        }
+
+        setTimeout(() => {
+            document.querySelector('.confirmation-card').style.transform = 'translateY(0)';
+            document.querySelector('.confirmation-card').style.opacity = '1';
+        }, 300);
+
+        document.querySelector('.confirmation-card').style.transform = 'translateY(30px)';
+        document.querySelector('.confirmation-card').style.opacity = '0';
+        document.querySelector('.confirmation-card').style.transition = 'all 0.8s ease';
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "skillaipath-functions",
+  "version": "1.0.0",
+  "description": "Netlify functions for SkillAIPath",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "airtable": "^0.12.2"
+  },
+  "author": "SkillAIPath",
+  "license": "MIT"
+}

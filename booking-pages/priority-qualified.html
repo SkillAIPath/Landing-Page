@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en" style="margin: 0;padding: 0;box-sizing: border-box;">
+<head style="margin: 0;padding: 0;box-sizing: border-box;">
+    <meta charset="UTF-8" style="margin: 0;padding: 0;box-sizing: border-box;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" style="margin: 0;padding: 0;box-sizing: border-box;">
+    <title style="margin: 0;padding: 0;box-sizing: border-box;">🎉 You're Pre-Approved! - Priority Track | Skill AI Path</title>
+    <meta name="description" content="Congratulations! You're in the top 15% of applicants. Secure your priority spot with personal mentoring from Viresh Gendle." style="margin: 0;padding: 0;box-sizing: border-box;">
+    
+    <!-- Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" as="style" style="margin: 0;padding: 0;box-sizing: border-box;">
+    
+    
+    
+</head>
+<body style="margin: 0; width:100vw; padding: 0;box-sizing: border-box;font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;line-height: 1.6;color: var(--text-primary);background: var(--primary-gradient);min-height: 100vh;overflow-x: hidden;">
+    <div class="booking-container" style="margin: 0 auto;padding: 40px 20px;box-sizing: border-box;max-width: 900px;position: relative;z-index: 10;min-height: 100vh;display: flex;flex-direction: column;justify-content: center;">
+        <!-- Header Section -->
+        <div class="priority-header" style="margin: 0;padding: 0;box-sizing: border-box;text-align: center;margin-bottom: 50px;color: black;">
+            <div class="priority-badge" style="margin: 0;padding: 12px 30px;box-sizing: border-box;display: inline-flex;align-items: center;gap: 12px;background: var(--premium-gold);color: var(--text-primary);border-radius: 30px;font-size: 1em;font-weight: 700;margin-bottom: 25px;box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);animation: pulse 2s infinite;">
+                🏆 PRIORITY QUALIFIED - TOP 15%
+            </div>
+            
+            <h1 class="priority-title" style="margin: 0;padding: 0;box-sizing: border-box;font-family: 'Playfair Display', serif;font-size: 3.5em;font-weight: 700;margin-bottom: 20px;text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);line-height: 1.1;">Congratulations! You're Pre-Approved</h1>
+            
+            <p class="priority-subtitle" style="margin: 0 auto 30px;padding: 0;box-sizing: border-box;font-size: 1.3em;opacity: 0.95;max-width: 600px;line-height: 1.4;">
+                Based on your application, you qualify for our premium Priority Track with personal mentoring and exclusive benefits.
+            </p>
+
+            <!-- Stats Row -->
+            <div class="stats-row" style="margin: 0;padding: 0;box-sizing: border-box;display: grid;grid-template-columns: repeat(3, 1fr);gap: 20px;margin-bottom: 40px;">
+                <div class="stat-item" style="margin: 0;padding: 20px;box-sizing: border-box;background: var(--glassmorphism-strong);backdrop-filter: blur(20px);border-radius: 15px;text-align: center;border: 1px solid rgba(255, 255, 255, 0.3);">
+                    <span class="stat-number" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 2.2em;font-weight: 800;color: var(--premium-gold);display: block;margin-bottom: 5px;">85+</span>
+                    <span class="stat-label" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.9em;opacity: 0.9;color: black;">Your Qualification Score</span>
+                </div>
+                <div class="stat-item" style="margin: 0;padding: 20px;box-sizing: border-box;background: var(--glassmorphism-strong);backdrop-filter: blur(20px);border-radius: 15px;text-align: center;border: 1px solid rgba(255, 255, 255, 0.3);">
+                    <span class="stat-number" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 2.2em;font-weight: 800;color: var(--premium-gold);display: block;margin-bottom: 5px;">12</span>
+                    <span class="stat-label" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.9em;opacity: 0.9;color: black;">Priority Spots Available</span>
+                </div>
+                <div class="stat-item" style="margin: 0;padding: 20px;box-sizing: border-box;background: var(--glassmorphism-strong);backdrop-filter: blur(20px);border-radius: 15px;text-align: center;border: 1px solid rgba(255, 255, 255, 0.3);">
+                    <span class="stat-number" id="nextBatchDate" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 2.2em;font-weight: 800;color: var(--premium-gold);display: block;margin-bottom: 5px;">Loading...</span>
+                    <span class="stat-label" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.9em;opacity: 0.9;color: black;">Next Batch Starts</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">8</span>
+                    <span class="stat-label">Priority Spots This Month</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Booking Card -->
+        <div class="booking-card" style="margin: 0;padding: 50px 40px;box-sizing: border-box;background: rgba(255, 255, 255, 0.95);backdrop-filter: blur(20px);border-radius: 25px;box-shadow: var(--shadow-premium);border: 2px solid rgba(255, 255, 255, 0.3);position: relative;overflow: hidden;">
+            <!-- Urgency Banner -->
+            <div class="urgency-banner" style="margin: 0;padding: 15px 25px;box-sizing: border-box;background: linear-gradient(135deg, #ff6b6b, #ee5a24);color: white;border-radius: 12px;margin-bottom: 30px;text-align: center;position: relative;overflow: hidden;">
+                <div class="urgency-text" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 600;font-size: 1.1em;">
+                    🚨 Priority spots are limited to maintain quality. Next batch starts <span class="batch-date" id="urgencyBatchDate" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 800;color: var(--premium-gold);">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Priority Benefits -->
+            <div class="priority-benefits" style="margin: 0;padding: 0;box-sizing: border-box;margin-bottom: 40px;">
+                <h3 class="benefits-title" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.4em;font-weight: 700;color: var(--deep-blue);margin-bottom: 20px;text-align: center;">🎯 Your Priority Benefits</h3>
+                <div class="benefits-grid" style="margin: 0;padding: 0;box-sizing: border-box;display: grid;grid-template-columns: 1fr 1fr;gap: 15px;">
+                    <div class="benefit-item" style="margin: 0;padding: 15px;box-sizing: border-box;display: flex;align-items: flex-start;gap: 12px;background: #f8fafc;border-radius: 12px;border-left: 4px solid var(--success-gradient);">
+                        <span class="benefit-icon" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--success-gradient);font-size: 1.2em;font-weight: 700;margin-top: 2px;">✅</span>
+                        <span class="benefit-text" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 500;color: var(--text-primary);font-size: 0.95em;line-height: 1.4;">Skip waitlist - immediate program access</span>
+                    </div>
+                    <div class="benefit-item" style="margin: 0;padding: 15px;box-sizing: border-box;display: flex;align-items: flex-start;gap: 12px;background: #f8fafc;border-radius: 12px;border-left: 4px solid var(--success-gradient);">
+                        <span class="benefit-icon" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--success-gradient);font-size: 1.2em;font-weight: 700;margin-top: 2px;">✅</span>
+                        <span class="benefit-text" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 500;color: var(--text-primary);font-size: 0.95em;line-height: 1.4;">Personal 1-on-1 mentoring with Viresh</span>
+                    </div>
+                    <div class="benefit-item" style="margin: 0;padding: 15px;box-sizing: border-box;display: flex;align-items: flex-start;gap: 12px;background: #f8fafc;border-radius: 12px;border-left: 4px solid var(--success-gradient);">
+                        <span class="benefit-icon" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--success-gradient);font-size: 1.2em;font-weight: 700;margin-top: 2px;">✅</span>
+                        <span class="benefit-text" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 500;color: var(--text-primary);font-size: 0.95em;line-height: 1.4;">All 6 tracks unlocked (complete stack)</span>
+                    </div>
+                    <div class="benefit-item" style="margin: 0;padding: 15px;box-sizing: border-box;display: flex;align-items: flex-start;gap: 12px;background: #f8fafc;border-radius: 12px;border-left: 4px solid var(--success-gradient);">
+                        <span class="benefit-icon" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--success-gradient);font-size: 1.2em;font-weight: 700;margin-top: 2px;">✅</span>
+                        <span class="benefit-text" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 500;color: var(--text-primary);font-size: 0.95em;line-height: 1.4;">Priority job/gig placement support</span>
+                    </div>
+                    <div class="benefit-item" style="margin: 0;padding: 15px;box-sizing: border-box;display: flex;align-items: flex-start;gap: 12px;background: #f8fafc;border-radius: 12px;border-left: 4px solid var(--success-gradient);">
+                        <span class="benefit-icon" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--success-gradient);font-size: 1.2em;font-weight: 700;margin-top: 2px;">✅</span>
+                        <span class="benefit-text" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 500;color: var(--text-primary);font-size: 0.95em;line-height: 1.4;">Exclusive founder's pricing (locked-in)</span>
+                    </div>
+                    <div class="benefit-item" style="margin: 0;padding: 15px;box-sizing: border-box;display: flex;align-items: flex-start;gap: 12px;background: #f8fafc;border-radius: 12px;border-left: 4px solid var(--success-gradient);">
+                        <span class="benefit-icon" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--success-gradient);font-size: 1.2em;font-weight: 700;margin-top: 2px;">✅</span>
+                        <span class="benefit-text" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 500;color: var(--text-primary);font-size: 0.95em;line-height: 1.4;">Lifetime community access & updates</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personal Message from Viresh -->
+            <div class="personal-message" style="margin: 0;padding: 25px;box-sizing: border-box;background: linear-gradient(135deg, #e6f7ff, #f0f9ff);border: 2px solid #3b82f6;border-radius: 15px;margin-bottom: 35px;position: relative;">
+                <div class="message-header" style="margin: 0;padding: 0;box-sizing: border-box;display: flex;align-items: center;gap: 15px;margin-bottom: 15px;">
+                    <div class="instructor-avatar" style="margin: 0;padding: 0;box-sizing: border-box;width: 50px;height: 50px;border-radius: 50%;background: var(--primary-gradient);display: flex;align-items: center;justify-content: center;color: white;font-weight: 700;font-size: 1.2em;">VG</div>
+                    <div style="margin: 0;padding: 0;box-sizing: border-box;">
+                        <div class="message-from" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 600;color: var(--deep-blue);">Personal Message from Viresh Gendle</div>
+                        <div class="message-title" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.9em;color: var(--text-secondary);">Founder & Lead Instructor</div>
+                    </div>
+                </div>
+                <div class="message-content" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--text-primary);line-height: 1.5;font-style: italic;">
+                    "Your application stood out immediately. Students with your profile and mindset typically see the fastest results. I personally work with only 12 priority candidates each month to ensure quality outcomes. Looking forward to accelerating your AI & Data career."
+                </div>
+            </div>
+
+            <!-- Booking Options -->
+            <div class="booking-options" style="margin: 0;padding: 0;box-sizing: border-box;display: grid;grid-template-columns: 1fr 1fr;gap: 25px;margin-bottom: 30px;">
+                <div class="booking-option" onclick="enhancedBookCall('immediate', 'priority')" style="margin: 0;padding: 25px 20px;box-sizing: border-box;border: 2px solid #e2e8f0;border-radius: 15px;text-align: center;transition: all 0.3s ease;cursor: pointer;position: relative;background: white;">
+                    <div class="option-title" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.2em;font-weight: 700;color: var(--deep-blue);margin-bottom: 10px;">🚀 Immediate Start</div>
+                    <div class="option-description" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--text-secondary);font-size: 0.9em;margin-bottom: 15px;line-height: 1.4;">15-minute priority consultation to finalize your roadmap and secure your spot</div>
+                    <button class="option-cta" style="margin: 0;padding: 12px 25px;box-sizing: border-box;background: var(--success-gradient);color: white;border: none;border-radius: 25px;font-weight: 600;cursor: pointer;transition: all 0.3s ease;width: 100%;font-size: 0.95em;">Book Priority Call</button>
+                </div>
+
+                <div class="booking-option recommended" onclick="enhancedBookCall('detailed', 'priority')" style="margin: 0;padding: 25px 20px;box-sizing: border-box;border: 2px solid #e2e8f0;border-radius: 15px;text-align: center;transition: all 0.3s ease;cursor: pointer;position: relative;background: linear-gradient(135deg, #fff9e6, #ffffff);border-color: var(--premium-gold);">
+                    <div class="recommended-badge" style="margin: 0;padding: 4px 15px;box-sizing: border-box;position: absolute;top: -12px;left: 50%;transform: translateX(-50%);background: var(--premium-gold);color: var(--text-primary);border-radius: 15px;font-size: 0.8em;font-weight: 700;">RECOMMENDED</div>
+                    <div class="option-title" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.2em;font-weight: 700;color: var(--deep-blue);margin-bottom: 10px;">📋 Detailed Planning</div>
+                    <div class="option-description" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--text-secondary);font-size: 0.9em;margin-bottom: 15px;line-height: 1.4;">30-minute strategy session to customize your learning path and career goals</div>
+                    <button class="option-cta" style="margin: 0;padding: 12px 25px;box-sizing: border-box;background: var(--primary-gradient);color: white;border: none;border-radius: 25px;font-weight: 600;cursor: pointer;transition: all 0.3s ease;width: 100%;font-size: 0.95em;">Book Strategy Session</button>
+                </div>
+            </div>
+
+            <!-- Progress Tracker -->
+            <div class="progress-tracker" id="progressTracker" style="margin: 20px 0;padding: 25px;box-sizing: border-box;background: #f0f9ff;border: 2px solid #3b82f6;border-radius: 15px;display: none;">
+                <div class="progress-title" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 600;color: #1e40af;margin-bottom: 15px;display: flex;align-items: center;gap: 10px;">
+                    📋 Your Priority Booking Progress
+                </div>
+                <div class="progress-steps" style="margin: 0;padding: 0;box-sizing: border-box;display: grid;gap: 10px;margin-bottom: 20px;">
+                    <div class="progress-step completed" id="step1" style="margin: 0;padding: 12px;box-sizing: border-box;display: flex;align-items: center;gap: 10px;background: #dcfce7;border-radius: 8px;transition: all 0.3s ease;border-left: 4px solid #10b981;">
+                        <span style="margin: 0;padding: 0;box-sizing: border-box;">✅</span> <span style="margin: 0;padding: 0;box-sizing: border-box;">Booking method selected</span>
+                    </div>
+                    <div class="progress-step" id="step2" style="margin: 0;padding: 12px;box-sizing: border-box;display: flex;align-items: center;gap: 10px;background: white;border-radius: 8px;transition: all 0.3s ease;">
+                        <span style="margin: 0;padding: 0;box-sizing: border-box;">2.</span> <span style="margin: 0;padding: 0;box-sizing: border-box;">Complete Calendly booking</span>
+                    </div>
+                    <div class="progress-step" id="step3" style="margin: 0;padding: 12px;box-sizing: border-box;display: flex;align-items: center;gap: 10px;background: white;border-radius: 8px;transition: all 0.3s ease;">
+                        <span style="margin: 0;padding: 0;box-sizing: border-box;">3.</span> <span style="margin: 0;padding: 0;box-sizing: border-box;">Send WhatsApp confirmation</span>
+                    </div>
+                </div>
+                
+                <button class="whatsapp-confirmation-btn" id="whatsappConfirmationBtn" onclick="sendWhatsAppConfirmation()" disabled style="margin: 10px 0;padding: 15px 30px;box-sizing: border-box;background: #25D366;color: white;border: none;border-radius: 25px;font-weight: 600;cursor: pointer;transition: all 0.3s ease;width: 100%;font-size: 1.1em;">
+                    📱 Click here after completing Calendly booking
+                </button>
+                
+                <p style="text-align: center;font-size: 0.9em;color: #64748b;margin-top: 10px;margin: 0;padding: 0;box-sizing: border-box;">
+                    Complete your Calendly booking first, then return here to send WhatsApp confirmation for priority service
+                </p>
+            </div>
+
+            <!-- Guarantee Section -->
+            <div class="guarantee-section" style="margin: 0;padding: 25px;box-sizing: border-box;background: linear-gradient(135deg, #ecfdf5, #f0fdf4);border: 2px solid var(--success-gradient);border-radius: 15px;margin-bottom: 30px;text-align: center;">
+                <div class="guarantee-icon" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 3em;margin-bottom: 15px;">🛡️</div>
+                <h3 class="guarantee-title" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.3em;font-weight: 700;color: var(--deep-blue);margin-bottom: 10px;">Our Success Guarantee</h3>
+                <p class="guarantee-text" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--text-secondary);line-height: 1.5;margin-bottom: 15px;">
+                    We're so confident in your success that we guarantee results with our comprehensive safety net.
+                </p>
+                <div class="guarantee-details" style="margin: 0;padding: 15px;box-sizing: border-box;background: white;border-radius: 10px;border-left: 4px solid var(--success-gradient);">
+                    <strong style="margin: 0;padding: 0;box-sizing: border-box;color: var(--deep-blue);">6-Month Program:</strong> First freelance gig opportunity guaranteed within 7 months<br style="margin: 0;padding: 0;box-sizing: border-box;">
+                    <strong style="margin: 0;padding: 0;box-sizing: border-box;color: var(--deep-blue);">12-Month Program:</strong> Job placement guaranteed within 14 months<br style="margin: 0;padding: 0;box-sizing: border-box;">
+                    <strong style="margin: 0;padding: 0;box-sizing: border-box;color: var(--deep-blue);">Safety Net:</strong> If not achieved → Full refund + continued support until success
+                </div>
+            </div>
+
+            <!-- Social Proof -->
+            <div class="social-proof" style="margin: 0;padding: 0;box-sizing: border-box;text-align: center;margin-bottom: 30px;">
+                <div class="proof-title" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.1em;color: var(--text-secondary);margin-bottom: 15px;">Join successful priority candidates:</div>
+                <div class="proof-stats" style="margin: 0;padding: 0;box-sizing: border-box;display: flex;justify-content: center;gap: 30px;">
+                    <div class="proof-stat" style="margin: 0;padding: 0;box-sizing: border-box;text-align: center;">
+                        <span class="proof-number" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.8em;font-weight: 800;color: var(--success-gradient);display: block;">94%</span>
+                        <span class="proof-label" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.85em;color: var(--text-secondary);">Success Rate</span>
+                    </div>
+                    <div class="proof-stat" style="margin: 0;padding: 0;box-sizing: border-box;text-align: center;">
+                        <span class="proof-number" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.8em;font-weight: 800;color: var(--success-gradient);display: block;">₹8.5L</span>
+                        <span class="proof-label" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.85em;color: var(--text-secondary);">Avg. First Year Salary</span>
+                    </div>
+                    <div class="proof-stat" style="margin: 0;padding: 0;box-sizing: border-box;text-align: center;">
+                        <span class="proof-number" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.8em;font-weight: 800;color: var(--success-gradient);display: block;">3.2M</span>
+                        <span class="proof-label" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.85em;color: var(--text-secondary);">Time to First Offer</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="booking-footer" style="margin: 0;padding: 0;box-sizing: border-box;text-align: center;color: var(--text-secondary);font-size: 0.9em;line-height: 1.4;">
+                Your priority status is reserved for 48 hours. All consultations are completely free with no obligations.
+                <div class="security-note" style="margin: 0;padding: 0;box-sizing: border-box;display: flex;align-items: center;justify-content: center;gap: 8px;margin-top: 15px;color: var(--text-secondary);font-size: 0.85em;">
+                    🔒 Secure booking • 💬 WhatsApp confirmation • 📧 Calendar invite sent
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Priority Booking Modal -->
+    <div id="bookingModal" class="booking-modal" style="margin: 0;padding: 0;box-sizing: border-box;position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.8);display: none;justify-content: center;align-items: center;z-index: 10000;">
+        <div class="booking-modal-content" style="margin: 0;padding: 0;box-sizing: border-box;background: white;border-radius: 20px;max-width: 500px;width: 90%;box-shadow: 0 25px 80px rgba(0,0,0,0.3);">
+            <div class="booking-modal-header" style="margin: 0;padding: 25px 30px 20px;box-sizing: border-box;border-bottom: 1px solid #e2e8f0;display: flex;justify-content: space-between;align-items: center;">
+                <h3 style="margin: 0;padding: 0;box-sizing: border-box;color: #1a365d;font-size: 1.3em;font-weight: 700;">🚀 Choose Your Booking Method</h3>
+                <button class="booking-modal-close" onclick="closeBookingModal()" style="margin: 0;padding: 0;box-sizing: border-box;background: none;border: none;font-size: 2em;cursor: pointer;color: #64748b;">&times;</button>
+            </div>
+            <div class="booking-modal-body" style="margin: 0;padding: 30px;box-sizing: border-box;">
+                <div class="booking-option-modal primary" onclick="openCalendlyDirect()" style="margin: 0;padding: 20px;box-sizing: border-box;display: flex;align-items: center;gap: 15px;border: 2px solid #e2e8f0;border-radius: 15px;margin-bottom: 15px;cursor: pointer;transition: all 0.3s ease;border-color: #667eea;background: linear-gradient(135deg, #f8faff, #ffffff);">
+                    <div class="booking-icon" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 2em;">📅</div>
+                    <div class="booking-details" style="margin: 0;padding: 0;box-sizing: border-box;flex: 1;">
+                        <div class="booking-title" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 600;font-size: 1.1em;margin-bottom: 5px;color: #1a365d;">Book via Calendly</div>
+                        <div class="booking-description" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.9em;color: #64748b;">Quick online scheduling (Recommended)</div>
+                    </div>
+                    <div class="booking-arrow" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.5em;color: #667eea;font-weight: bold;">→</div>
+                </div>
+                
+                <div class="booking-option-modal secondary" onclick="openCalendlyThenWhatsApp()" style="margin: 0;padding: 20px;box-sizing: border-box;display: flex;align-items: center;gap: 15px;border: 2px solid #e2e8f0;border-radius: 15px;margin-bottom: 15px;cursor: pointer;transition: all 0.3s ease;">
+                    <div class="booking-icon" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 2em;">📱</div>
+                    <div class="booking-details" style="margin: 0;padding: 0;box-sizing: border-box;flex: 1;">
+                        <div class="booking-title" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 600;font-size: 1.1em;margin-bottom: 5px;color: #1a365d;">Calendly + WhatsApp</div>
+                        <div class="booking-description" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.9em;color: #64748b;">Book via Calendly, then get WhatsApp confirmation</div>
+                    </div>
+                    <div class="booking-arrow" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.5em;color: #667eea;font-weight: bold;">→</div>
+                </div>
+                
+                <div class="booking-option-modal secondary" onclick="joinWhatsAppCommunity()" style="margin: 0;padding: 20px;box-sizing: border-box;display: flex;align-items: center;gap: 15px;border: 2px solid #e2e8f0;border-radius: 15px;margin-bottom: 15px;cursor: pointer;transition: all 0.3s ease;">
+                    <div class="booking-icon" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 2em;">👥</div>
+                    <div class="booking-details" style="margin: 0;padding: 0;box-sizing: border-box;flex: 1;">
+                        <div class="booking-title" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 600;font-size: 1.1em;margin-bottom: 5px;color: #1a365d;">Join WhatsApp Community</div>
+                        <div class="booking-description" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.9em;color: #64748b;">Connect with learners & get updates</div>
+                    </div>
+                    <div class="booking-arrow" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.5em;color: #667eea;font-weight: bold;">→</div>
+                </div>
+            </div>
+            <div class="booking-modal-footer" style="margin: 0;padding: 20px 30px 30px;box-sizing: border-box;text-align: center;">
+                <p style="margin: 0;padding: 0;box-sizing: border-box;color: #64748b;font-size: 0.9em;">All methods are free and secure. Choose what's most convenient for you!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ENHANCED WhatsApp Confirmation Modal -->
+    <div id="whatsappConfirmationModal" class="whatsapp-confirmation-modal" style="margin: 0;padding: 0;box-sizing: border-box;position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.8);display: none;justify-content: center;align-items: center;z-index: 11000;">
+        <div class="whatsapp-confirmation-content" style="margin: 0;padding: 0;box-sizing: border-box;background: white;border-radius: 20px;max-width: 550px;width: 90%;box-shadow: 0 25px 80px rgba(0,0,0,0.3);">
+            <div class="whatsapp-confirmation-header" style="margin: 0;padding: 30px;box-sizing: border-box;background: linear-gradient(135deg, #25D366, #128C7E);color: white;border-radius: 20px 20px 0 0;text-align: center;">
+                <h3 style="margin: 0;padding: 0;box-sizing: border-box;">📱 Calendly + WhatsApp Booking</h3>
+                <p style="margin: 0;padding: 0;box-sizing: border-box;">Complete your priority consultation booking in 2 simple steps</p>
+            </div>
+            <div class="whatsapp-confirmation-body" style="margin: 0;padding: 30px;box-sizing: border-box;">
+                <div class="confirmation-step" style="margin: 0;padding: 15px;box-sizing: border-box;display: flex;align-items: flex-start;gap: 15px;background: #f8fafc;border-radius: 10px;margin-bottom: 15px;">
+                    <div class="step-circle" style="margin: 0;padding: 0;box-sizing: border-box;background: #25D366;color: white;width: 30px;height: 30px;border-radius: 50%;display: flex;align-items: center;justify-content: center;font-weight: 700;flex-shrink: 0;">1</div>
+                    <div style="margin: 0;padding: 0;box-sizing: border-box;">
+                        <strong style="margin: 0;padding: 0;box-sizing: border-box;">First: Book via Calendly</strong><br style="margin: 0;padding: 0;box-sizing: border-box;">
+                        <span style="color: #64748b;font-size: 0.9em;margin: 0;padding: 0;box-sizing: border-box;">We'll open Calendly in a new tab. Complete your booking there.</span>
+                    </div>
+                </div>
+                
+                <div class="confirmation-step" style="margin: 0;padding: 15px;box-sizing: border-box;display: flex;align-items: flex-start;gap: 15px;background: #f8fafc;border-radius: 10px;margin-bottom: 15px;">
+                    <div class="step-circle" style="margin: 0;padding: 0;box-sizing: border-box;background: #25D366;color: white;width: 30px;height: 30px;border-radius: 50%;display: flex;align-items: center;justify-content: center;font-weight: 700;flex-shrink: 0;">2</div>
+                    <div style="margin: 0;padding: 0;box-sizing: border-box;">
+                        <strong style="margin: 0;padding: 0;box-sizing: border-box;">Then: Return here for WhatsApp confirmation</strong><br style="margin: 0;padding: 0;box-sizing: border-box;">
+                        <span style="color: #64748b;font-size: 0.9em;margin: 0;padding: 0;box-sizing: border-box;">After booking, come back to this page and click the WhatsApp confirmation button for VIP service</span>
+                    </div>
+                </div>
+
+                <div class="confirmation-action-buttons" style="margin: 0;padding: 0;box-sizing: border-box;display: grid;grid-template-columns: 1fr 1fr;gap: 15px;margin-top: 20px;">
+                    <button class="whatsapp-btn" onclick="proceedWithCalendlyBooking()" style="margin: 0;padding: 12px 20px;box-sizing: border-box;background: #25D366;color: white;border: none;border-radius: 10px;font-weight: 600;cursor: pointer;transition: all 0.3s ease;">
+                        📅 Open Calendly Now
+                    </button>
+                    <button class="close-btn" onclick="closeWhatsAppModal()" style="margin: 0;padding: 12px 20px;box-sizing: border-box;background: #64748b;color: white;border: none;border-radius: 10px;font-weight: 600;cursor: pointer;transition: all 0.3s ease;">
+                        Cancel
+                    </button>
+                </div>
+
+                <p style="text-align: center;margin-top: 15px;font-size: 0.9em;color: #64748b;margin: 0;padding: 0;box-sizing: border-box;">
+                    We'll track your progress and enable WhatsApp confirmation after you complete Calendly booking
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: Booking Completion Check Modal -->
+    <div id="completionCheckModal" class="completion-check-modal" style="margin: 0;padding: 0;box-sizing: border-box;position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.85);display: none;justify-content: center;align-items: center;z-index: 12000;backdrop-filter: blur(10px);">
+        <div class="completion-check-content" style="margin: 0;padding: 0;box-sizing: border-box;background: white;border-radius: 20px;max-width: 450px;width: 90%;box-shadow: 0 25px 80px rgba(0,0,0,0.3);text-align: center;animation: modalSlideIn 0.3s ease-out;">
+            <div class="completion-check-header" style="margin: 0;padding: 30px;box-sizing: border-box;background: linear-gradient(135deg, #3b82f6, #1e40af);color: white;border-radius: 20px 20px 0 0;">
+                <h3 style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.5em;margin-bottom: 10px;">🎯 Booking Status Check</h3>
+                <p style="margin: 0;padding: 0;box-sizing: border-box;">Let's confirm your Calendly booking progress</p>
+            </div>
+            <div class="completion-check-body" style="margin: 0;padding: 30px;box-sizing: border-box;">
+                <div class="completion-question" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.1em;color: var(--text-primary);margin-bottom: 25px;line-height: 1.5;">
+                    Did you successfully complete your priority consultation booking on Calendly?
+                </div>
+                <div class="completion-buttons" style="margin: 0;padding: 0;box-sizing: border-box;display: grid;grid-template-columns: 1fr 1fr;gap: 15px;">
+                    <button class="completion-yes" onclick="handleBookingCompleted()" style="margin: 0;padding: 15px 25px;box-sizing: border-box;background: #25D366;color: white;border: none;border-radius: 10px;font-weight: 600;cursor: pointer;transition: all 0.3s ease;font-size: 1em;">
+                        ✅ Yes, Booked Successfully
+                    </button>
+                    <button class="completion-no" onclick="handleBookingIncomplete()" style="margin: 0;padding: 15px 25px;box-sizing: border-box;background: #e2e8f0;color: var(--text-primary);border: none;border-radius: 10px;font-weight: 600;cursor: pointer;transition: all 0.3s ease;font-size: 1em;">
+                        ❌ No, Still Need Help
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script style="margin: 0;padding: 0;box-sizing: border-box;">
+        // ENHANCED BOOKING CONFIGURATION WITH YOUR ACTUAL CALENDLY URLS
+        const BOOKING_CONFIG = {
+            calendly: {
+                'priority-immediate': 'https://calendly.com/tech-skillaipath/15-min-priority-consultation',
+                'priority-detailed': 'https://calendly.com/tech-skillaipath/30min',
+            },
+            whatsapp: {
+                number: '+919131641230',
+                community: 'https://chat.whatsapp.com/C5VDO1LekAf5ymTNTpSrJj',
+                messages: {
+                    priority: `🎉 *PRIORITY CONSULTATION CONFIRMED* 🎉
+
+Hi there! 👋
+
+I've successfully booked my Priority Track consultation via Calendly. Here are my booking details:
+
+🏆 *Track:* Priority Track (Top 15% Qualified)
+📅 *Session Type:* Personal Strategy Consultation  
+⏰ *Duration:* 15-30 minutes
+🎯 *Focus:* AI & Data career acceleration
+💎 *Benefits:* Personal mentoring + Complete stack access
+📊 *Qualification Score:* 85+ (Premium Tier)
+
+✨ *What I'm Looking Forward To:*
+• Personal roadmap creation
+• Immediate program access
+• 1-on-1 mentoring discussion
+• Career acceleration strategies
+
+Please confirm my priority booking and send me any preparation materials. Thank you for this exclusive opportunity! 🚀
+
+Looking forward to our session! 💪`,
+                }
+            }
+        };
+
+        let currentBookingUrl = '';
+        let currentBookingType = '';
+        let currentTier = '';
+        let bookingState = {
+            calendlyOpened: false,
+            bookingCompleted: false,
+            tabDetectionEnabled: false
+        };
+
+        // Enhanced booking function with multiple options
+        function enhancedBookCall(bookingType, tier) {
+            console.log(`Booking initiated: ${bookingType} for ${tier} tier`);
+            
+            currentBookingType = bookingType;
+            currentTier = tier;
+            
+            // Track the booking attempt
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'booking_attempt', {
+                    'booking_type': bookingType,
+                    'tier': tier,
+                    'method': 'modal_opened'
+                });
+            }
+            
+            // Get the Calendly URL
+            const calendlyUrl = getCalendlyUrl(bookingType, tier);
+            
+            if (calendlyUrl) {
+                currentBookingUrl = calendlyUrl;
+                showBookingOptionsModal();
+            } else {
+                console.error('Calendly URL not found for:', bookingType, tier);
+                showFallbackBookingOptions(bookingType, tier);
+            }
+        }
+
+        function getCalendlyUrl(bookingType, tier) {
+            const mapping = {
+                'immediate': 'priority-immediate',
+                'detailed': 'priority-detailed',
+            };
+            
+            const configKey = mapping[bookingType];
+            return configKey ? BOOKING_CONFIG.calendly[configKey] : null;
+        }
+
+        function showBookingOptionsModal() {
+            const modal = document.getElementById('bookingModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBookingModal() {
+            const modal = document.getElementById('bookingModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Direct Calendly booking
+        function openCalendlyDirect() {
+            closeBookingModal();
+            window.open(currentBookingUrl, '_blank');
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'calendly_direct_booking', {
+                    'booking_type': currentBookingType,
+                    'tier': currentTier
+                });
+            }
+        }
+
+        // ENHANCED: Calendly + WhatsApp flow with reliable detection
+        function openCalendlyThenWhatsApp() {
+            closeBookingModal();
+            showWhatsAppConfirmationModal();
+        }
+
+        function showWhatsAppConfirmationModal() {
+            const modal = document.getElementById('whatsappConfirmationModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeWhatsAppModal() {
+            const modal = document.getElementById('whatsappConfirmationModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // ENHANCED: More reliable Calendly booking flow
+        function proceedWithCalendlyBooking() {
+            // Close modal and show progress tracker
+            closeWhatsAppModal();
+            
+            // Show progress tracker
+            const tracker = document.getElementById('progressTracker');
+            tracker.classList.add('active');
+            
+            // Update progress
+            updateProgressStep(2, 'active');
+            
+            // Open Calendly in new tab
+            const calendlyTab = window.open(currentBookingUrl, '_blank');
+            bookingState.calendlyOpened = true;
+            bookingState.tabDetectionEnabled = true;
+            
+            // Enhanced detection system with multiple methods
+            setupBookingDetection();
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'calendly_whatsapp_flow_started', {
+                    'booking_type': currentBookingType,
+                    'tier': currentTier
+                });
+            }
+        }
+
+        // ENHANCED: Multi-method booking detection system
+        function setupBookingDetection() {
+            let detectionAttempts = 0;
+            const maxAttempts = 3;
+            
+            // Method 1: Immediate check after 3 seconds
+            setTimeout(() => {
+                if (bookingState.tabDetectionEnabled && detectionAttempts < maxAttempts) {
+                    detectionAttempts++;
+                    showBookingCompletionCheck();
+                }
+            }, 3000);
+            
+            // Method 2: Window focus detection
+            const focusHandler = () => {
+                if (bookingState.calendlyOpened && bookingState.tabDetectionEnabled && detectionAttempts < maxAttempts) {
+                    setTimeout(() => {
+                        if (bookingState.tabDetectionEnabled) {
+                            detectionAttempts++;
+                            showBookingCompletionCheck();
+                        }
+                    }, 1000);
+                }
+            };
+            
+            window.addEventListener('focus', focusHandler);
+            
+            // Method 3: Page visibility change
+            const visibilityHandler = () => {
+                if (!document.hidden && bookingState.calendlyOpened && bookingState.tabDetectionEnabled && detectionAttempts < maxAttempts) {
+                    setTimeout(() => {
+                        if (bookingState.tabDetectionEnabled) {
+                            detectionAttempts++;
+                            showBookingCompletionCheck();
+                        }
+                    }, 1000);
+                }
+            };
+            
+            document.addEventListener('visibilitychange', visibilityHandler);
+            
+            // Method 4: Backup timer
+            setTimeout(() => {
+                if (bookingState.calendlyOpened && bookingState.tabDetectionEnabled && detectionAttempts < maxAttempts) {
+                    detectionAttempts++;
+                    showBookingCompletionCheck();
+                }
+            }, 8000);
+            
+            // Cleanup function
+            setTimeout(() => {
+                window.removeEventListener('focus', focusHandler);
+                document.removeEventListener('visibilitychange', visibilityHandler);
+                bookingState.tabDetectionEnabled = false;
+            }, 30000); // Stop detection after 30 seconds
+        }
+
+        // NEW: Show booking completion check modal
+        function showBookingCompletionCheck() {
+            if (!bookingState.tabDetectionEnabled) return;
+            
+            const modal = document.getElementById('completionCheckModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Disable further detection
+            bookingState.tabDetectionEnabled = false;
+        }
+
+        // NEW: Handle completed booking confirmation
+        function handleBookingCompleted() {
+            // Close completion check modal
+            const modal = document.getElementById('completionCheckModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Mark booking as completed
+            bookingState.bookingCompleted = true;
+            
+            // Enable WhatsApp confirmation
+            enableWhatsAppConfirmation();
+            
+            // Immediately open WhatsApp with professional message
+            setTimeout(() => {
+                openWhatsAppWithMessage();
+            }, 500);
+        }
+
+        // NEW: Handle incomplete booking
+        function handleBookingIncomplete() {
+            // Close completion check modal
+            const modal = document.getElementById('completionCheckModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Show helpful message and re-enable detection
+            alert('No problem! Please complete your Calendly booking first. We\'ll check again in a moment.');
+            
+            // Re-enable detection for another attempt
+            bookingState.tabDetectionEnabled = true;
+            setTimeout(() => {
+                if (bookingState.tabDetectionEnabled) {
+                    showBookingCompletionCheck();
+                }
+            }, 5000);
+        }
+
+        function enableWhatsAppConfirmation() {
+            const btn = document.getElementById('whatsappConfirmationBtn');
+            btn.disabled = false;
+            btn.textContent = '📱 Send WhatsApp Confirmation (Click if you completed Calendly booking)';
+            btn.style.background = '#25D366';
+            
+            updateProgressStep(2, 'completed');
+            updateProgressStep(3, 'active');
+            
+            // Add visual indicator
+            btn.style.animation = 'pulse 2s infinite';
+        }
+
+        // ENHANCED: Direct WhatsApp opening with professional message
+        function openWhatsAppWithMessage() {
+            const message = BOOKING_CONFIG.whatsapp.messages[currentTier] || BOOKING_CONFIG.whatsapp.messages.priority;
+            const whatsappUrl = `https://wa.me/${BOOKING_CONFIG.whatsapp.number}?text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappUrl, '_blank');
+            
+            // Update state and UI
+            updateProgressStep(3, 'completed');
+            
+            const btn = document.getElementById('whatsappConfirmationBtn');
+            btn.textContent = '✅ WhatsApp confirmation sent successfully!';
+            btn.disabled = true;
+            btn.style.background = '#10b981';
+            btn.style.animation = 'none';
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'whatsapp_confirmation_sent', {
+                    'booking_type': currentBookingType,
+                    'tier': currentTier,
+                    'method': 'automatic'
+                });
+            }
+        }
+
+        function sendWhatsAppConfirmation() {
+            if (!bookingState.calendlyOpened) {
+                alert('Please complete your Calendly booking first!');
+                return;
+            }
+
+            // Ask for confirmation
+            const confirmed = confirm('Did you complete your Calendly booking?\n\nClick OK to send WhatsApp confirmation with your booking details for priority service.');
+            
+            if (confirmed) {
+                openWhatsAppWithMessage();
+            }
+        }
+
+        function updateProgressStep(stepNumber, status) {
+            const step = document.getElementById(`step${stepNumber}`);
+            if (step) {
+                step.className = `progress-step ${status}`;
+            }
+        }
+
+        // Join WhatsApp Community
+        function joinWhatsAppCommunity() {
+            closeBookingModal();
+            window.open(BOOKING_CONFIG.whatsapp.community, '_blank');
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'whatsapp_community_joined', {
+                    'source': 'priority_booking_modal'
+                });
+            }
+        }
+
+        function showFallbackBookingOptions(bookingType, tier) {
+            alert(`Calendly temporarily unavailable. Please contact us via:\n\nWhatsApp: ${BOOKING_CONFIG.whatsapp.number}\nOr join our community: ${BOOKING_CONFIG.whatsapp.community}`);
+        }
+
+        // Close modals on outside click
+        document.getElementById('bookingModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBookingModal();
+            }
+        });
+
+        document.getElementById('whatsappConfirmationModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeWhatsAppModal();
+            }
+        });
+
+        document.getElementById('completionCheckModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                handleBookingIncomplete();
+            }
+        });
+
+        // Dynamic Date Calculation - Next Monday
+        function getNextMonday() {
+            const today = new Date();
+            const dayOfWeek = today.getDay();
+            const daysUntilMonday = (1 + 7 - dayOfWeek) % 7 || 7;
+            
+            const nextMonday = new Date(today);
+            nextMonday.setDate(today.getDate() + daysUntilMonday);
+            
+            return nextMonday;
+        }
+
+        function formatDate(date) {
+            const options = { 
+                month: 'short', 
+                day: 'numeric'
+            };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        function formatFullDate(date) {
+            const options = { 
+                weekday: 'long',
+                month: 'long', 
+                day: 'numeric'
+            };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Update dates on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const nextMonday = getNextMonday();
+            const shortDate = formatDate(nextMonday);
+            const fullDate = formatFullDate(nextMonday);
+            
+            document.getElementById('nextBatchDate').textContent = shortDate;
+            document.getElementById('urgencyBatchDate').textContent = fullDate;
+            
+            setTimeout(() => {
+                document.querySelector('.booking-card').style.transform = 'translateY(0)';
+                document.querySelector('.booking-card').style.opacity = '1';
+            }, 300);
+        });
+
+        // Booking Functions
+        function bookCall(type) {
+            console.log(`Priority candidate booking: ${type}`);
+            
+            if (type === 'assessment') {
+                window.open('https://calendly.com/tech-skillaipath/45-min-assessment', '_blank');
+            } else if (type === 'deep-dive') {
+                window.open('https://calendly.com/tech-skillaipath/60-min-deep-dive', '_blank');
+            }
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'priority_booking_clicked', {
+                    'booking_type': type,
+                    'tier': 'priority',
+                    'score_range': '75+'
+                });
+            }
+        }
+
+        function joinCommunity() {
+            window.open('https://chat.whatsapp.com/Ljq76ZIK1BrHJF50RP3IYE', '_blank');
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'whatsapp_community_clicked', {
+                    'tier': 'priority',
+                    'source': 'booking_page'
+                });
+            }
+        }
+
+        // Add entrance animation
+        document.querySelector('.booking-card').style.transform = 'translateY(30px)';
+        document.querySelector('.booking-card').style.opacity = '0';
+        document.querySelector('.booking-card').style.transition = 'all 0.8s ease';
+    </script>
+</body>
+</html>

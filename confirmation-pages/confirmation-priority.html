@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Priority Call Confirmed! | Skill AI Path</title>
+    <meta name="description" content="Your priority consultation is confirmed! Get ready for your personalized AI & Data career strategy session.">
+    
+    <!-- Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;909&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;909&family=Playfair+Display:wght@400;500;600;700;800;909&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --premium-gold: #ffd89b;
+            --success-green: #10b981;
+            --deep-blue: #1a365d;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --text-bright: #ffffff;
+            --glassmorphism: rgba(255, 255, 255, 0.15);
+            --glassmorphism-strong: rgba(255, 255, 255, 0.25);
+            --shadow-premium: 0 25px 80px rgba(102, 126, 234, 0.25);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.8" fill="rgba(255,255,255,0.1)"/><circle cx="5" cy="5" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="15" cy="15" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23stars)"/></svg>');
+            animation: patternMove 25s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes patternMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(20px, 20px); }
+        }
+
+        /* Main Container */
+        .confirmation-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Success Header */
+        .success-header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .success-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .success-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--premium-gold);
+            color: var(--text-primary);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .success-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            line-height: 1.1;
+        }
+
+        .success-subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        /* Main Confirmation Card */
+        .confirmation-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 45px 40px;
+            box-shadow: var(--shadow-premium);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .confirmation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--premium-gold), var(--success-green));
+        }
+
+        /* Next Steps Section */
+        .next-steps {
+            margin-bottom: 40px;
+        }
+
+        .steps-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 25px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .step-item {
+            text-align: center;
+            padding: 25px 15px;
+            background: #f8fafc;
+            border-radius: 15px;
+            border-top: 4px solid var(--premium-gold);
+        }
+
+        .step-number {
+            background: var(--premium-gold);
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: 800;
+            font-size: 1.1em;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--deep-blue);
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        .step-description {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Preparation Checklist */
+        .preparation-section {
+            background: linear-gradient(135deg, #fef3c7, #fef9e6);
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 35px;
+        }
+
+        .prep-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .prep-checklist {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .prep-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid var(--success-green);
+        }
+
+        .prep-checkbox {
+            color: var(--success-green);
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .prep-text {
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        /* Meeting Details */
+        .meeting-details {
+            background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+            border: 2px solid #0ea5e9;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .meeting-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--deep-blue);
+            margin-bottom: 15px;
+        }
+
+        .meeting-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .info-label {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-weight: 700;
+            color: var(--deep-blue);
+            font-size: 1.1em;
+        }
+
+        .calendar-reminder {
+            background: var(--success-green);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-reminder:hover {
+            background: var(--deep-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Contact Information */
+        .contact-info {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .contact-title {
+            font-weight: 600;
+            color: var(--deep-blue);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .contact-icon {
+            color: var(--premium-gold);
+            font-size: 1.2em;
+        }
+
+        .contact-text {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        /* Exclusive Benefits Reminder */
+        .benefits-reminder {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .benefits-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            text-align: left;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+        }
+
+        .benefit-check {
+            color: var(--premium-gold);
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .confirmation-footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .footer-note {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .confirmation-container {
+                padding: 20px 15px;
+            }
+
+            .success-title {
+                font-size: 2.8em;
+            }
+
+            .confirmation-card {
+                padding: 30px 25px;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .meeting-info, .contact-methods, .benefits-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .success-title {
+                font-size: 2.2em;
+            }
+
+            .confirmation-card {
+                padding: 25px 20px;
+            }
+
+            .preparation-section {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <!-- Success Header -->
+        <div class="success-header">
+            <div class="success-icon">🎉</div>
+            
+            <div class="success-badge">
+                🏆 PRIORITY CALL CONFIRMED
+            </div>
+            
+            <h1 class="success-title">You're All Set!</h1>
+            
+            <p class="success-subtitle">
+                Your priority consultation is confirmed. Check your email and WhatsApp for the meeting details. Get ready for your personalized AI & Data career acceleration!
+            </p>
+        </div>
+
+        <!-- Main Confirmation Card -->
+        <div class="confirmation-card">
+            <!-- Next Steps -->
+            <div class="next-steps">
+                <h2 class="steps-title">
+                    🚀 What Happens Next
+                </h2>
+                <div class="steps-grid">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Email Confirmation</div>
+                        <div class="step-description">Check your inbox for meeting details and calendar invite</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-title">WhatsApp Reminder</div>
+                        <div class="step-description">We'll send you a reminder 1 hour before your call</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Your Strategy Call</div>
+                        <div class="step-description">Join your personalized consultation at the scheduled time</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preparation Checklist -->
+            <div class="preparation-section">
+                <h3 class="prep-title">
+                    📋 Preparation Checklist
+                </h3>
+                <ul class="prep-checklist">
+                    <li class="prep-item">
+                        <span class="prep-checkbox">✓</span>
+                        <span class="prep-text">Prepare your career goals and current challenges to discuss</span>
+                    </li>
+                    <li class="prep-item">
+                        <span class="prep-checkbox">✓</span>
+                        <span class="prep-text">Have your resume or LinkedIn profile ready for review</span>
+                    </li>
+                    <li class="prep-item">
+                        <span class="prep-checkbox">✓</span>
+                        <span class="prep-text">Think about your preferred learning pace and timeline</span>
+                    </li>
+                    <li class="prep-item">
+                        <span class="prep-checkbox">✓</span>
+                        <span class="prep-text">Prepare any specific questions about AI & Data careers</span>
+                    </li>
+                    <li class="prep-item">
+                        <span class="prep-checkbox">✓</span>
+                        <span class="prep-text">Ensure stable internet connection and quiet environment</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Meeting Details -->
+            <div class="meeting-details">
+                <h3 class="meeting-title">📅 Meeting Details</h3>
+                <div class="meeting-info">
+                    <div class="info-box">
+                        <div class="info-label">Duration</div>
+                        <div class="info-value">15-45 Minutes</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">Platform</div>
+                        <div class="info-value">Google Meet / Zoom</div>
+                    </div>
+                </div>
+                <a href="#" class="calendar-reminder" onclick="addToCalendar()">
+                    📅 Add to Calendar
+                </a>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h3 class="contact-title">📞 Need Help or Want to Reschedule?</h3>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <span class="contact-icon">📧</span>
+                        <span class="contact-text">tech@skillaipath.com</span>
+                    </div>
+                    <div class="contact-method">
+                        <span class="contact-icon">💬</span>
+                        <span class="contact-text">WhatsApp: Available 9 AM - 9 PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exclusive Benefits Reminder -->
+            <div class="benefits-reminder">
+                <h3 class="benefits-title">🎯 Your Priority Benefits Are Ready</h3>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <span class="benefit-check">✓</span>
+                        <span>Personal mentoring with Viresh</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-check">✓</span>
+                        <span>Skip waitlist access</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-check">✓</span>
+                        <span>All 6 tracks unlocked</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-check">✓</span>
+                        <span>Founder's pricing (locked-in)</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-check">✓</span>
+                        <span>Priority placement support</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-check">✓</span>
+                        <span>Lifetime community access</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="confirmation-footer">
+                Looking forward to accelerating your AI & Data career journey together!
+                <div class="footer-note">
+                    🔒 Your priority status is secured. This consultation is completely free with no obligations.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add to calendar functionality
+        function addToCalendar() {
+            // This would typically integrate with Google Calendar API or create an .ics file
+            alert('Calendar integration coming soon! For now, please use the calendar invite sent to your email.');
+        }
+
+        // Track page view
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'priority_confirmation_viewed', {
+                'tier': 'priority',
+                'page_type': 'confirmation'
+            });
+        }
+
+        // Add entrance animation
+        setTimeout(() => {
+            document.querySelector('.confirmation-card').style.transform = 'translateY(0)';
+            document.querySelector('.confirmation-card').style.opacity = '1';
+        }, 300);
+
+        document.querySelector('.confirmation-card').style.transform = 'translateY(30px)';
+        document.querySelector('.confirmation-card').style.opacity = '0';
+        document.querySelector('.confirmation-card').style.transition = 'all 0.8s ease';
+    </script>
+</body>
+</html>
