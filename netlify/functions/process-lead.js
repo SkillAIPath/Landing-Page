@@ -634,6 +634,8 @@ async function saveToAirtable(formData, responseData) {
     // Email sent status
     recordData['Email Sent'] = responseData.emailSent === true;
 
+    recordData['Email'] = formData.email;
+
     recordData['Current Situation'] = formData.q1_current_situation;
     recordData['Daily Learning Commitment'] = formData.q2_daily_commitment;
     recordData['Technical Background'] = formData.q3_technical_background;
