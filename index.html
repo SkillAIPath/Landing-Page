@@ -1672,14 +1672,14 @@
         .popup-modal,
         .popup-content,
         .popup-form {
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; 
+            -ms-overflow-style: none; 
         }
 
         .popup-modal::-webkit-scrollbar,
         .popup-content::-webkit-scrollbar,
         .popup-form::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
+            display: none; 
         }
 
         .popup-content {
@@ -1688,7 +1688,7 @@
             max-width: 600px;
             width: 100%;
             /* max-height: 90vh; */
-            /* max-height: 90vh; */
+            max-height: 90vh;
             overflow-y: auto;
             position: relative;
             color: white;
@@ -2580,7 +2580,7 @@
                     <input type="tel" name="phone" placeholder="+91 9301310154" required>
                 </div>
                 
-                <div class="form-row">
+                <!-- <div class="form-row">
                     <select name="interest" required>
                         <option value="">Select your primary goal</option>
                         <option value="Data Analytics">Build analytics solutions</option>
@@ -2598,7 +2598,63 @@
                         <option value="Career Change">Planning Career Change</option>
                         <option value="Entrepreneur">Building Business</option>
                     </select>
+                </div> -->
+
+                <div class="form-row">
+                    <!-- Q1: Current Situation -->
+                    <select name="q1_current_situation" required>
+                    <option value="">Current Situation</option>
+                    <option value="IT/CS Student (1st-3rd year)">IT/CS Student (1st-3rd year)</option>
+                    <option value="Other Field Student (1st-3rd year)">Other Field Student (1st-3rd year)</option>
+                    <option value="Working Professional (Career change)">Working Professional (Career change)</option>
+                    <option value="Recent Graduate (No job)">Recent Graduate (No job)</option>
+                    <option value="Final Year Student (Any field)">Final Year Student (Any field)</option>
+                    <option value="IT Professional (Skill upgrade)">IT Professional (Skill upgrade)</option>
+                    <option value="Entrepreneur/Business Owner">Entrepreneur/Business Owner</option>
+                    </select>
+
+                    <!-- Q2: Daily Learning Commitment -->
+                    <select name="q2_daily_commitment" required>
+                    <option value="">Daily Learning Commitment</option>
+                    <option value="6+ hours daily">6+ hours daily</option>
+                    <option value="4-6 hours daily">4-6 hours daily</option>
+                    <option value="2-4 hours daily">2-4 hours daily</option>
+                    <option value="Under 2 hours daily">Under 2 hours daily</option>
+                    </select>
                 </div>
+
+                <div class="form-row">
+                    <!-- Q3: Technical Background -->
+                    <select name="q3_technical_background" required>
+                    <option value="">Technical Background</option>
+                    <option value="Complete Beginner">Complete Beginner</option>
+                    <option value="Basic Programming (Python/SQL basics)">Basic Programming (Python/SQL basics)</option>
+                    <option value="Excel/Analytics Experience">Excel/Analytics Experience</option>
+                    <option value="Uses AI Tools (ChatGPT, etc.)">Uses AI Tools (ChatGPT, etc.)</option>
+                    <option value="Advanced Technical (Can build apps)">Advanced Technical (Can build apps)</option>
+                    </select>
+
+                    <!-- Q4: Financial Readiness -->
+                    <select name="q4_financial_readiness" required>
+                    <option value="">Financial Readiness</option>
+                    <option value="Ready to Pay (Family support)">Ready to Pay (Family support)</option>
+                    <option value="Personal Savings (Ready to invest)">Personal Savings (Ready to invest)</option>
+                    <option value="EMI Preferred (Has card/income)">EMI Preferred (Has card/income)</option>
+                    <option value="Limited Budget (Student/No income)">Limited Budget (Student/No income)</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <!-- Q5: Starting Timeline -->
+                    <select name="q5_starting_timeline" required>
+                    <option value="">When do you plan to start?</option>
+                    <option value="Within 1 week">Within 1 week</option>
+                    <option value="Within 1 month">Within 1 month</option>
+                    <option value="Within 3 months">Within 3 months</option>
+                    <option value="Just exploring">Just exploring</option>
+                    </select>
+                </div>
+
                 
                 <textarea name="challenge" placeholder="What business problem would you most like to solve? Tell us about your goals and current challenges..." required></textarea>
                 
@@ -2686,6 +2742,61 @@
                 <div class="form-row">
                     <input type="email" name="email" placeholder="Email address" required>
                     <input type="tel" name="phone" placeholder="WhatsApp number" required>
+                </div>
+
+                <div class="form-row">
+                    <!-- Q1: Current Situation -->
+                    <select name="q1_current_situation" required>
+                    <option value="">Current Situation</option>
+                    <option value="IT/CS Student (1st-3rd year)">IT/CS Student (1st-3rd year)</option>
+                    <option value="Other Field Student (1st-3rd year)">Other Field Student (1st-3rd year)</option>
+                    <option value="Working Professional (Career change)">Working Professional (Career change)</option>
+                    <option value="Recent Graduate (No job)">Recent Graduate (No job)</option>
+                    <option value="Final Year Student (Any field)">Final Year Student (Any field)</option>
+                    <option value="IT Professional (Skill upgrade)">IT Professional (Skill upgrade)</option>
+                    <option value="Entrepreneur/Business Owner">Entrepreneur/Business Owner</option>
+                    </select>
+
+                    <!-- Q2: Daily Learning Commitment -->
+                    <select name="q2_daily_commitment" required>
+                    <option value="">Daily Learning Commitment</option>
+                    <option value="6+ hours daily">6+ hours daily</option>
+                    <option value="4-6 hours daily">4-6 hours daily</option>
+                    <option value="2-4 hours daily">2-4 hours daily</option>
+                    <option value="Under 2 hours daily">Under 2 hours daily</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <!-- Q3: Technical Background -->
+                    <select name="q3_technical_background" required>
+                    <option value="">Technical Background</option>
+                    <option value="Complete Beginner">Complete Beginner</option>
+                    <option value="Basic Programming (Python/SQL basics)">Basic Programming (Python/SQL basics)</option>
+                    <option value="Excel/Analytics Experience">Excel/Analytics Experience</option>
+                    <option value="Uses AI Tools (ChatGPT, etc.)">Uses AI Tools (ChatGPT, etc.)</option>
+                    <option value="Advanced Technical (Can build apps)">Advanced Technical (Can build apps)</option>
+                    </select>
+
+                    <!-- Q4: Financial Readiness -->
+                    <select name="q4_financial_readiness" required>
+                    <option value="">Financial Readiness</option>
+                    <option value="Ready to Pay (Family support)">Ready to Pay (Family support)</option>
+                    <option value="Personal Savings (Ready to invest)">Personal Savings (Ready to invest)</option>
+                    <option value="EMI Preferred (Has card/income)">EMI Preferred (Has card/income)</option>
+                    <option value="Limited Budget (Student/No income)">Limited Budget (Student/No income)</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <!-- Q5: Starting Timeline -->
+                    <select name="q5_starting_timeline" required>
+                    <option value="">When do you plan to start?</option>
+                    <option value="Within 1 week">Within 1 week</option>
+                    <option value="Within 1 month">Within 1 month</option>
+                    <option value="Within 3 months">Within 3 months</option>
+                    <option value="Just exploring">Just exploring</option>
+                    </select>
                 </div>
                 
                 <textarea name="challenge" placeholder="What business problem would you most like to solve?" required style="min-height: 80px; max-height: 100px;"></textarea>
