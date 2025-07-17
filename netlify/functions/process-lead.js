@@ -659,7 +659,7 @@ function calculateUrgencyData() {
     
     // Weekly cycle: Monday review, slots available Wed-Sunday
     let slotsRemaining = 12; // Realistic number
-    let totalSlots = 20; // Realistic weekly capacity
+    let totalSlots = 30; // Realistic weekly capacity
     let isActive = true;
     let statusMessage = 'Active review period';
     
