@@ -1,265 +1,687 @@
 <!DOCTYPE html>
-<html lang="en" style="margin: 0;padding: 0;box-sizing: border-box;">
-<head style="margin: 0;padding: 0;box-sizing: border-box;">
-    <meta charset="UTF-8" style="margin: 0;padding: 0;box-sizing: border-box;">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" style="margin: 0;padding: 0;box-sizing: border-box;">
-    <title style="margin: 0;padding: 0;box-sizing: border-box;">🌟 You're Qualified! - Foundation Track | Skill AI Path</title>
-    <meta name="description" content="Great start! You qualify for our foundation track. Let's build your AI & Data skills step by step with proper guidance." style="margin: 0;padding: 0;box-sizing: border-box;">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 You're Qualified! - Foundation Track | Skill AI Path</title>
+    <meta name="description" content="Great start! You qualify for our foundation track. Let's build your AI & Data skills step by step with proper guidance.">
     
-    <!-- Fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" as="style" style="margin: 0;padding: 0;box-sizing: border-box;">
-    
-    
-    
+    <style>
+        /* Email-safe CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #14b8a6;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .main-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .stats-table td {
+            width: 25%;
+            padding: 15px;
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #14b8a6;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .content {
+            padding: 30px 20px;
+        }
+        
+        .welcome-box {
+            background: #e0f2fe;
+            border: 2px solid #0284c7;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .welcome-text {
+            font-weight: bold;
+            color: #0c4a6e;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .batch-info {
+            color: #64748b;
+            font-size: 14px;
+        }
+        
+        .benefits-section {
+            margin-bottom: 30px;
+        }
+        
+        .benefits-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #0c4a6e;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .benefit-item {
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #14b8a6;
+            margin-bottom: 10px;
+        }
+        
+        .benefit-icon {
+            color: #14b8a6;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .benefit-text {
+            font-weight: 500;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .learning-path {
+            background: #fef7ed;
+            border: 2px solid #f97316;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .path-header {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0c4a6e;
+            margin-bottom: 15px;
+        }
+        
+        .path-description {
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .steps-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .steps-table td {
+            width: 50%;
+            padding: 15px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        .step-number {
+            background: #14b8a6;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: #0c4a6e;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .step-description {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 12px;
+        }
+        
+        .cta-button {
+            background: #14b8a6;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            font-size: 14px;
+        }
+        
+        .cta-button:hover {
+            background: #0d9488;
+        }
+        
+        .encouragement {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .encouragement-title {
+            font-weight: bold;
+            color: #0c4a6e;
+            margin-bottom: 10px;
+        }
+        
+        .encouragement-text {
+            color: #333;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        .guarantee {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .guarantee-title {
+            font-weight: bold;
+            color: #0c4a6e;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .guarantee-text {
+            color: #64748b;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+        
+        .footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.4;
+            padding: 20px;
+            background: #f8fafc;
+        }
+        
+        .security-note {
+            margin-top: 15px;
+            color: #64748b;
+            font-size: 12px;
+        }
+        
+        .progress-tracker {
+            margin: 20px 0;
+            padding: 25px;
+            background: #f0f9ff;
+            border: 2px solid #3b82f6;
+            border-radius: 15px;
+            display: none;
+        }
+        
+        .progress-title {
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 15px;
+        }
+        
+        .progress-steps {
+            margin-bottom: 20px;
+        }
+        
+        .progress-step {
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .progress-step.completed {
+            background: #dcfce7;
+            border-left: 4px solid #10b981;
+        }
+        
+        .whatsapp-confirmation-btn {
+            margin: 10px 0;
+            padding: 15px 30px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        .whatsapp-confirmation-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        /* Modal styles for email compatibility */
+        .booking-modal, .whatsapp-confirmation-modal, .completion-check-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 500px;
+            margin: 10% auto;
+            padding: 0;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+        }
+        
+        .modal-header {
+            padding: 25px 30px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            background: linear-gradient(135deg, #14b8a6, #0d9488);
+            color: white;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .booking-option {
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .booking-option:hover {
+            border-color: #06b6d4;
+            background: #f0f9ff;
+        }
+        
+        /* Responsive adjustments */
+        @media screen and (max-width: 600px) {
+            .email-container {
+                margin: 0;
+                border-radius: 0;
+            }
+            
+            .main-title {
+                font-size: 24px;
+            }
+            
+            .stats-table td {
+                padding: 10px;
+            }
+            
+            .stat-number {
+                font-size: 20px;
+            }
+            
+            .content {
+                padding: 20px 15px;
+            }
+            
+            .steps-table td {
+                display: block;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
 </head>
-<body style="margin: 0;padding: 0;box-sizing: border-box;font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;line-height: 1.6;color: var(--text-primary);background: var(--primary-gradient);min-height: 100vh;overflow-x: hidden;">
-    <div class="booking-container" style="margin: 0 auto;padding: 40px 20px;box-sizing: border-box;max-width: 900px;position: relative;z-index: 10;min-height: 100vh;display: flex;flex-direction: column;justify-content: center;">
+<body>
+    <div class="email-container">
         <!-- Header Section -->
-        <div class="basic-header" style="margin: 0;padding: 0;box-sizing: border-box;text-align: center;margin-bottom: 50px;color: black;">
-            <div class="basic-badge" style="margin: 0;padding: 12px 30px;box-sizing: border-box;display: inline-flex;align-items: center;gap: 12px;background: var(--friendly-teal);color: black;border-radius: 30px;font-size: 1em;font-weight: 700;margin-bottom: 25px;box-shadow: 0 8px 25px rgba(20, 184, 166, 0.4);">
+        <div class="header">
+            <div class="badge">
                 🌟 FOUNDATION TRACK QUALIFIED
             </div>
             
-            <h1 class="basic-title" style="margin: 0;padding: 0;box-sizing: border-box;font-family: 'Playfair Display', serif;font-size: 3em;font-weight: 700;margin-bottom: 20px;text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);line-height: 1.1;">You're Qualified!</h1>
+            <h1 class="main-title">You're Qualified!</h1>
             
-            <p class="basic-subtitle" style="margin: 0 auto 30px;padding: 0;box-sizing: border-box;font-size: 1.2em;opacity: 0.95;max-width: 600px;line-height: 1.4;">
+            <p class="subtitle">
                 Great application! You're ready to start your AI & Data journey with our structured foundation program.
             </p>
 
-            <!-- Stats Row -->
-            <div class="stats-row" style="margin: 0;padding: 0;box-sizing: border-box;display: grid;grid-template-columns: repeat(3, 1fr);gap: 20px;margin-bottom: 40px;">
-                <div class="stat-item" style="margin: 0;padding: 20px;box-sizing: border-box;background: var(--glassmorphism-strong);backdrop-filter: blur(20px);border-radius: 15px;text-align: center;border: 1px solid rgba(255, 255, 255, 0.3);">
-                    <span class="stat-number" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 2em;font-weight: 800;color: var(--friendly-teal);display: block;margin-bottom: 5px;">45+</span>
-                    <span class="stat-label" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.9em;opacity: 0.9;color: black;">Your Qualification Score</span>
-                </div>
-                <div class="stat-item" style="margin: 0;padding: 20px;box-sizing: border-box;background: var(--glassmorphism-strong);backdrop-filter: blur(20px);border-radius: 15px;text-align: center;border: 1px solid rgba(255, 255, 255, 0.3);">
-                    <span class="stat-number" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 2em;font-weight: 800;color: var(--friendly-teal);display: block;margin-bottom: 5px;">36</span>
-                    <span class="stat-label" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.9em;opacity: 0.9;color: black;">Foundation Spots</span>
-                </div>
-                <div class="stat-item" style="margin: 0;padding: 20px;box-sizing: border-box;background: var(--glassmorphism-strong);backdrop-filter: blur(20px);border-radius: 15px;text-align: center;border: 1px solid rgba(255, 255, 255, 0.3);">
-                    <span class="stat-number" id="nextBatchDate" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 2em;font-weight: 800;color: var(--friendly-teal);display: block;margin-bottom: 5px;">Loading...</span>
-                    <span class="stat-label" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.9em;opacity: 0.9;color: black;">Next Batch Starts</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="nextWebinarDate">Loading...</span>
-                    <span class="stat-label">Free Workshop Available</span>
-                </div>
-            </div>
+            <!-- Stats Table -->
+            <table class="stats-table">
+                <tr>
+                    <td>
+                        <span class="stat-number">45+</span>
+                        <span class="stat-label">Your Qualification Score</span>
+                    </td>
+                    <td>
+                        <span class="stat-number">36</span>
+                        <span class="stat-label">Foundation Spots</span>
+                    </td>
+                    <td>
+                        <span class="stat-number" id="nextBatchDate">Loading...</span>
+                        <span class="stat-label">Next Batch Starts</span>
+                    </td>
+                    <td>
+                        <span class="stat-number" id="nextWebinarDate">Loading...</span>
+                        <span class="stat-label">Free Workshop Available</span>
+                    </td>
+                </tr>
+            </table>
         </div>
 
-        <!-- Main Booking Card -->
-        <div class="booking-card" style="margin: 0;padding: 40px 35px;box-sizing: border-box;background: rgba(255, 255, 255, 0.95);backdrop-filter: blur(20px);border-radius: 25px;box-shadow: var(--shadow-friendly);border: 2px solid rgba(255, 255, 255, 0.3);position: relative;overflow: hidden;">
+        <!-- Main Content -->
+        <div class="content">
             <!-- Welcome Message -->
-            <div class="welcome-message" style="margin: 0;padding: 20px;box-sizing: border-box;background: linear-gradient(135deg, #e0f2fe, #f0f9ff);border: 2px solid var(--warm-blue);border-radius: 12px;margin-bottom: 30px;text-align: center;">
-                <div class="welcome-text" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 600;color: var(--deep-blue);font-size: 1.1em;margin-bottom: 8px;">
-                    🚀 Perfect timing! Foundation batch starting <span class="batch-date" id="welcomeBatchDate" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 700;color: var(--warm-blue);">Loading...</span>
+            <div class="welcome-box">
+                <div class="welcome-text">
+                    🚀 Perfect timing! Foundation batch starting <span id="welcomeBatchDate">Loading...</span>
                 </div>
-                <div class="batch-info" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--text-secondary);font-size: 0.95em;">Let's plan your learning journey together</div>
+                <div class="batch-info">Let's plan your learning journey together</div>
             </div>
 
             <!-- Foundation Benefits -->
-            <div class="foundation-benefits" style="margin: 0;padding: 0;box-sizing: border-box;margin-bottom: 35px;">
-                <h3 class="benefits-title" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.3em;font-weight: 700;color: var(--deep-blue);margin-bottom: 20px;text-align: center;">🎯 Foundation Track Benefits</h3>
-                <div class="benefits-grid" style="margin: 0;padding: 0;box-sizing: border-box;display: grid;grid-template-columns: 1fr;gap: 12px;">
-                    <div class="benefit-item" style="margin: 0;padding: 15px;box-sizing: border-box;display: flex;align-items: flex-start;gap: 12px;background: #f8fafc;border-radius: 12px;border-left: 4px solid var(--friendly-teal);">
-                        <span class="benefit-icon" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--friendly-teal);font-size: 1.1em;font-weight: 700;margin-top: 2px;">✓</span>
-                        <span class="benefit-text" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 500;color: var(--text-primary);font-size: 0.95em;line-height: 1.4;">Step-by-step curriculum designed for beginners with clear milestones</span>
-                    </div>
-                    <div class="benefit-item" style="margin: 0;padding: 15px;box-sizing: border-box;display: flex;align-items: flex-start;gap: 12px;background: #f8fafc;border-radius: 12px;border-left: 4px solid var(--friendly-teal);">
-                        <span class="benefit-icon" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--friendly-teal);font-size: 1.1em;font-weight: 700;margin-top: 2px;">✓</span>
-                        <span class="benefit-text" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 500;color: var(--text-primary);font-size: 0.95em;line-height: 1.4;">Weekly group sessions with doubt clearing and progress tracking</span>
-                    </div>
-                    <div class="benefit-item" style="margin: 0;padding: 15px;box-sizing: border-box;display: flex;align-items: flex-start;gap: 12px;background: #f8fafc;border-radius: 12px;border-left: 4px solid var(--friendly-teal);">
-                        <span class="benefit-icon" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--friendly-teal);font-size: 1.1em;font-weight: 700;margin-top: 2px;">✓</span>
-                        <span class="benefit-text" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 500;color: var(--text-primary);font-size: 0.95em;line-height: 1.4;">Hands-on projects that build your confidence gradually</span>
-                    </div>
-                    <div class="benefit-item" style="margin: 0;padding: 15px;box-sizing: border-box;display: flex;align-items: flex-start;gap: 12px;background: #f8fafc;border-radius: 12px;border-left: 4px solid var(--friendly-teal);">
-                        <span class="benefit-icon" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--friendly-teal);font-size: 1.1em;font-weight: 700;margin-top: 2px;">✓</span>
-                        <span class="benefit-text" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 500;color: var(--text-primary);font-size: 0.95em;line-height: 1.4;">Community support and peer learning opportunities</span>
-                    </div>
-                    <div class="benefit-item" style="margin: 0;padding: 15px;box-sizing: border-box;display: flex;align-items: flex-start;gap: 12px;background: #f8fafc;border-radius: 12px;border-left: 4px solid var(--friendly-teal);">
-                        <span class="benefit-icon" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--friendly-teal);font-size: 1.1em;font-weight: 700;margin-top: 2px;">✓</span>
-                        <span class="benefit-text" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 500;color: var(--text-primary);font-size: 0.95em;line-height: 1.4;">Career guidance and skill assessment throughout your journey</span>
-                    </div>
+            <div class="benefits-section">
+                <h3 class="benefits-title">🎯 Foundation Track Benefits</h3>
+                
+                <div class="benefit-item">
+                    <span class="benefit-icon">✓</span>
+                    <span class="benefit-text">Step-by-step curriculum designed for beginners with clear milestones</span>
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-icon">✓</span>
+                    <span class="benefit-text">Weekly group sessions with doubt clearing and progress tracking</span>
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-icon">✓</span>
+                    <span class="benefit-text">Hands-on projects that build your confidence gradually</span>
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-icon">✓</span>
+                    <span class="benefit-text">Community support and peer learning opportunities</span>
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-icon">✓</span>
+                    <span class="benefit-text">Career guidance and skill assessment throughout your journey</span>
                 </div>
             </div>
 
             <!-- Learning Path -->
-            <div class="learning-path" style="margin: 0;padding: 25px;box-sizing: border-box;background: linear-gradient(135deg, #fef7ed, #fff7ed);border: 2px solid #f97316;border-radius: 15px;margin-bottom: 30px;">
-                <div class="path-header" style="margin: 0;padding: 0;box-sizing: border-box;display: flex;align-items: center;gap: 12px;margin-bottom: 15px;">
-                    <span class="path-icon" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 2em;">🗺️</span>
-                    <span class="path-title" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.2em;font-weight: 700;color: var(--deep-blue);">Let's Plan Your Success</span>
+            <div class="learning-path">
+                <div class="path-header">
+                    🗺️ Let's Plan Your Success
                 </div>
-                <div class="path-description" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--text-primary);line-height: 1.5;margin-bottom: 20px;font-size: 0.95em;">
+                <div class="path-description">
                     Everyone's starting point is different. Let's have a friendly conversation to understand your goals and create a personalized roadmap that works for your schedule and pace.
                 </div>
-                <div class="next-steps" style="margin: 0;padding: 0;box-sizing: border-box;display: grid;grid-template-columns: 1fr 1fr;gap: 15px;">
-                    <div class="step-card" onclick="enhancedBookCall('guidance', 'basic')" style="margin: 0;padding: 18px;box-sizing: border-box;background: white;border-radius: 12px;border: 1px solid #e5e7eb;text-align: center;cursor: pointer;transition: all 0.3s ease;">
-                        <div class="step-number" style="margin: 0 auto 10px;padding: 0;box-sizing: border-box;background: var(--friendly-teal);color: black;width: 30px;height: 30px;border-radius: 50%;display: flex;align-items: center;justify-content: center;font-weight: 700;font-size: 0.9em;">1</div>
-                        <div class="step-title" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 600;color: var(--deep-blue);margin-bottom: 8px;font-size: 0.95em;">Free Guidance Call</div>
-                        <div class="step-description" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.85em;color: var(--text-secondary);margin-bottom: 12px;line-height: 1.3;">20-min friendly chat about your goals</div>
-                        <button class="step-cta" style="margin: 0;padding: 8px 16px;box-sizing: border-box;background: var(--friendly-teal);color: black;border: none;border-radius: 15px;font-weight: 600;cursor: pointer;transition: all 0.3s ease;width: 100%;font-size: 0.85em;">Get Guidance</button>
-                    </div>
-                    <div class="step-card" onclick="enhancedBookCall('assessment', 'basic')" style="margin: 0;padding: 18px;box-sizing: border-box;background: white;border-radius: 12px;border: 1px solid #e5e7eb;text-align: center;cursor: pointer;transition: all 0.3s ease;">
-                        <div class="step-number" style="margin: 0 auto 10px;padding: 0;box-sizing: border-box;background: var(--friendly-teal);color: black;width: 30px;height: 30px;border-radius: 50%;display: flex;align-items: center;justify-content: center;font-weight: 700;font-size: 0.9em;">2</div>
-                        <div class="step-title" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 600;color: var(--deep-blue);margin-bottom: 8px;font-size: 0.95em;">Skill Assessment</div>
-                        <div class="step-description" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.85em;color: var(--text-secondary);margin-bottom: 12px;line-height: 1.3;">45-min evaluation and roadmap creation</div>
-                        <button class="step-cta" style="margin: 0;padding: 8px 16px;box-sizing: border-box;background: var(--friendly-teal);color: black;border: none;border-radius: 15px;font-weight: 600;cursor: pointer;transition: all 0.3s ease;width: 100%;font-size: 0.85em;">Book Assessment</button>
-                    </div>
-                </div>
+                
+                <table class="steps-table">
+                    <tr>
+                        <td>
+                            <div class="step-number">1</div>
+                            <div class="step-title">Free Guidance Call</div>
+                            <div class="step-description">20-min friendly chat about your goals</div>
+                            <button class="cta-button" onclick="enhancedBookCall('guidance', 'basic')">Get Guidance</button>
+                        </td>
+                        <td>
+                            <div class="step-number">2</div>
+                            <div class="step-title">Skill Assessment</div>
+                            <div class="step-description">45-min evaluation and roadmap creation</div>
+                            <button class="cta-button" onclick="enhancedBookCall('assessment', 'basic')">Book Assessment</button>
+                        </td>
+                    </tr>
+                </table>
             </div>
 
             <!-- Progress Tracker -->
-            <div class="progress-tracker" id="progressTracker" style="margin: 20px 0;padding: 25px;box-sizing: border-box;background: #f0f9ff;border: 2px solid #3b82f6;border-radius: 15px;display: none;">
-                <div class="progress-title" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 600;color: #1e40af;margin-bottom: 15px;display: flex;align-items: center;gap: 10px;">
+            <div class="progress-tracker" id="progressTracker">
+                <div class="progress-title">
                     📋 Your Booking Progress
                 </div>
-                <div class="progress-steps" style="margin: 0;padding: 0;box-sizing: border-box;display: grid;gap: 10px;margin-bottom: 20px;">
-                    <div class="progress-step completed" id="step1" style="margin: 0;padding: 12px;box-sizing: border-box;display: flex;align-items: center;gap: 10px;background: #dcfce7;border-radius: 8px;transition: all 0.3s ease;border-left: 4px solid #10b981;">
-                        <span style="margin: 0;padding: 0;box-sizing: border-box;">✅</span> <span style="margin: 0;padding: 0;box-sizing: border-box;">Booking method selected</span>
+                <div class="progress-steps">
+                    <div class="progress-step completed" id="step1">
+                        <span>✅</span> <span>Booking method selected</span>
                     </div>
-                    <div class="progress-step" id="step2" style="margin: 0;padding: 12px;box-sizing: border-box;display: flex;align-items: center;gap: 10px;background: white;border-radius: 8px;transition: all 0.3s ease;">
-                        <span style="margin: 0;padding: 0;box-sizing: border-box;">2.</span> <span style="margin: 0;padding: 0;box-sizing: border-box;">Complete Calendly booking</span>
+                    <div class="progress-step" id="step2">
+                        <span>2.</span> <span>Complete Calendly booking</span>
                     </div>
-                    <div class="progress-step" id="step3" style="margin: 0;padding: 12px;box-sizing: border-box;display: flex;align-items: center;gap: 10px;background: white;border-radius: 8px;transition: all 0.3s ease;">
-                        <span style="margin: 0;padding: 0;box-sizing: border-box;">3.</span> <span style="margin: 0;padding: 0;box-sizing: border-box;">Send WhatsApp confirmation</span>
+                    <div class="progress-step" id="step3">
+                        <span>3.</span> <span>Send WhatsApp confirmation</span>
                     </div>
                 </div>
                 
-                <button class="whatsapp-confirmation-btn" id="whatsappConfirmationBtn" onclick="sendWhatsAppConfirmation()" disabled style="margin: 10px 0;padding: 15px 30px;box-sizing: border-box;background: #25D366;color: black;border: none;border-radius: 25px;font-weight: 600;cursor: pointer;transition: all 0.3s ease;width: 100%;font-size: 1.1em;">
+                <button class="whatsapp-confirmation-btn" id="whatsappConfirmationBtn" onclick="sendWhatsAppConfirmation()" disabled>
                     📱 Click here after completing Calendly booking
                 </button>
                 
-                <p style="text-align: center;font-size: 0.9em;color: #64748b;margin-top: 10px;margin: 0;padding: 0;box-sizing: border-box;">
+                <p style="text-align: center; font-size: 14px; color: #64748b; margin-top: 10px;">
                     Complete your Calendly booking first, then return here to send WhatsApp confirmation
                 </p>
             </div>
 
             <!-- Encouragement Section -->
-            <div class="encouragement" style="margin: 0;padding: 20px;box-sizing: border-box;background: linear-gradient(135deg, #f0fdf4, #ecfdf5);border-left: 4px solid var(--success-green);border-radius: 12px;margin-bottom: 25px;">
-                <div class="encouragement-title" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 600;color: var(--deep-blue);margin-bottom: 10px;display: flex;align-items: center;gap: 8px;">
+            <div class="encouragement">
+                <div class="encouragement-title">
                     💪 You're Taking the Right Step!
                 </div>
-                <div class="encouragement-text" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--text-primary);line-height: 1.5;font-size: 0.95em;">
+                <div class="encouragement-text">
                     Starting your AI & Data journey is exciting! Our foundation track is specifically designed for people just like you - those who want to learn properly without feeling overwhelmed. We'll go at a pace that ensures you understand everything clearly.
                 </div>
             </div>
 
             <!-- Simple Guarantee -->
-            <div class="simple-guarantee" style="margin: 0;padding: 20px;box-sizing: border-box;background: #f8fafc;border: 2px solid #e2e8f0;border-radius: 12px;margin-bottom: 25px;text-align: center;">
-                <div class="guarantee-title" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 600;color: var(--deep-blue);margin-bottom: 8px;font-size: 1.1em;">🤝 Our Commitment to You</div>
-                <div class="guarantee-text" style="margin: 0;padding: 0;box-sizing: border-box;color: var(--text-secondary);line-height: 1.4;font-size: 0.9em;">
+            <div class="guarantee">
+                <div class="guarantee-title">🤝 Our Commitment to You</div>
+                <div class="guarantee-text">
                     We believe in your potential. If you complete our program and don't see progress in your skills and confidence, we'll work with you until you do - at no extra cost.
                 </div>
             </div>
+        </div>
 
-            <!-- Footer -->
-            <div class="booking-footer" style="margin: 0;padding: 0;box-sizing: border-box;text-align: center;color: var(--text-secondary);font-size: 0.9em;line-height: 1.4;">
-                No pressure, just a friendly conversation about your career goals and how we can help you achieve them.
-                <div class="security-note" style="margin: 0;padding: 0;box-sizing: border-box;display: flex;align-items: center;justify-content: center;gap: 8px;margin-top: 15px;color: var(--text-secondary);font-size: 0.85em;">
-                    🔒 Secure booking • 💬 WhatsApp reminder • 📧 Calendar invite sent
-                </div>
+        <!-- Footer -->
+        <div class="footer">
+            No pressure, just a friendly conversation about your career goals and how we can help you achieve them.
+            <div class="security-note">
+                🔒 Secure booking • 💬 WhatsApp reminder • 📧 Calendar invite sent
             </div>
         </div>
     </div>
 
     <!-- Booking Options Modal -->
-    <div id="bookingModal" class="booking-modal" style="margin: 0;padding: 0;box-sizing: border-box;position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.8);display: none;justify-content: center;align-items: center;z-index: 10000;">
-        <div class="booking-modal-content" style="margin: 0;padding: 0;box-sizing: border-box;background: white;border-radius: 20px;max-width: 500px;width: 90%;box-shadow: 0 25px 80px rgba(0,0,0,0.3);">
-            <div class="booking-modal-header" style="margin: 0;padding: 25px 30px 20px;box-sizing: border-box;border-bottom: 1px solid #e2e8f0;display: flex;justify-content: space-between;align-items: center;">
-                <h3 style="margin: 0;padding: 0;box-sizing: border-box;color: #1a365d;font-size: 1.3em;font-weight: 700;">🚀 Choose Your Booking Method</h3>
-                <button class="booking-modal-close" onclick="closeBookingModal()" style="margin: 0;padding: 0;box-sizing: border-box;background: none;border: none;font-size: 2em;cursor: pointer;color: #64748b;">&times;</button>
+    <div id="bookingModal" class="booking-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🚀 Choose Your Booking Method</h3>
+                <button onclick="closeBookingModal()" style="float: right; background: none; border: none; color: white; font-size: 24px; cursor: pointer;">&times;</button>
             </div>
-            <div class="booking-modal-body" style="margin: 0;padding: 30px;box-sizing: border-box;">
-                <div class="booking-option primary" onclick="openCalendlyDirect()" style="margin: 0;padding: 20px;box-sizing: border-box;display: flex;align-items: center;gap: 15px;border: 2px solid #e2e8f0;border-radius: 15px;margin-bottom: 15px;cursor: pointer;transition: all 0.3s ease;border-color: #06b6d4;background: linear-gradient(135deg, #f0f9ff, #ffffff);">
-                    <div class="booking-icon" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 2em;">📅</div>
-                    <div class="booking-details" style="margin: 0;padding: 0;box-sizing: border-box;flex: 1;">
-                        <div class="booking-title" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 600;font-size: 1.1em;margin-bottom: 5px;color: #1a365d;">Book via Calendly</div>
-                        <div class="booking-description" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.9em;color: #64748b;">Quick online scheduling (Recommended)</div>
+            <div class="modal-body">
+                <div class="booking-option" onclick="openCalendlyDirect()">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 32px;">📅</div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: bold; font-size: 16px; margin-bottom: 5px;">Book via Calendly</div>
+                            <div style="font-size: 14px; color: #64748b;">Quick online scheduling (Recommended)</div>
+                        </div>
+                        <div style="font-size: 20px; color: #06b6d4;">→</div>
                     </div>
-                    <div class="booking-arrow" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.5em;color: #06b6d4;font-weight: bold;">→</div>
                 </div>
                 
-                <div class="booking-option secondary" onclick="openCalendlyThenWhatsApp()" style="margin: 0;padding: 20px;box-sizing: border-box;display: flex;align-items: center;gap: 15px;border: 2px solid #e2e8f0;border-radius: 15px;margin-bottom: 15px;cursor: pointer;transition: all 0.3s ease;">
-                    <div class="booking-icon" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 2em;">📱</div>
-                    <div class="booking-details" style="margin: 0;padding: 0;box-sizing: border-box;flex: 1;">
-                        <div class="booking-title" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 600;font-size: 1.1em;margin-bottom: 5px;color: #1a365d;">Calendly + WhatsApp</div>
-                        <div class="booking-description" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.9em;color: #64748b;">Book via Calendly, then get WhatsApp confirmation</div>
+                <div class="booking-option" onclick="openCalendlyThenWhatsApp()">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 32px;">📱</div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: bold; font-size: 16px; margin-bottom: 5px;">Calendly + WhatsApp</div>
+                            <div style="font-size: 14px; color: #64748b;">Book via Calendly, then get WhatsApp confirmation</div>
+                        </div>
+                        <div style="font-size: 20px; color: #06b6d4;">→</div>
                     </div>
-                    <div class="booking-arrow" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.5em;color: #06b6d4;font-weight: bold;">→</div>
                 </div>
                 
-                <div class="booking-option secondary" onclick="joinWhatsAppCommunity()" style="margin: 0;padding: 20px;box-sizing: border-box;display: flex;align-items: center;gap: 15px;border: 2px solid #e2e8f0;border-radius: 15px;margin-bottom: 15px;cursor: pointer;transition: all 0.3s ease;">
-                    <div class="booking-icon" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 2em;">👥</div>
-                    <div class="booking-details" style="margin: 0;padding: 0;box-sizing: border-box;flex: 1;">
-                        <div class="booking-title" style="margin: 0;padding: 0;box-sizing: border-box;font-weight: 600;font-size: 1.1em;margin-bottom: 5px;color: #1a365d;">Join WhatsApp Community</div>
-                        <div class="booking-description" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 0.9em;color: #64748b;">Connect with learners & get updates</div>
+                <div class="booking-option" onclick="joinWhatsAppCommunity()">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 32px;">👥</div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: bold; font-size: 16px; margin-bottom: 5px;">Join WhatsApp Community</div>
+                            <div style="font-size: 14px; color: #64748b;">Connect with learners & get updates</div>
+                        </div>
+                        <div style="font-size: 20px; color: #06b6d4;">→</div>
                     </div>
-                    <div class="booking-arrow" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.5em;color: #06b6d4;font-weight: bold;">→</div>
                 </div>
             </div>
-            <div class="booking-modal-footer" style="margin: 0;padding: 20px 30px 30px;box-sizing: border-box;text-align: center;">
-                <p style="margin: 0;padding: 0;box-sizing: border-box;color: #64748b;font-size: 0.9em;">All methods are free and secure. Choose what's most convenient for you!</p>
+            <div style="padding: 20px 30px; text-align: center;">
+                <p style="color: #64748b; font-size: 14px;">All methods are free and secure. Choose what's most convenient for you!</p>
             </div>
         </div>
     </div>
 
     <!-- WhatsApp Confirmation Modal -->
-    <div id="whatsappConfirmationModal" class="whatsapp-confirmation-modal" style="margin: 0;padding: 0;box-sizing: border-box;position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.8);display: none;justify-content: center;align-items: center;z-index: 11000;">
-        <div class="whatsapp-confirmation-content" style="margin: 0;padding: 0;box-sizing: border-box;background: white;border-radius: 20px;max-width: 500px;width: 90%;box-shadow: 0 25px 80px rgba(0,0,0,0.3);">
-            <div class="whatsapp-confirmation-header" style="margin: 0;padding: 30px;box-sizing: border-box;background: linear-gradient(135deg, #25D366, #128C7E);color: black;border-radius: 20px 20px 0 0;text-align: center;">
-                <h3 style="margin: 0;padding: 0;box-sizing: border-box;">📱 Calendly + WhatsApp Booking</h3>
-                <p style="margin: 0;padding: 0;box-sizing: border-box;">Complete your guidance call booking in 2 simple steps</p>
+    <div id="whatsappConfirmationModal" class="whatsapp-confirmation-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📱 Calendly + WhatsApp Booking</h3>
+                <p>Complete your guidance call booking in 2 simple steps</p>
             </div>
-            <div class="whatsapp-confirmation-body" style="margin: 0;padding: 30px;box-sizing: border-box;">
-                <div class="confirmation-step" style="margin: 0;padding: 15px;box-sizing: border-box;display: flex;align-items: flex-start;gap: 15px;background: #f8fafc;border-radius: 10px;margin-bottom: 15px;">
-                    <div class="step-circle" style="margin: 0;padding: 0;box-sizing: border-box;background: #25D366;color: black;width: 30px;height: 30px;border-radius: 50%;display: flex;align-items: center;justify-content: center;font-weight: 700;flex-shrink: 0;">1</div>
-                    <div style="margin: 0;padding: 0;box-sizing: border-box;">
-                        <strong style="margin: 0;padding: 0;box-sizing: border-box;">First: Book via Calendly</strong><br style="margin: 0;padding: 0;box-sizing: border-box;">
-                        <span style="color: #64748b;font-size: 0.9em;margin: 0;padding: 0;box-sizing: border-box;">We'll open Calendly in a new tab. Complete your booking there.</span>
+            <div class="modal-body">
+                <div style="padding: 15px; background: #f8fafc; border-radius: 10px; margin-bottom: 15px;">
+                    <div style="display: flex; align-items: flex-start; gap: 15px;">
+                        <div style="background: #25D366; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">1</div>
+                        <div>
+                            <strong>First: Book via Calendly</strong><br>
+                            <span style="color: #64748b; font-size: 14px;">We'll open Calendly in a new tab. Complete your booking there.</span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="confirmation-step" style="margin: 0;padding: 15px;box-sizing: border-box;display: flex;align-items: flex-start;gap: 15px;background: #f8fafc;border-radius: 10px;margin-bottom: 15px;">
-                    <div class="step-circle" style="margin: 0;padding: 0;box-sizing: border-box;background: #25D366;color: black;width: 30px;height: 30px;border-radius: 50%;display: flex;align-items: center;justify-content: center;font-weight: 700;flex-shrink: 0;">2</div>
-                    <div style="margin: 0;padding: 0;box-sizing: border-box;">
-                        <strong style="margin: 0;padding: 0;box-sizing: border-box;">Then: Return here for WhatsApp confirmation</strong><br style="margin: 0;padding: 0;box-sizing: border-box;">
-                        <span style="color: #64748b;font-size: 0.9em;margin: 0;padding: 0;box-sizing: border-box;">After booking, come back to this page and click the WhatsApp confirmation button</span>
+                <div style="padding: 15px; background: #f8fafc; border-radius: 10px; margin-bottom: 15px;">
+                    <div style="display: flex; align-items: flex-start; gap: 15px;">
+                        <div style="background: #25D366; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2</div>
+                        <div>
+                            <strong>Then: Return here for WhatsApp confirmation</strong><br>
+                            <span style="color: #64748b; font-size: 14px;">After booking, come back to this page and click the WhatsApp confirmation button</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="confirmation-action-buttons" style="margin: 0;padding: 0;box-sizing: border-box;display: grid;grid-template-columns: 1fr 1fr;gap: 15px;margin-top: 20px;">
-                    <button class="whatsapp-btn" onclick="proceedWithCalendlyBooking()" style="margin: 0;padding: 12px 20px;box-sizing: border-box;background: #25D366;color: white;border: none;border-radius: 10px;font-weight: 600;cursor: pointer;transition: all 0.3s ease;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+                    <button onclick="proceedWithCalendlyBooking()" style="padding: 12px 20px; background: #25D366; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer;">
                         📅 Open Calendly Now
                     </button>
-                    <button class="close-btn" onclick="closeWhatsAppModal()" style="margin: 0;padding: 12px 20px;box-sizing: border-box;background: #64748b;color: white;border: none;border-radius: 10px;font-weight: 600;cursor: pointer;transition: all 0.3s ease;">
+                    <button onclick="closeWhatsAppModal()" style="padding: 12px 20px; background: #64748b; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer;">
                         Cancel
                     </button>
                 </div>
 
-                <p style="text-align: center;margin-top: 15px;font-size: 0.9em;color: #64748b;margin: 0;padding: 0;box-sizing: border-box;">
+                <p style="text-align: center; margin-top: 15px; font-size: 14px; color: #64748b;">
                     We'll track your progress and enable WhatsApp confirmation after you complete Calendly booking
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- NEW: Booking Completion Check Modal -->
-    <div id="completionCheckModal" class="completion-check-modal" style="margin: 0;padding: 0;box-sizing: border-box;position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.85);display: none;justify-content: center;align-items: center;z-index: 12000;backdrop-filter: blur(10px);">
-        <div class="completion-check-content" style="margin: 0;padding: 0;box-sizing: border-box;background: white;border-radius: 20px;max-width: 450px;width: 90%;box-shadow: 0 25px 80px rgba(0,0,0,0.3);text-align: center;animation: modalSlideIn 0.3s ease-out;">
-            <div class="completion-check-header" style="margin: 0;padding: 30px;box-sizing: border-box;background: linear-gradient(135deg, #14b8a6, #0d9488);color: white;border-radius: 20px 20px 0 0;">
-                <h3 style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.5em;margin-bottom: 10px;">🎯 Booking Status Check</h3>
-                <p style="margin: 0;padding: 0;box-sizing: border-box;">Let's confirm your Calendly booking progress</p>
+    <!-- Booking Completion Check Modal -->
+    <div id="completionCheckModal" class="completion-check-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🎯 Booking Status Check</h3>
+                <p>Let's confirm your Calendly booking progress</p>
             </div>
-            <div class="completion-check-body" style="margin: 0;padding: 30px;box-sizing: border-box;">
-                <div class="completion-question" style="margin: 0;padding: 0;box-sizing: border-box;font-size: 1.1em;color: var(--text-primary);margin-bottom: 25px;line-height: 1.5;">
+            <div class="modal-body">
+                <div style="font-size: 16px; color: #333; margin-bottom: 25px; line-height: 1.5; text-align: center;">
                     Did you successfully complete your foundation guidance call booking on Calendly?
                 </div>
-                <div class="completion-buttons" style="margin: 0;padding: 0;box-sizing: border-box;display: grid;grid-template-columns: 1fr 1fr;gap: 15px;">
-                    <button class="completion-yes" onclick="handleBookingCompleted()" style="margin: 0;padding: 15px 25px;box-sizing: border-box;background: #25D366;color: white;border: none;border-radius: 10px;font-weight: 600;cursor: pointer;transition: all 0.3s ease;font-size: 1em;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <button onclick="handleBookingCompleted()" style="padding: 15px 25px; background: #25D366; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 14px;">
                         ✅ Yes, Booked Successfully
                     </button>
-                    <button class="completion-no" onclick="handleBookingIncomplete()" style="margin: 0;padding: 15px 25px;box-sizing: border-box;background: #e2e8f0;color: var(--text-primary);border: none;border-radius: 10px;font-weight: 600;cursor: pointer;transition: all 0.3s ease;font-size: 1em;">
+                    <button onclick="handleBookingIncomplete()" style="padding: 15px 25px; background: #e2e8f0; color: #333; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 14px;">
                         ❌ No, Still Need Help
                     </button>
                 </div>
@@ -267,7 +689,13 @@
         </div>
     </div>
 
-    <script style="margin: 0;padding: 0;box-sizing: border-box;">
+    <script>
+        // Your JavaScript functions will be added here
+        // All the original functions like enhancedBookCall, openCalendlyDirect, etc.
+        // should be included exactly as they were in your original template
+    </script>
+
+  <script style="margin: 0;padding: 0;box-sizing: border-box;">
         // BOOKING CONFIGURATION WITH YOUR ACTUAL CALENDLY URLS
         const BOOKING_CONFIG = {
             calendly: {
