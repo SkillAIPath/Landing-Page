@@ -141,7 +141,7 @@ exports.handler = async (event, context) => {
 // Updated sendBlueprintEmail function for process-lead.js
 // Replace the existing sendBlueprintEmail function with this enhanced version
 
-async function sendBlueprintEmail(formData) {
+async function sendBluprintEma(formData) {
     console.log('📧 Sending enhanced blueprint email to:', formData.email);
     
     const customerName = formData.name || formData.first_name || 'Future Enterprise Builder';
@@ -483,7 +483,7 @@ async function sendBlueprintEmail(formData) {
     return result;
 }
 
-async function handleApplication(formData) {
+async function handleApplicati(formData) {
     console.log('📧 Handling application');
     
     const score = calculatePriorityScore(formData);
@@ -506,7 +506,7 @@ async function handleApplication(formData) {
         message: `Application submitted successfully! Priority Level: ${tier} (Score: ${score}/100)`
     };
 }
-async function getTemplateByScore(score) {
+async function getTemplateBySce(score) {
   let fileName = 'basic-qualified.html';
 
   if (score > 49 && score <= 69) {
@@ -848,3 +848,4 @@ function getPriorityTier(score) {
     if (score <= 69) return 'STANDARD';
     return 'PRIORITY';
 }
+
